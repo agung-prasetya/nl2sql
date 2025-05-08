@@ -1,0 +1,39 @@
+{
+    "entitas": {
+        "pelanggan": {
+            "id_pelanggan": "",
+            "nama": "",
+            "email": "",
+            "telepon": "",
+            "alamat": ""
+        },
+        "produk": {
+            "id_produk": "",
+            "nama_produk": "",
+            "harga": "",
+            "stok": "",
+            "deskripsi": ""
+        },
+        "pesanan": {
+            "id_pesanan": "",
+            "id_pelanggan": "",
+            "tanggal_pesan": "",
+            "status": ""
+        },
+        "detail_pesanan": {
+            "id_detail": "",
+            "id_pesanan": "",
+            "id_produk": "",
+            "jumlah": "",
+            "subtotal": ""
+        },
+        "pembayaran": {
+            "id_pembayaran": "",
+            "id_pesanan": "",
+            "tanggal_bayar": "",
+            "metode_pembayaran": "",
+            "jumlah_bayar": "",
+            "status_pembayaran": ""
+        }
+    }
+}

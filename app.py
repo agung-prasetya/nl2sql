@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from detectors import DMLDetector, DDLDetector
+from detectors import DMLDetector, DDLDetector, SortingDetector
 import tempfile
 import os
 from flask_cors import CORS
@@ -36,8 +36,13 @@ def predict_dml():
     return detect(detector=detector)
 
 @app.route('/ddl/predict', methods=['POST'])
-def predict_dml():
+def predict_ddl():
     detector = DDLDetector()
+    return detect(detector=detector)
+
+@app.route('/sorting/predict', methods=['POST'])
+def predict_sorting():
+    detector = SortingDetector()
     return detect(detector=detector)
 
 if __name__ == '__main__':

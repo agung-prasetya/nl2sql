@@ -3,45 +3,21 @@ import json
 import re
 import textdistance
 
-class DMLDetector(KnowledgeEngine):
+class SortingDetector(KnowledgeEngine):
     @DefFacts()
     def initial(self):
-        yield Fact(jenis_dml='NODML')
+        yield Fact(jenis_sorting='NOSORTING')
 
-
-    @Rule(
-        OR(
-            Fact(kata='tambahkan'),Fact(kata='baru')
-        )
-    )
-    def db_inventori_1_INSERT_1(self):
-        self.declare(Fact(jenis_dml='INSERT'))
-
-    @Rule(
-        OR(
-            Fact(kata='masukkan'),
-            Fact(kata='baru')
-        )
-    )
-    def db_inventori_1_INSERT_2(self):
-        self.declare(Fact(jenis_dml='INSERT'))
-
-
-    @Rule(
-        Fact(kata='tampilkan')
-    )
-    def db_inventori_1_SELECT_1(self):
-        self.declare(Fact(jenis_dml='SELECT'))
 
 
     @Rule(
         OR(
-            Fact(jenis_dml='SELECT'), Fact(jenis_dml='INSERT'), Fact(jenis_dml='UPDATE'), Fact(jenis_dml='DELETE')
+            Fact(jenis_sorting='ASC'), Fact(jenis_sorting='DESC')
         )
     )
-    def rule_remove_nodml_if_dml_exist(self):
+    def rule_remove_nosorting_if_sorting_exist(self):
         for id, fact in list(self.facts.items()):
-            if 'jenis_dml' in fact and fact['jenis_dml']=='NODML':
+            if 'jenis_sorting' in fact and fact['jenis_sorting']=='NOSORTING':
                 self.retract(id)
 
     
@@ -93,6 +69,6 @@ class DMLDetector(KnowledgeEngine):
         self.run()
 
         for fact in self.facts.values():
-            if 'jenis_dml' in fact:
-                return fact['jenis_dml']
-        return 'NODML'
+            if 'jenis_sorting' in fact:
+                return fact['jenis_sorting']
+        return 'NOSORTING'

@@ -1,25 +1,23 @@
 import json
 import os
 
-paths = ['penjualan_1.json']
+paths = ['hotel_1.json']
 # base_dir = os.path.dirname(os.path.abspath(__file__))
 # full_db_path = os.path.abspath(base_dir)
 full_db_path = os.path.abspath("e:/codes/nl2sql/databases/sorting_detector/")
 
 for path in paths:
-    new_data = {'entitas':{}}
-
     file_database_json = os.path.join(full_db_path, path)
 
     with open(file_database_json,'r') as file:
         data = json.load(file)
         
     entitas_attributes = {}
-    for details in data['entities']:
+    for entity in data['entitas']:
         attribute_name_type = {}
-        for atribut in details['attributes']:
-            attribute_name_type[atribut['name'].lower()] = atribut['type'].lower()
-        entitas_attributes[details['name'].lower()] = attribute_name_type
+        for atribut in entity['atribut']:
+            attribute_name_type[atribut['nama'].lower()] = "" 
+        entitas_attributes[entity['nama'].lower()] = attribute_name_type
     
     new_data = {'entitas':entitas_attributes}
     

@@ -1,0 +1,46 @@
+{
+    "entitas": {
+        "customer": {
+            "customer_id": "int",
+            "name": "string",
+            "address": "string",
+            "phone_number": "string",
+            "email": "string"
+        },
+        "order": {
+            "order_id": "int",
+            "customer_id": "int",
+            "order_date": "datetime",
+            "shipping_address": "string",
+            "order_status": "string"
+        },
+        "order_item": {
+            "order_item_id": "int",
+            "order_id": "int",
+            "product_id": "int",
+            "quantity": "int",
+            "unit_price": "decimal",
+            "subtotal": "decimal"
+        },
+        "product": {
+            "product_id": "int",
+            "name": "string",
+            "description": "string",
+            "price": "decimal",
+            "stock_quantity": "int",
+            "category_id": "int",
+            "supplier_id": "int"
+        },
+        "category": {
+            "category_id": "int",
+            "name": "string"
+        },
+        "supplier": {
+            "supplier_id": "int",
+            "name": "string",
+            "contact_person": "string",
+            "phone_number": "string",
+            "email": "string"
+        }
+    }
+}
