@@ -1,0 +1,51 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": "int",
+      "nama": "varchar",
+      "alamat": "varchar",
+      "telepon": "varchar",
+      "email": "varchar"
+    },
+    "produk": {
+      "id_produk": "int",
+      "nama_produk": "varchar",
+      "deskripsi": "text",
+      "harga": "decimal",
+      "stok": "int"
+    },
+    "pemesanan": {
+      "id_pemesanan": "int",
+      "tanggal_pesan": "date",
+      "id_pelanggan": "int",
+      "total_bayar": "decimal"
+    },
+    "detail_pemesanan": {
+      "id_detail": "int",
+      "id_pemesanan": "int",
+      "id_produk": "int",
+      "jumlah": "int",
+      "subtotal": "decimal"
+    },
+    "pembayaran": {
+      "id_pembayaran": "int",
+      "id_pemesanan": "int",
+      "tanggal_pembayaran": "date",
+      "jumlah_bayar": "decimal",
+      "metode_pembayaran": "varchar"
+    },
+    "pengiriman": {
+      "id_pengiriman": "int",
+      "id_pemesanan": "int",
+      "tanggal_kirim": "date",
+      "alamat_tujuan": "varchar",
+      "status_pengiriman": "varchar"
+    },
+    "admin": {
+      "id_admin": "int",
+      "nama_admin": "varchar",
+      "username": "varchar",
+      "password": "varchar"
+    }
+  }
+}

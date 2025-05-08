@@ -1,0 +1,55 @@
+{
+  "entitas": {
+    "pegawai": {
+      "nip": "string",
+      "nama": "string",
+      "jenis_kelamin": "string",
+      "tanggal_lahir": "date",
+      "alamat": "text",
+      "email": "string",
+      "no_hp": "string",
+      "id_jabatan": "int",
+      "id_departemen": "int",
+      "status_pegawai": "string",
+      "tanggal_masuk": "date"
+    },
+    "jabatan": {
+      "id_jabatan": "int",
+      "nama_jabatan": "string",
+      "gaji_pokok": "decimal",
+      "tunjangan": "decimal"
+    },
+    "departemen": {
+      "id_departemen": "int",
+      "nama_departemen": "string",
+      "lokasi": "string"
+    },
+    "absensi": {
+      "id_absensi": "int",
+      "nip": "string",
+      "tanggal": "date",
+      "waktu_masuk": "time",
+      "waktu_keluar": "time",
+      "status_kehadiran": "string"
+    },
+    "gaji": {
+      "id_gaji": "int",
+      "nip": "string",
+      "bulan": "string",
+      "tahun": "int",
+      "gaji_pokok": "decimal",
+      "tunjangan": "decimal",
+      "potongan": "decimal",
+      "total_gaji": "decimal"
+    },
+    "cuti": {
+      "id_cuti": "int",
+      "nip": "string",
+      "tanggal_pengajuan": "date",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "jenis_cuti": "string",
+      "status_cuti": "string"
+    }
+  }
+}

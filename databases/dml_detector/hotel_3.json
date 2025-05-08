@@ -1,0 +1,37 @@
+{
+  "entitas": {
+    "tamu": {
+      "id": "integer",
+      "nama": "varchar",
+      "ktp": "varchar",
+      "kontak": "varchar",
+      "tanggal": "date",
+      "waktu": "time"
+    },
+    "pemesanan": {
+      "idpemesanan": "integer",
+      "nokamar": "integer",
+      "idtamu": "integer",
+      "tglpemesana": "date",
+      "jmlhari": "integer",
+      "uangmuka": "decimal",
+      "total": "decimal"
+    },
+    "kamar": {
+      "idkamar": "integer",
+      "nomor": "varchar"
+    },
+    "jenis": {
+      "idjenis": "integer",
+      "nama": "varchar",
+      "bed": "varchar",
+      "weekday": "decimal",
+      "weekend": "decimal"
+    },
+    "statkamar": {
+      "nokamar": "integer",
+      "tanggal": "date",
+      "idtamu": "integer"
+    }
+  }
+}
