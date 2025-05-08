@@ -1,0 +1,61 @@
+{
+    "entitas": {
+        "produk": {
+            "id_produk": "primary key",
+            "nama": "varchar(255)",
+            "deskripsi": "text",
+            "id_kategori": "foreign key references kategori(id_kategori)",
+            "id_pemasok": "foreign key references pemasok(id_pemasok)",
+            "harga": "decimal(10,2)",
+            "jumlah_stok": "int",
+            "level_pemesanan_ulang": "int"
+        },
+        "kategori": {
+            "id_kategori": "primary key",
+            "nama": "varchar(255)",
+            "deskripsi": "text"
+        },
+        "pemasok": {
+            "id_pemasok": "primary key",
+            "nama": "varchar(255)",
+            "kontak": "varchar(50)",
+            "email": "varchar(100) unique",
+            "alamat": "text"
+        },
+        "pelanggan": {
+            "id_pelanggan": "primary key",
+            "nama": "varchar(255)",
+            "kontak": "varchar(50)",
+            "email": "varchar(100) unique",
+            "alamat": "text"
+        },
+        "pesanan": {
+            "id_pesanan": "primary key",
+            "id_pelanggan": "foreign key references pelanggan(id_pelanggan)",
+            "tanggal_pesanan": "date",
+            "total_harga": "decimal(10,2)"
+        },
+        "detail_pesanan": {
+            "id_detail_pesanan": "primary key",
+            "id_pesanan": "foreign key references pesanan(id_pesanan)",
+            "id_produk": "foreign key references produk(id_produk)",
+            "kuantitas": "int",
+            "harga": "decimal(10,2)"
+        },
+        "transaksi_stok": {
+            "id_transaksi": "primary key",
+            "id_produk": "foreign key references produk(id_produk)",
+            "jenis_transaksi": "enum('masuk', 'keluar')",
+            "kuantitas": "int",
+            "tanggal_transaksi": "date",
+            "keterangan": "text"
+        },
+        "pengguna": {
+            "id_pengguna": "primary key",
+            "nama": "varchar(255)",
+            "peran": "enum('admin', 'manajer', 'staf')",
+            "email": "varchar(100) unique",
+            "kata_sandi": "varchar(255)"
+        }
+    }
+}

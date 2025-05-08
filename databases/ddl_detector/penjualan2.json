@@ -1,0 +1,58 @@
+{
+    "entitas": {
+        "pelanggan": {
+            "id_pelanggan": "primary key",
+            "nama_pelanggan": "varchar(255)",
+            "alamat": "text",
+            "nomor_telepon": "varchar(20)",
+            "email": "varchar(100) unique"
+        },
+        "produk": {
+            "id_produk": "primary key",
+            "nama_produk": "varchar(255)",
+            "deskripsi": "text",
+            "harga_satuan": "decimal(10, 2)",
+            "stok": "int",
+            "id_kategori": "foreign key references kategori(id_kategori)"
+        },
+        "kategori": {
+            "id_kategori": "primary key",
+            "nama_kategori": "varchar(100)",
+            "deskripsi": "text"
+        },
+        "penjualan": {
+            "id_penjualan": "primary key",
+            "id_pelanggan": "foreign key references pelanggan(id_pelanggan)",
+            "tanggal_penjualan": "date",
+            "total_harga": "decimal(10, 2)",
+            "id_staf": "foreign key references staf(id_staf)"
+        },
+        "detail_penjualan": {
+            "id_detail": "primary key",
+            "id_penjualan": "foreign key references penjualan(id_penjualan)",
+            "id_produk": "foreign key references produk(id_produk)",
+            "kuantitas": "int",
+            "harga_satuan": "decimal(10, 2)",
+            "subtotal": "decimal(10, 2)"
+        },
+        "staf": {
+            "id_staf": "primary key",
+            "nama_staf": "varchar(255)",
+            "jabatan": "varchar(100)",
+            "email": "varchar(100) unique"
+        },
+        "promosi": {
+            "id_promosi": "primary key",
+            "nama_promosi": "varchar(255)",
+            "deskripsi": "text",
+            "tanggal_mulai": "date",
+            "tanggal_berakhir": "date",
+            "diskon_persen": "decimal(5, 2)"
+        },
+        "penjualan_promosi": {
+            "id_penjualan_promosi": "primary key",
+            "id_penjualan": "foreign key references penjualan(id_penjualan)",
+            "id_promosi": "foreign key references promosi(id_promosi)"
+        }
+    }
+}

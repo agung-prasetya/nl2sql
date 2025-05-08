@@ -1,0 +1,48 @@
+{
+    "entitas": {
+        "pelanggan": {
+            "id_pelanggan": "primary key",
+            "nama": "varchar(255)",
+            "email": "varchar(100) unique",
+            "no_telepon": "varchar(20)",
+            "alamat": "text"
+        },
+        "produk": {
+            "id_produk": "primary key",
+            "nama_produk": "varchar(255)",
+            "deskripsi": "text",
+            "harga": "decimal(10,2)",
+            "stok": "int"
+        },
+        "pesanan": {
+            "id_pesanan": "primary key",
+            "id_pelanggan": "foreign key references pelanggan(id_pelanggan)",
+            "tanggal_pesanan": "date",
+            "status_pesanan": "enum('diproses', 'dikirim', 'selesai', 'dibatalkan')",
+            "total_harga": "decimal(10,2)"
+        },
+        "detail_pesanan": {
+            "id_detail": "primary key",
+            "id_pesanan": "foreign key references pesanan(id_pesanan)",
+            "id_produk": "foreign key references produk(id_produk)",
+            "jumlah": "int",
+            "harga_satuan": "decimal(10,2)"
+        },
+        "pembayaran": {
+            "id_pembayaran": "primary key",
+            "id_pesanan": "foreign key references pesanan(id_pesanan)",
+            "metode_pembayaran": "varchar(50)",
+            "tanggal_pembayaran": "date",
+            "jumlah_pembayaran": "decimal(10,2)",
+            "status_pembayaran": "enum('belum dibayar', 'lunas')"
+        },
+        "pengiriman": {
+            "id_pengiriman": "primary key",
+            "id_pesanan": "foreign key references pesanan(id_pesanan)",
+            "kurir": "varchar(100)",
+            "no_resi": "varchar(100)",
+            "tanggal_kirim": "date",
+            "tanggal_terima": "date"
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "entitas": {
+        "hotel": {
+            "hotelid": "int",
+            "namahotel": "varchar(255)",
+            "alamat": "varchar(255)",
+            "nomortelepon": "varchar(20)",
+            "bintang": "int"
+        },
+        "kamar": {
+            "kamarid": "int",
+            "hotelid": "int",
+            "nomorkamar": "varchar(10)",
+            "tipekamar": "varchar(50)",
+            "kapasitas": "int",
+            "hargapermalam": "decimal(10, 2)"
+        },
+        "pelanggan": {
+            "pelangganid": "int",
+            "namapelanggan": "varchar(255)",
+            "alamat": "varchar(255)",
+            "nomortelepon": "varchar(20)",
+            "email": "varchar(100)"
+        },
+        "pemesanan": {
+            "pemesananid": "int",
+            "pelangganid": "int",
+            "kamarid": "int",
+            "tanggalcheckin": "date",
+            "tanggalcheckout": "date",
+            "jumlahtamu": "int",
+            "totalharga": "decimal(10, 2)",
+            "statuspemesanan": "varchar(50)"
+        },
+        "fasilitas": {
+            "fasilitasid": "int",
+            "namafasilitas": "varchar(100)",
+            "deskripsi": "text"
+        },
+        "kamar_fasilitas": {
+            "kamarid": "int",
+            "fasilitasid": "int"
+        }
+    }
+}

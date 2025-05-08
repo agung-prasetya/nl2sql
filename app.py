@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from detectors import DMLDetector
+from detectors import DMLDetector, DDLDetector
 import tempfile
 import os
 from flask_cors import CORS
@@ -8,8 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/dml/predict', methods=['POST'])
-def predict():
+def detect(detector):
     kalimat = request.form.get('kalimat')
     file = request.files.get('file')
 
@@ -21,7 +20,6 @@ def predict():
         tmp_path = tmp.name
 
     try:
-        detector = DMLDetector()
         predicted_label = detector.detect(kalimat=kalimat, file_database_json=tmp_path)
     finally:
         os.remove(tmp_path)
@@ -30,6 +28,17 @@ def predict():
         'kalimat': kalimat,
         'predicted_label': predicted_label
     })
+
+
+@app.route('/dml/predict', methods=['POST'])
+def predict_dml():
+    detector = DMLDetector()
+    return detect(detector=detector)
+
+@app.route('/ddl/predict', methods=['POST'])
+def predict_dml():
+    detector = DDLDetector()
+    return detect(detector=detector)
 
 if __name__ == '__main__':
     app.run(debug=True)

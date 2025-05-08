@@ -5,6 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import pandas as pd
 from detectors.dml_detector import DMLDetector
+from detectors.ddl_detector import DDLDetector
 
 class Evaluator():
     def __init__(self, path_file_dataset, detector):
@@ -47,6 +48,6 @@ class Evaluator():
         print(metrics)
 
 
-# dml_detector = DMLDetector()
-# evaluator = Evaluator(path_file_dataset='evaluators/dataset_dml.xlsx', detector=dml_detector)
-# evaluator.evaluate(path_folder_database='../databases/dml_detector/')
+ddl_detector = DDLDetector()
+evaluator = Evaluator(path_file_dataset='evaluators/dataset_ddl.xlsx', detector=ddl_detector)
+evaluator.evaluate(path_folder_database='../databases/ddl_detector/')
