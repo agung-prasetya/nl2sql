@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1D2225;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: #65E1C9;
+            border-radius: 10px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">DML Detector</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/test-kalimat">Test Kalimat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/test-dataset">Test Dataset</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container shadow mt-4">
+        <h2 class="text-center mb-4 fw-bold">Pengujian Algoritma</h2>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label fw-bold">File CSV :</label>
+                <input class="form-control" type="file" name="csv_file" id="csvFile" accept=".csv" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">File JSON :</label>
+                <input class="form-control" type="file" name="json_file" id="jsonFiles" accept=".json" multiple required>
+            </div>
+
+            <div class="d-grid">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+
+            <div id="loadingIndicator" class="text-center my-3" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 fw-bold text-primary">Sedang memproses data... <span id="timer">0</span></p>
+            </div>
+        </form>
+
+        <hr>
+
+        <div id="result">
+            <h5 class="fw-bold mb-3">📊 Hasil Pengujian:</h5>
+            <div class="row text-center mb-4">
+                <div class="col-md-6 mb-3">
+                    <div class="card border-success">
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold">Akurasi</h6>
+                            <span id="accuracy" class="badge bg-success fs-5">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card border-info">
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold">Presisi</h6>
+                            <span id="precision" class="badge bg-info fs-5 text-dark">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card border-info">
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold">F1-Score</h6>
+                            <span id="f1score" class="badge bg-info fs-5 text-dark">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card border-info">
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold">Recall</h6>
+                            <span id="recall" class="badge bg-info fs-5 text-dark">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="fw-bold">📌 Detail Pencocokan:</h5>
+            <div class="table-wrapper">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Kalimat</th>
+                            <th>Fakta</th>
+                            <th>Output</th>
+                            <th>Waktu Eksekusi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultTable">
+                        <tr><td colspan="5" class="text-center text-muted">Belum ada data</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card p-3 mt-3 border border-success bg-light">
+                <h6 class="fw-bold mb-3">📊 Statistik Waktu Eksekusi:</h6>
+                <table class="table table-bordered text-center table-striped">
+                  <thead class="table-success">
+                    <tr>
+                      <th>Jenis Kalimat</th>
+                      <th>Jumlah</th>
+                      <th>Rata-rata Waktu (detik)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Pendek</strong></td>
+                      <td><span id="jumlahPendek">-</span></td>
+                      <td><span id="rataPendek">-</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Panjang</strong></td>
+                      <td><span id="jumlahPanjang">-</span></td>
+                      <td><span id="rataPanjang">-</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+        
+            const formData = new FormData(this);
+            const loading = document.getElementById('loadingIndicator');
+            const timer = document.getElementById('timer');
+            loading.style.display = 'block';
+        
+            let count = 0;
+            timer.textContent = count;
+            const interval = setInterval(() => {
+                timer.textContent = ++count;
+            }, 1000);
+        
+            try {
+                const response = await fetch('/uji', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+        
+                document.getElementById('accuracy').textContent = data.akurasi;
+                document.getElementById('precision').textContent = data.presisi;
+                document.getElementById('f1score').textContent = data.f1_score;
+                document.getElementById('recall').textContent = data.recall;
+        
+                const tbody = document.getElementById('resultTable');
+                tbody.innerHTML = '';
+                data.hasil.forEach((item, index) => {
+                    const row = `<tr>
+                        <td>${index + 1}</td>
+                        <td>${item.kalimat}</td>
+                        <td>${item.fakta}</td>
+                        <td>${item.output}</td>
+                        <td>${item.waktu_eksekusi}</td>
+                    </tr>`;
+                    tbody.insertAdjacentHTML('beforeend', row);
+                });
+        
+                document.getElementById('jumlahPendek').textContent = data.statistik.jumlah_pendek;
+                document.getElementById('jumlahPanjang').textContent = data.statistik.jumlah_panjang;
+                document.getElementById('rataPendek').textContent = data.statistik.rata_pendek;
+                document.getElementById('rataPanjang').textContent = data.statistik.rata_panjang;
+        
+            } catch (error) {
+                console.error(error);
+                alert('❌ Terjadi kesalahan saat memproses data.');
+            } finally {
+                clearInterval(interval);
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
