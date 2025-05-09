@@ -2,6 +2,8 @@ from experta import *
 import json
 import re
 import textdistance
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+
 
 class SortingDetector(KnowledgeEngine):
     @DefFacts()
@@ -23,6 +25,8 @@ class SortingDetector(KnowledgeEngine):
     
     @Rule(Fact(kalimat=MATCH.kalimat), salience=3)
     def rule_extract_kalimat_to_kata(self, kalimat):
+       
+
         kalimat = kalimat.lower().strip()
         kalimat = re.sub(r'\s+', ' ', kalimat).strip()
         kalimat = re.sub(r'[^a-zA-Z0-9 ]','',kalimat)
@@ -31,6 +35,13 @@ class SortingDetector(KnowledgeEngine):
         for kata in daftar_kata:
             self.declare(Fact(kata=kata))
 
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+
+        kalimat_stemming = stemmer.stem(kalimat)
+        daftar_kata = kalimat_stemming.split()
+        for kata in daftar_kata:
+            self.declare(Fact(kata=kata))
 
     @Rule(Fact(database=MATCH.database), salience=3)
     def rule_extract_database(self, database):
@@ -67,6 +78,9 @@ class SortingDetector(KnowledgeEngine):
         self.reset()
         self.declare(Fact(kalimat=kalimat), Fact(database=database))
         self.run()
+
+        for fact in self.facts.items():
+            print(fact)
 
         for fact in self.facts.values():
             if 'jenis_sorting' in fact:
