@@ -11,7 +11,9 @@ class SortingDetector(KnowledgeEngine):
         yield Fact(jenis_sorting='NOSORTING')
 
 
-
+    def r1():
+        pass
+    
     @Rule(
         OR(
             Fact(jenis_sorting='ASC'), Fact(jenis_sorting='DESC')
