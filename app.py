@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-from detectors import DMLDetector, DDLDetector
+from detectors import DDLDetector
+from evaluators.evaluator import Evaluator
 import tempfile
 import os
 from flask_cors import CORS
@@ -8,7 +9,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-def detect(detector):
+@app.route('/ddl/predict', methods=['POST'])
+def predict_ddl():
+    detector = DDLDetector()
     kalimat = request.form.get('kalimat')
     file = request.files.get('file')
 
@@ -29,10 +32,24 @@ def detect(detector):
         'predicted_label': predicted_label
     })
 
-@app.route('/ddl/predict', methods=['POST'])
-def predict_dml():
-    detector = DDLDetector()
-    return detect(detector=detector)
+@app.route('/ddl/evaluate', methods=['POST'])
+def evaluate():
+    file_xlsx = request.files.get('file')
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as tmp:
+        file_xlsx.save(tmp.name)
+        tmp_path = tmp.name
+    
+    try:
+        detector = DDLDetector()
+        evaluator = Evaluator(path_file_dataset=tmp_path, detector=detector)
+        hasil = evaluator.evaluate()
+
+        return jsonify(hasil)
+    finally:
+        os.remove(tmp_path)
+
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

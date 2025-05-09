@@ -17,7 +17,8 @@ class Evaluator():
 
         true = self.dataframe['label']
         predicted = []
-        for _, row in self.dataframe.iterrows():
+
+        for id, row in self.dataframe.iterrows():
             kalimat = row['kalimat']
             file_database_json = os.path.join(full_db_path, row['database'])
             predicted_label = self.detector.detect(kalimat=kalimat, file_database_json=file_database_json)
@@ -46,7 +47,11 @@ class Evaluator():
         print(f'Accuracy: {accuracy:.2f}')
         print(metrics)
 
+        return {'accuracy':accuracy, 'metrics':metrics}
+
 
 ddl_detector = DDLDetector()
+
 evaluator = Evaluator(path_file_dataset='evaluators/dataset_ddl.xlsx', detector=ddl_detector)
+
 evaluator.evaluate(path_folder_database='../databases/ddl_detector/')

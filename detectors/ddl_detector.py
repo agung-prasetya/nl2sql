@@ -2,12 +2,51 @@ from experta import *
 import json
 import re
 import textdistance
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 class DDLDetector(KnowledgeEngine):
     @DefFacts()
     def initial(self):
         yield Fact(jenis_ddl='NODDL')
 
+
+    #Truncate
+    #1
+    @Rule(
+        AND(
+            Fact(kata='hapus'),Fact(kata='tanpa'),Fact(kata='tabel')
+        )
+    )
+    def truncate_1(self):
+        self.declare(Fact(jenis_ddl='TRUNCATE'))
+    
+    #2
+    @Rule(
+        AND(
+            Fact(kata='hapus'),Fact(kata='seluruh'),Fact(kata='tahan'),Fact(kata='tabel')
+        )
+    )
+    def truncate_2(self):
+        self.declare(Fact(jenis_ddl='TRUNCATE'))
+
+
+
+    @Rule()
+    def rule_remove_duplicates_facts(self):
+        seen = set()
+        duplicates = []
+        
+        for fid, fact in self.facts.items():
+            if isinstance(fact, Fact):
+                key = tuple(fact.items())
+                if key in seen:
+                    duplicates.append(fid)
+                else:
+                    seen.add(key)
+
+        for fid in duplicates:
+            self.retract(fid)
+    
     @Rule(
         OR(
             Fact(jenis_ddl='TRUNCATE'), Fact(jenis_ddl='DROP'), Fact(jenis_ddl='ALTER'), Fact(jenis_ddl='CREATE')
@@ -17,6 +56,7 @@ class DDLDetector(KnowledgeEngine):
         for id, fact in list(self.facts.items()):
             if 'jenis_ddl' in fact and fact['jenis_ddl']=='NODDL':
                 self.retract(id)
+        self.halt()
 
     
     @Rule(Fact(kalimat=MATCH.kalimat), salience=3)
@@ -27,6 +67,14 @@ class DDLDetector(KnowledgeEngine):
         daftar_kata = kalimat.split()
         
         for kata in daftar_kata:
+            self.declare(Fact(kata=kata))
+
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+
+        kalimat_stemming = stemmer.stem(kalimat)
+        daftar_kata_dasar = kalimat_stemming.split()
+        for kata in daftar_kata_dasar:
             self.declare(Fact(kata=kata))
 
 
@@ -70,3 +118,4 @@ class DDLDetector(KnowledgeEngine):
             if 'jenis_ddl' in fact:
                 return fact['jenis_ddl']
         return 'NODDL'
+
