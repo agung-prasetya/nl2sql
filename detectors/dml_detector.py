@@ -16,7 +16,272 @@ class DMLDetector(KnowledgeEngine):
     def db_inventori_1_INSERT_1(self):
         self.declare(Fact(jenis_dml='INSERT'))
 
-
+    @Rule(
+        OR(
+            Fact(kata='masukkan'),
+            Fact(kata='baru')
+        )
+    )
+    def db_inventori_1_INSERT_2(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    @Rule(
+        OR(
+            Fact(kata='simpan'),
+            Fact(kata='baru')
+        )
+    )
+    def db_inventori_1_INSERT_3(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    @Rule(
+        OR(
+            Fact(kata='catat'),
+            Fact(kata='baru')
+        )
+    )
+    def db_inventori_2_INSERT_1(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    @Rule(
+        OR(
+            Fact(kata='daftarkan'),
+            Fact(kata='baru')
+        )
+    )
+    def db_inventori_2_INSERT_2(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='rekam')
+        )
+    )
+    def db_inventori_2_INSERT_3(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    @Rule(
+        OR(
+            Fact(kata='inputkan'),
+            Fact(kata='baru')
+        )
+    )
+    def db_inventori_3_INSERT_1(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    @Rule(
+        OR(
+            Fact(kata='buat'),
+            Fact(kata='baru')
+        )
+    )
+    def db_hotel_1_INSERT_1(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    @Rule(
+        OR(
+            Fact(kata='sisipkan'),
+            Fact(kata='baru')
+        )
+    )
+    def db_akuntansi_1_INSERT_1(self):
+        self.declare(Fact(jenis_dml='INSERT'))
+        
+    # SELECT
+    @Rule(
+        AND(
+            
+            Fact(kata='tampilkan'),
+        )
+    )
+    def db_inventori_1_SELECT_1(self):
+        self.declare(Fact(jenis_dml='SELECT'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='cari')
+        )
+    )
+    def db_inventori_1_SELECT_2(self):
+        self.declare(Fact(jenis_dml='SELECT'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='ambil')
+        )
+    )
+    def db_inventori_1_SELECT_3(self):
+        self.declare(Fact(jenis_dml='SELECT'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='lihat')
+        )
+    )
+    def db_inventori_1_SELECT_4(self):
+        self.declare(Fact(jenis_dml='SELECT'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='periksa'),
+            Fact(kata='diambil')
+        )
+    )
+    def db_kepegawaian_1_SELECT_1(self):
+        self.declare(Fact(jenis_dml='SELECT'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='pilih'),
+        )
+    )
+    def db_akuntansi_2_SELECT_1(self):
+        self.declare(Fact(jenis_dml='SELECT'))
+        
+    # UPDATE
+    @Rule(
+        AND(
+            
+            Fact(kata='perbarui'),
+        )
+    )
+    def db_inventori_1_UPDATE_1(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='ubah'),
+        )
+    )
+    def db_inventori_1_UPDATE_2(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='ubah'),
+            Fact(kata='baru'),
+        )
+    )
+    def db_pemesanan_dan_penjualan_1_UPDATE_1(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='edit'),
+        )
+    )
+    def db_inventori_1_UPDATE_3(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='edit'),
+            Fact(kata='baru'),
+        )
+    )
+    def db_inventori_2_UPDATE_1(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='atur'),
+        )
+    )
+    def db_inventori_1_UPDATE_4(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='sesuaikan'),
+        )
+    )
+    def db_inventori_1_UPDATE_5(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='ganti'),
+        )
+    )
+    def db_inventori_1_UPDATE_6(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='update'),
+        )
+    )
+    def db_akuntansi_1_UPDATE_1(self):
+        self.declare(Fact(jenis_dml='UPDATE'))
+        
+    # DELETE
+    @Rule(
+        AND(
+            
+            Fact(kata='hapus'),
+        )
+    )
+    def db_inventori_1_DELETE_1(self):
+        self.declare(Fact(jenis_dml='DELETE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='buang'),
+        )
+    )
+    def db_inventori_1_DELETE_2(self):
+        self.declare(Fact(jenis_dml='DELETE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='hilangkan'),
+        )
+    )
+    def db_inventori_1_DELETE_3(self):
+        self.declare(Fact(jenis_dml='DELETE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='singkirkan'),
+        )
+    )
+    def db_inventori_1_DELETE_4(self):
+        self.declare(Fact(jenis_dml='DELETE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='musnahkan'),
+        )
+    )
+    def db_inventori_3_DELETE_1(self):
+        self.declare(Fact(jenis_dml='DELETE'))
+        
+    @Rule(
+        AND(
+            
+            Fact(kata='delete'),
+        )
+    )
+    def db_akuntansi_2_DELETE_1(self):
+        self.declare(Fact(jenis_dml='DELETE'))
 
     @Rule(
         OR(
