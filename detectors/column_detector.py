@@ -1,5 +1,3 @@
-import pandas as pd
-
 class ColumnDetector():
     def ekstraksi_semua_kolom_json(file_json):
         pass
