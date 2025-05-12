@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from detectors import *
+from evaluators import *
 import tempfile
 import os
 from flask_cors import CORS
@@ -33,6 +34,24 @@ def detect(detector):
 def predict_column():
     detector = ColumnDetector()
     return detect(detector=detector)
+
+@app.route('/column/evaluate', methods=['POST'])
+def evaluate_predictor():
+    detector = ColumnDetector()
+
+    file = request.files.get('file')
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as tmp:
+        file.save(tmp.name)
+        tmp_path = tmp.name
+
+    try:
+        evaluator = MultilabelEvaluator(path_file_dataset=tmp_path, detector=detector)
+        result = evaluator.evaluate('../databases/column_detector/')
+    finally:
+        os.remove(tmp_path)
+
+    return jsonify(result)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
