@@ -23,7 +23,7 @@ class Evaluator():
             predicted_label = self.detector.detect(kalimat=kalimat, file_database_json=file_database_json)
             predicted.append(predicted_label)
 
-            res = f"{id} ; {row['label']} ; {predicted_label} ; {row['kalimat']}"
+            res = f"{id};{row['label']};{predicted_label};{row['kalimat']}"
             print(res)
 
         labels = sorted(set(true) | set(predicted))
