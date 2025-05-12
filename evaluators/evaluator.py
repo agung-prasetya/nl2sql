@@ -17,11 +17,14 @@ class Evaluator():
 
         true = self.dataframe['label']
         predicted = []
-        for _, row in self.dataframe.iterrows():
+        for id, row in self.dataframe.iterrows():
             kalimat = row['kalimat']
             file_database_json = os.path.join(full_db_path, row['database'])
             predicted_label = self.detector.detect(kalimat=kalimat, file_database_json=file_database_json)
             predicted.append(predicted_label)
+
+            res = f"{id} ; {row['label']} ; {predicted_label} ; {row['kalimat']}"
+            print(res)
 
         labels = sorted(set(true) | set(predicted))
 

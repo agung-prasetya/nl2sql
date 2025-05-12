@@ -255,7 +255,7 @@ class SortingDetector(KnowledgeEngine):
         self.declare(Fact(kalimat=kalimat), Fact(database=database))
         self.run()
 
-        for fact in self.facts.katas():
+        for fact in self.facts.values():
             if 'jenis_sorting' in fact:
                 return fact['jenis_sorting']
         return 'NOSORTING'
