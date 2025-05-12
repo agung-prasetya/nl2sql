@@ -13,7 +13,7 @@ class SortingDetector(KnowledgeEngine):
     #ASC
     @Rule(
         AND(
-            Fact(value='sedikit'), Fact(value='ke'), Fact(value='banyak')
+            Fact(kata='sedikit'), Fact(kata='ke'), Fact(kata='banyak')
         )
     )
     def asc_r1(self):
@@ -21,7 +21,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='A'), Fact(value='ke'), Fact(value='Z')
+            Fact(kata='A'), Fact(kata='ke'), Fact(kata='Z')
         )
     )
     def asc_r2(self):
@@ -29,7 +29,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='terlama'), Fact(value='ke'), Fact(value='terbaru')
+            Fact(kata='terlama'), Fact(kata='ke'), Fact(kata='terbaru')
         )
     )
     def asc_r3(self):
@@ -37,7 +37,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='termurah'), Fact(value='dahulu')
+            Fact(kata='termurah'), Fact(kata='dahulu')
         )
     )
     def asc_r4(self):
@@ -45,7 +45,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='terkecil'), Fact(value='ke'), Fact(value='terbesar')
+            Fact(kata='terkecil'), Fact(kata='ke'), Fact(kata='terbesar')
         )
     )
     def asc_r5(self):
@@ -53,7 +53,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='secara'), Fact(value='menaik') 
+            Fact(kata='secara'), Fact(kata='menaik') 
         )
     )
     def asc_r6(self):
@@ -61,7 +61,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='awal'), Fact(value='ke'), Fact(value='akhir')
+            Fact(kata='awal'), Fact(kata='ke'), Fact(kata='akhir')
         )
     )
     def asc_r7(self):
@@ -69,7 +69,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='terendah'), Fact(value='ke'), Fact(value='tertinggi')
+            Fact(kata='terendah'), Fact(kata='ke'), Fact(kata='tertinggi')
         )
     )
     def asc_r8(self):
@@ -77,7 +77,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='tua'), Fact(value='ke'), Fact(value='muda')
+            Fact(kata='tua'), Fact(kata='ke'), Fact(kata='muda')
         )
     )
     def asc_r10(self):
@@ -85,7 +85,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='januari'), Fact(value='ke'), Fact(value='desember')
+            Fact(kata='januari'), Fact(kata='ke'), Fact(kata='desember')
         )
     )
     def asc_r11(self):
@@ -93,7 +93,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='aktiva'), Fact(value='ke'), Fact(value='beban')
+            Fact(kata='aktiva'), Fact(kata='ke'), Fact(kata='beban')
         )
     )
     def asc_r12(self):
@@ -102,7 +102,7 @@ class SortingDetector(KnowledgeEngine):
     #DESC
     @Rule(
         AND(
-            Fact(value='banyak'), Fact(value='ke'), Fact(value='sedikit')
+            Fact(kata='banyak'), Fact(kata='ke'), Fact(kata='sedikit')
         )
     )
     def desc_r1(self):
@@ -110,7 +110,7 @@ class SortingDetector(KnowledgeEngine):
     
     @Rule(
         AND(
-            Fact(value='Z'), Fact(value='ke'), Fact(value='A')
+            Fact(kata='Z'), Fact(kata='ke'), Fact(kata='A')
         )
     )
     def desc_r2(self):
@@ -118,7 +118,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='terbaru'), Fact(value='ke'), Fact(value='terlama')
+            Fact(kata='terbaru'), Fact(kata='ke'), Fact(kata='terlama')
         )
     )
     def desc_r3(self):
@@ -126,7 +126,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='termahal'), Fact(value='dahulu')
+            Fact(kata='termahal'), Fact(kata='dahulu')
         )
     )
     def desc_r4(self):
@@ -134,7 +134,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='terbesar'), Fact(value='ke'), Fact(value='terkecil')
+            Fact(kata='terbesar'), Fact(kata='ke'), Fact(kata='terkecil')
         )
     )
     def desc_r5(self):
@@ -142,7 +142,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='secara'), Fact(value='menurun')
+            Fact(kata='secara'), Fact(kata='menurun')
         )
     )
     def desc_r6(self):
@@ -150,7 +150,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='tertinggi'), Fact(value='ke'), Fact(value='terendah')
+            Fact(kata='tertinggi'), Fact(kata='ke'), Fact(kata='terendah')
         )
     )
     def desc_r7(self):
@@ -158,7 +158,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='akhir'), Fact(value='ke'), Fact(value='awal')
+            Fact(kata='akhir'), Fact(kata='ke'), Fact(kata='awal')
         )
     )
     def desc_r8(self):
@@ -166,7 +166,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='muda'), Fact(value='ke'), Fact(value='tua')
+            Fact(kata='muda'), Fact(kata='ke'), Fact(kata='tua')
         )
     )
     def desc_r9(self):
@@ -174,7 +174,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='desember'), Fact(value='ke'), Fact(value='januari')
+            Fact(kata='desember'), Fact(kata='ke'), Fact(kata='januari')
         )
     )
     def desc_r10(self):
@@ -182,7 +182,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(value='beban'), Fact(value='ke'), Fact(value='aktiva')
+            Fact(kata='beban'), Fact(kata='ke'), Fact(kata='aktiva')
         )
     )
     def desc_r11(self):
@@ -255,10 +255,7 @@ class SortingDetector(KnowledgeEngine):
         self.declare(Fact(kalimat=kalimat), Fact(database=database))
         self.run()
 
-        for fact in self.facts.items():
-            print(fact)
-
-        for fact in self.facts.values():
+        for fact in self.facts.katas():
             if 'jenis_sorting' in fact:
                 return fact['jenis_sorting']
         return 'NOSORTING'
