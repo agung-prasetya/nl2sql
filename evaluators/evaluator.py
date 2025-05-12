@@ -4,8 +4,6 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import pandas as pd
-# from detectors.dml_detector import DMLDetector
-# from detectors.ddl_detector import DDLDetector
 from detectors.sorting_detector import SortingDetector
 
 class Evaluator():

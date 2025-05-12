@@ -17,7 +17,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r1(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -25,7 +25,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r2(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -33,7 +33,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r3(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -41,7 +41,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r4(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -49,7 +49,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r5(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -57,7 +57,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r6(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -65,7 +65,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r7(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -73,7 +73,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r8(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -81,7 +81,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r10(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -89,7 +89,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r11(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     @Rule(
         AND(
@@ -97,7 +97,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def asc_r12(self):
-        self.declare(Fact(jenis_sorting='asc'))
+        self.declare(Fact(jenis_sorting='ASC'))
         
     #DESC
     @Rule(
@@ -106,7 +106,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r1(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
     
     @Rule(
         AND(
@@ -114,7 +114,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r2(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -122,7 +122,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r3(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -130,7 +130,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r4(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -138,7 +138,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r5(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -146,7 +146,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r6(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -154,7 +154,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r7(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -162,7 +162,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r8(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -170,7 +170,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r9(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -178,7 +178,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r10(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
         
     @Rule(
         AND(
@@ -186,7 +186,7 @@ class SortingDetector(KnowledgeEngine):
         )
     )
     def desc_r11(self):
-        self.declare(Fact(jenis_sorting='desc'))
+        self.declare(Fact(jenis_sorting='DESC'))
     
     @Rule(
         OR(
@@ -222,7 +222,7 @@ class SortingDetector(KnowledgeEngine):
     @Rule(Fact(database=MATCH.database), salience=3)
     def rule_extract_database(self, database):
         for tabel in database['entitas']:
-            self.declare(Fact(tabel=tabel))
+            self.declare(Fact(tabel=tabel.lower()))
     
 
     @Rule(
