@@ -10,9 +10,183 @@ class SortingDetector(KnowledgeEngine):
     def initial(self):
         yield Fact(jenis_sorting='NOSORTING')
 
-
-    def r1():
-        pass
+    #ASC
+    @Rule(
+        AND(
+            Fact(value='sedikit'), Fact(value='ke'), Fact(value='banyak')
+        )
+    )
+    def asc_r1(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='A'), Fact(value='ke'), Fact(value='Z')
+        )
+    )
+    def asc_r2(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='terlama'), Fact(value='ke'), Fact(value='terbaru')
+        )
+    )
+    def asc_r3(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='termurah'), Fact(value='dahulu')
+        )
+    )
+    def asc_r4(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='terkecil'), Fact(value='ke'), Fact(value='terbesar')
+        )
+    )
+    def asc_r5(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='secara'), Fact(value='menaik') 
+        )
+    )
+    def asc_r6(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='awal'), Fact(value='ke'), Fact(value='akhir')
+        )
+    )
+    def asc_r7(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='terendah'), Fact(value='ke'), Fact(value='tertinggi')
+        )
+    )
+    def asc_r8(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='tua'), Fact(value='ke'), Fact(value='muda')
+        )
+    )
+    def asc_r10(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='januari'), Fact(value='ke'), Fact(value='desember')
+        )
+    )
+    def asc_r11(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    @Rule(
+        AND(
+            Fact(value='aktiva'), Fact(value='ke'), Fact(value='beban')
+        )
+    )
+    def asc_r12(self):
+        self.declare(Fact(jenis_sorting='asc'))
+        
+    #DESC
+    @Rule(
+        AND(
+            Fact(value='banyak'), Fact(value='ke'), Fact(value='sedikit')
+        )
+    )
+    def desc_r1(self):
+        self.declare(Fact(jenis_sorting='desc'))
+    
+    @Rule(
+        AND(
+            Fact(value='Z'), Fact(value='ke'), Fact(value='A')
+        )
+    )
+    def desc_r2(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='terbaru'), Fact(value='ke'), Fact(value='terlama')
+        )
+    )
+    def desc_r3(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='termahal'), Fact(value='dahulu')
+        )
+    )
+    def desc_r4(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='terbesar'), Fact(value='ke'), Fact(value='terkecil')
+        )
+    )
+    def desc_r5(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='secara'), Fact(value='menurun')
+        )
+    )
+    def desc_r6(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='tertinggi'), Fact(value='ke'), Fact(value='terendah')
+        )
+    )
+    def desc_r7(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='akhir'), Fact(value='ke'), Fact(value='awal')
+        )
+    )
+    def desc_r8(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='muda'), Fact(value='ke'), Fact(value='tua')
+        )
+    )
+    def desc_r9(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='desember'), Fact(value='ke'), Fact(value='januari')
+        )
+    )
+    def desc_r10(self):
+        self.declare(Fact(jenis_sorting='desc'))
+        
+    @Rule(
+        AND(
+            Fact(value='beban'), Fact(value='ke'), Fact(value='aktiva')
+        )
+    )
+    def desc_r11(self):
+        self.declare(Fact(jenis_sorting='desc'))
     
     @Rule(
         OR(
@@ -41,8 +215,8 @@ class SortingDetector(KnowledgeEngine):
         stemmer = factory.create_stemmer()
 
         kalimat_stemming = stemmer.stem(kalimat)
-        daftar_kata = kalimat_stemming.split()
-        for kata in daftar_kata:
+        daftar_kata_dasar = kalimat_stemming.split()
+        for kata in daftar_kata_dasar:
             self.declare(Fact(kata=kata))
 
     @Rule(Fact(database=MATCH.database), salience=3)

@@ -1,0 +1,38 @@
+{
+    "entitas": {
+      "pegawai": {
+        "id_pegawai": "primary key",
+        "nama": "string",
+        "tanggal_lahir": "date",
+        "alamat": "string",
+        "telepon": "string",
+        "email": "string",
+        "tanggal_masuk": "date",
+        "id_jabatan": "foreign key"
+      },
+      "jabatan": {
+        "id_jabatan": "primary key",
+        "nama_jabatan": "string",
+        "gaji": "number"
+      },
+      "departemen": {
+        "id_departemen": "primary key",
+        "nama_departemen": "string",
+        "lokasi": "string"
+      },
+      "proyek": {
+        "id_proyek": "primary key",
+        "nama_proyek": "string",
+        "tanggal_mulai": "date",
+        "tanggal_selesai": "date",
+        "id_departemen": "foreign key"
+      },
+      "pegawai_proyek": {
+        "id_pegawai": "foreign key",
+        "id_proyek": "foreign key",
+        "peran": "string"
+      }
+    }
+  }
+  
+  

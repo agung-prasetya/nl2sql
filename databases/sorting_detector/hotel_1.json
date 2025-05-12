@@ -1,46 +1,37 @@
 {
-    "entitas": {
-        "tamu": {
-            "tamuid": "",
-            "namadepan": "",
-            "namabelakang": "",
-            "alamat": "",
-            "notelepon": "",
-            "email": "",
-            "kewarganegaraan": ""
-        },
-        "tipekamar": {
-            "tipekamarid": "",
-            "namatipe": "",
-            "deskripsi": "",
-            "hargadasar": "",
-            "kapasitasmaks": ""
-        },
-        "kamar": {
-            "kamarid": "",
-            "nomorkamar": "",
-            "tipekamarid": "",
-            "lantai": "",
-            "status": ""
-        },
-        "reservasi": {
-            "reservasiid": "",
-            "tamuid": "",
-            "kamarid": "",
-            "tglcheckin": "",
-            "tglcheckout": "",
-            "tglreservasi": "",
-            "jumlahtamu": "",
-            "totalharga": "",
-            "statusreservasi": ""
-        },
-        "pembayaran": {
-            "pembayaranid": "",
-            "reservasiid": "",
-            "tglpembayaran": "",
-            "jumlahbayar": "",
-            "metodepembayaran": "",
-            "statuspembayaran": ""
-        }
+  "entitas": {
+    "tamu": {
+      "id_tamu": "primary key",
+      "nama": "string",
+      "alamat": "string",
+      "telepon": "string",
+      "email": "string"
+    },
+    "kamar": {
+      "id_kamar": "primary key",
+      "nomor_kamar": "string",
+      "tipe_kamar": "string",
+      "harga_per_malam": "decimal",
+      "status": "string"
+    },
+    "reservasi": {
+      "id_reservasi": "primary key",
+      "id_tamu": "foreign key -> tamu.id_tamu",
+      "tanggal_checkin": "date",
+      "tanggal_checkout": "date",
+      "status_reservasi": "string"
+    },
+    "detail_reservasi": {
+      "id_detail": "primary key",
+      "id_reservasi": "foreign key -> reservasi.id_reservasi",
+      "id_kamar": "foreign key -> kamar.id_kamar"
+    },
+    "pembayaran": {
+      "id_pembayaran": "primary key",
+      "id_reservasi": "foreign key -> reservasi.id_reservasi",
+      "tanggal_pembayaran": "date",
+      "jumlah": "decimal",
+      "metode": "string"
     }
+  }
 }

@@ -1,46 +1,46 @@
 {
     "entitas": {
-        "customer": {
-            "customer_id": "int",
-            "name": "string",
-            "address": "string",
-            "phone_number": "string",
-            "email": "string"
-        },
-        "order": {
-            "order_id": "int",
-            "customer_id": "int",
-            "order_date": "datetime",
-            "shipping_address": "string",
-            "order_status": "string"
-        },
-        "order_item": {
-            "order_item_id": "int",
-            "order_id": "int",
-            "product_id": "int",
-            "quantity": "int",
-            "unit_price": "decimal",
-            "subtotal": "decimal"
-        },
-        "product": {
-            "product_id": "int",
-            "name": "string",
-            "description": "string",
-            "price": "decimal",
-            "stock_quantity": "int",
-            "category_id": "int",
-            "supplier_id": "int"
-        },
-        "category": {
-            "category_id": "int",
-            "name": "string"
-        },
-        "supplier": {
-            "supplier_id": "int",
-            "name": "string",
-            "contact_person": "string",
-            "phone_number": "string",
-            "email": "string"
-        }
+      "pelanggan": {
+        "customer_id": "PK",
+        "nama": "varchar",
+        "email": "varchar",
+        "telepon": "varchar",
+        "alamat": "varchar"
+      },
+      "barang": {
+        "barang_id": "PK",
+        "nama": "varchar",
+        "deskripsi": "text",
+        "harga": "decimal",
+        "jumlah_stok": "int"
+      },
+      "pesanan": {
+        "order_id": "PK",
+        "tanggal_pesanan": "datetime",
+        "total_harga": "decimal",
+        "customer_id": "FK"
+      },
+      "detail_pesanan": {
+        "order_detail_id": "PK",
+        "order_id": "FK",
+        "product_id": "FK",
+        "jumlah": "int",
+        "harga": "decimal"
+      },
+      "pembayaran": {
+        "payment_id": "PK",
+        "order_id": "FK",
+        "tanggal_pembayaran": "datetime",
+        "jumlah_pembayaran": "decimal",
+        "metode_pembayaran": "varchar"
+      },
+      "pengiriman": {
+        "shipping_id": "PK",
+        "order_id": "FK",
+        "alamat_pengiriman": "varchar",
+        "tanggal_pengiriman": "datetime",
+        "status_pengiriman": "varchar"
+      }
     }
-}
+  }
+  
