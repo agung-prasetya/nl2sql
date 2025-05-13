@@ -13,9 +13,6 @@ class WhereoprDetector(KnowledgeEngine):
     @Rule(
         AND(
             Fact(kata='kandung'),
-            Fact(namatabel=True),
-            Fact(namakolom=True),
-            Fact(anggotatabel=True),
             )
         )
     def inventory_1_LIKE_1(self):
