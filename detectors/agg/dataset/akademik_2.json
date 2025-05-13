@@ -1,0 +1,53 @@
+{
+    "entitas": {
+      "mahasiswa": {
+        "id_mahasiswa": "varchar",
+        "nama": "varchar",
+        "tgl_lahir": "date",
+        "alamat": "text",
+        "id_prodi": "integer"
+      },
+      "dosen": {
+        "id_dosen": "varchar",
+        "nama": "varchar",
+        "bidang_ahli": "varchar"
+      },
+      "mata_kuliah": {
+        "id_mk": "varchar",
+        "nama_mk": "varchar",
+        "sks": "integer",
+        "semester": "integer"
+      },
+      "prodi": {
+        "id_prodi": "integer",
+        "nama_prodi": "varchar",
+        "fakultas": "varchar"
+      },
+      "kelas": {
+        "id_kelas": "integer",
+        "kode_mk": "varchar",
+        "nidn": "varchar",
+        "hari": "varchar",
+        "jam": "time",
+        "ruang": "varchar"
+      },
+      "krs": {
+        "id_krs": "integer",
+        "nim": "varchar",
+        "semester": "varchar",
+        "tahun_ajaran": "varchar"
+      },
+      "detail_krs": {
+        "id_detail": "integer",
+        "id_krs": "integer",
+        "id_kelas": "integer"
+      },
+      "nilai": {
+        "id_nilai": "integer",
+        "id_detail": "integer",
+        "nilai_uts": "decimal",
+        "nilai_uas": "decimal",
+       "nilai_akhir": "decimal"
+      }    
+    }
+  }

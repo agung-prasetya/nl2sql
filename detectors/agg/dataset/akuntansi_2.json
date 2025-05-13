@@ -1,0 +1,65 @@
+{
+    "entitas": {
+      "akun": {
+        "kode_akun": "varchar",
+        "nama_akun": "varchar",
+        "tipe_akun": "enum('Aset','Kewajiban','Ekuitas','Pendapatan','Beban')",
+        "saldo_normal": "enum('Debit','Kredit')"
+      },
+      "transaksi": {
+        "id_transaksi":  "integer",
+        "tanggal": "date",
+        "keterangan": "text",
+        "referensi": "varchar",
+        "id_jurnal": "integer"
+      },
+      "jurnal": {
+        "id_jurnal": "integer",
+        "no_jurnal": "varchar",
+        "tanggal": "date",
+        "deskripsi": "text"
+      },
+      "jurnal_detail": {
+        "id_detail": "integer",
+        "id_jurnal": "integer",
+        "kode_akun": "varchar",
+        "debit": "decimal(12,2)",
+        "kredit": "decimal(12,2)",
+        "keterangan": "text"
+      },
+      "pelanggan": {
+        "id_pelanggan": "integer",
+        "nama": "varchar",
+        "alamat": "text",
+        "telepon": "varchar",
+        "email": "varchar"
+      },
+      "pemasok": {
+        "id_pemasok": "integer",
+        "nama": "varchar",
+        "alamat": "text",
+        "telepon": "varchar"
+      },
+      "faktur_penjualan": {
+        "no_faktur": "varchar",
+        "tanggal": "date",
+        "id_pelanggan": "integer",
+        "total": "decimal(12,2)",
+        "status_pembayaran": "enum('Lunas','Belum Lunas')"
+      },
+      "faktur_pembelian": {
+        "no_faktur": "varchar",
+        "tanggal": "date",
+        "id_pemasok": "integer",
+        "total": "decimal(12,2)",
+        "status_pembayaran": "enum('Lunas','Belum Lunas')"
+      },
+      "pembayaran": {
+        "id_pembayaran": "integer",
+        "tanggal": "date",
+        "metode": "enum('Tunai','Transfer','Kartu Kredit')",
+        "jumlah": "decimal(12,2)",
+        "keterangan": "text"
+      }
+    }
+  }

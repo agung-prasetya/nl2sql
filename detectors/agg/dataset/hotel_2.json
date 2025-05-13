@@ -1,0 +1,50 @@
+{
+    "entitas": {
+      "tamu": {
+        "id_tamu": "integer",
+        "nama": "varchar",
+        "no_ktp": "varchar",
+        "telepon": "varchar",
+        "email": "varchar"
+      },
+      "kamar": {
+        "no_kamar": "varchar",
+        "tipe_kamar": "varchar",
+        "harga_per_malam": "decimal",
+        "status": "enum('tersedia','dipesan','terpakai')"
+      },
+      "tipe_kamar": {
+        "id_tipe": "integer",
+        "nama_tipe": "varchar",
+        "kapasitas": "integer",
+        "fasilitas": "text"
+      },
+      "reservasi": {
+        "id_reservasi": "integer",
+        "id_tamu": "integer",
+        "tanggal_checkin": "date",
+        "tanggal_checkout": "date",
+        "total_pembayaran": "decimal",
+        "status": "enum('diproses','dikonfirmasi','dibatalkan')"
+      },
+      "detail_reservasi": {
+        "id_detail": "integer",
+        "id_reservasi": "integer",
+        "no_kamar": "varchar"
+      },
+      "transaksi": {
+        "id_transaksi": "integer",
+        "id_reservasi": "integer",
+        "metode_pembayaran": "enum('tunai','kartu','transfer')",
+        "jumlah": "decimal",
+        "tanggal": "datetime"
+      },
+      "karyawan": {
+        "id_karyawan": "integer",
+        "nama": "varchar",
+        "jabatan": "varchar",
+        "username": "varchar",
+        "password": "varchar"
+      }
+    }
+  }

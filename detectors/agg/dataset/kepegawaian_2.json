@@ -1,0 +1,64 @@
+{
+    "entitas": {
+      "pegawai": {
+        "nip": "varchar",
+        "nama": "varchar",
+        "tgl_lahir": "date",
+        "jenis_kelamin": "enum('L','P')",
+        "alamat": "text",
+        "email": "varchar",
+        "no_telp": "varchar",
+        "id_jabatan": "integer",
+        "id_departemen": "integer"
+      },
+      "jabatan": {
+        "id_jabatan": "integer",
+        "nama_jabatan": "varchar",
+        "level": "integer",
+        "gaji_pokok": "decimal"
+      },
+      "departemen": {
+        "id_departemen": "integer",
+        "nama_dept": "varchar",
+        "lokasi": "varchar"
+      },
+      "absensi": {
+        "id_absensi": "integer",
+        "nip": "varchar",
+        "tgl": "date",
+        "jam_masuk": "time",
+        "jam_pulang": "time",
+        "status": "enum('Hadir','Izin','Sakit','Cuti','Alpa')"
+      },
+      "cuti": {
+        "id_cuti": "integer",
+        "nip": "varchar",
+        "tgl_mulai": "date",
+        "tgl_selesai": "date",
+        "jenis_cuti": "enum('Tahunan','Hamil','Sakit','Melahirkan')",
+        "status": "enum('Diajukan','Disetujui','Ditolak')"
+      },
+      "gaji": {
+        "id_gaji": "integer",
+        "nip": "varchar",
+        "periode": "date",
+        "gaji_pokok": "decimal",
+        "tunjangan": "decimal",
+        "potongan": "decimal",
+        "total": "decimal"
+      },
+      "pelatihan": {
+        "id_pelatihan": "integer",
+        "nama_pelatihan": "varchar",
+        "penyelenggara": "varchar",
+        "tgl_mulai": "date",
+        "tgl_selesai": "date"
+      },
+      "partisipasi_pelatihan": {
+        "id_partisipasi": "integer",
+        "id_pelatihan": "integer",
+        "nip": "varchar",
+        "nilai": "decimal"
+      }
+    }
+  }

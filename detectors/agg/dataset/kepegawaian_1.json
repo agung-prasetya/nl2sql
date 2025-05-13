@@ -1,0 +1,56 @@
+{
+    "entitas": {
+      "pegawai": {
+        "id_pegawai": "integer",
+        "nama": "string",
+        "nip": "string",
+        "tanggal_lahir": "date",
+        "jenis_kelamin": "string",
+        "alamat": "string",
+        "id_jabatan": "integer",
+        "id_departemen": "integer",
+        "tanggal_masuk": "date"
+      },
+      "jabatan": {
+        "id_jabatan": "integer",
+        "nama_jabatan": "string",
+        "gaji_pokok": "decimal",
+        "tunjangan": "decimal"
+      },
+      "departemen": {
+        "id_departemen": "integer",
+        "nama_departemen": "string",
+        "lokasi": "string"
+      },
+      "absensi": {
+        "id_absensi": "integer",
+        "id_pegawai": "integer",
+        "tanggal": "date",
+        "jam_masuk": "time",
+        "jam_keluar": "time",
+        "status_hadir": "string"
+      },
+      "gaji": {
+        "id_gaji": "integer",
+        "id_pegawai": "integer",
+        "bulan": "string",
+        "tahun": "integer",
+        "total_gaji": "decimal",
+        "tanggal_transfer": "date"
+      },
+      "pelatihan": {
+        "id_pelatihan": "integer",
+        "nama_pelatihan": "string",
+        "penyelenggara": "string",
+        "tanggal_mulai": "date",
+        "tanggal_selesai": "date"
+      },
+      "riwayat_pelatihan": {
+        "id_riwayat": "integer",
+        "id_pegawai": "integer",
+        "id_pelatihan": "integer",
+        "status_lulus": "string"
+      }
+    }
+  }
+  

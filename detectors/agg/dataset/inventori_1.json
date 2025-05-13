@@ -1,0 +1,37 @@
+{
+    "entitas": {
+      "barang": {
+        "id_barang": "primary key",
+        "nama_barang": "string",
+        "id_kategori": "foreign key -> kategori.id_kategori",
+        "stok": "integer",
+        "satuan": "string",
+        "harga": "decimal"
+      },
+      "kategori": {
+        "id_kategori": "primary key",
+        "nama_kategori": "string"
+      },
+      "transaksi": {
+        "id_transaksi": "primary key",
+        "tanggal": "date",
+        "tipe": "enum (masuk/keluar)",
+        "id_user": "foreign key -> pengguna.id_user"
+      },
+      "detail_transaksi": {
+        "id_detail": "primary key",
+        "id_transaksi": "foreign key -> transaksi.id_transaksi",
+        "id_barang": "foreign key -> barang.id_barang",
+        "jumlah": "integer",
+        "harga_satuan": "decimal"
+      },
+      "pengguna": {
+        "id_user": "primary key",
+        "nama": "string",
+        "username": "string",
+        "password": "string",
+        "role": "enum (admin/operator)"
+      }
+    }
+  }
+  
