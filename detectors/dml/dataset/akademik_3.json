@@ -1,0 +1,104 @@
+{
+  "entitas": {
+    "pendaftaran": {
+      "noreg": "varchar",
+      "tahun_daftar": "year",
+      "nama_lengkap": "varchar",
+      "jk": "enum",
+      "nisn": "varchar",
+      "nik": "varchar",
+      "tempat_lahir": "varchar",
+      "tanggal_lahir": "date",
+      "agama": "varchar",
+      "nama_ayah": "varchar",
+      "pekerjaan_ayah": "varchar",
+      "pendidikan_ayah": "varchar",
+      "penghasilan_ayah": "int",
+      "nama_ibu": "varchar",
+      "pekerjaan_ibu": "varchar",
+      "pendidikan_ibu": "varchar",
+      "penghasilan_ibu": "int",
+      "nama_wali": "varchar",
+      "pekerjaan_wali": "varchar",
+      "pendidikan_wali": "varchar",
+      "penghasilan_wali": "int",
+      "jenis_tinggal": "varchar",
+      "alamat_tinggal": "text",
+      "tinggi_badan": "int",
+      "berat_badan": "int",
+      "berkebutuhan_khusus": "boolean",
+      "no_telepon": "varchar",
+      "no_hp": "varchar",
+      "jarak_kesekolah": "float",
+      "alat_transportasi": "varchar",
+      "email": "varchar",
+      "no_skhun": "varchar",
+      "jumlah_saudara": "int",
+      "status": "varchar",
+      "password": "varchar",
+      "foto": "varchar",
+      "asal_sekolah": "varchar",
+      "alasan_pindah": "text"
+    },
+    "kelas": {
+      "nama_kelas": "varchar",
+      "tahun_ajaran": "varchar",
+      "nip": "varchar"
+    },
+    "siswa": {
+      "nis": "varchar",
+      "noreg": "varchar",
+      "kelas": "varchar",
+      "nama_kelas": "varchar",
+      "username": "varchar",
+      "password": "varchar"
+    },
+    "nilai": {
+      "id_nilai": "int",
+      "nis": "varchar",
+      "semester": "int",
+      "kelas": "varchar",
+      "n_pengetahuan": "float",
+      "n_praktek": "float",
+      "n_sikap": "float",
+      "keterangan": "text",
+      "ajaran": "varchar"
+    },
+    "mutasi": {
+      "no_mutasi": "varchar",
+      "nis": "varchar",
+      "tanggal_diterima": "date",
+      "tanggal_keluar": "date",
+      "kelas_asal": "varchar",
+      "alasan_keluar": "text",
+      "status": "varchar"
+    },
+    "penjurusan": {
+      "id_penjurusan": "varchar",
+      "nis": "varchar",
+      "tanggal_penjurusan": "date",
+      "nama_siswa": "varchar",
+      "kelas_asal": "varchar",
+      "jurusan_pilihan": "varchar",
+      "hasil_jurusan": "varchar",
+      "hasil_kelas": "varchar"
+    },
+    "guru": {
+      "nip": "varchar",
+      "nama_guru": "varchar",
+      "pangkat": "varchar",
+      "stat_pegawai": "varchar",
+      "tugas_lain": "varchar",
+      "no_pelajaran": "varchar",
+      "username": "varchar",
+      "password": "varchar",
+      "gambar": "varchar"
+    },
+    "pelajaran": {
+      "no_pelajaran": "varchar",
+      "nama_pelajaran": "varchar",
+      "kkm": "int",
+      "sks": "int"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+    "entitas": {
+      "pelanggan": {
+        "id_pelanggan": "integer",
+        "nama": "varchar(100)",
+        "email": "varchar(100)",
+        "telepon": "varchar(20)",
+        "alamat": "text"
+      },
+      "produk": {
+        "id_produk": "integer",
+        "kode_produk": "varchar(20)",
+        "nama": "varchar(100)",
+        "harga": "decimal(12,2)",
+        "stok": "integer",
+        "kategori": "varchar(50)"
+      },
+      "penjualan": {
+        "id_penjualan": "integer",
+        "no_faktur": "varchar(30)",
+        "tanggal": "datetime",
+        "id_pelanggan": "integer",
+        "total": "decimal(12,2)",
+        "status": "enum('draft','dibayar','dikirim','selesai')"
+      },
+      "detail_penjualan": {
+        "id_detail": "integer",
+        "id_penjualan": "integer",
+        "id_produk": "integer",
+        "jumlah": "integer",
+        "harga_satuan": "decimal(12,2)",
+        "subtotal": "decimal(12,2)"
+      },
+      "pembayaran": {
+        "id_pembayaran": "integer",
+        "id_penjualan": "integer",
+        "metode": "enum('tunai','transfer','kartu')",
+        "jumlah": "decimal(12,2)",
+        "tanggal": "datetime"
+      },
+      "pengiriman": {
+        "id_pengiriman": "integer",
+        "id_penjualan": "integer",
+        "kurir": "varchar(50)",
+        "no_resi": "varchar(50)",
+        "status":  "varchar(50)",
+        "tanggal_kirim": "datetime"
+      }
+    }
+  }

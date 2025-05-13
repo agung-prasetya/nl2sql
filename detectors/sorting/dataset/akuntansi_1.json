@@ -1,0 +1,38 @@
+{
+    "entitas": {
+      "akun": {
+        "id_akun": "primary key",
+        "nama_akun": "string",
+        "tipe_akun": "string",
+        "kode_akun": "string"
+      },
+      "jurnal_umum": {
+        "id_jurnal": "primary key",
+        "tanggal": "date",
+        "keterangan": "string",
+        "referensi": "string"
+      },
+      "detail_jurnal": {
+        "id_detail": "primary key",
+        "id_jurnal": "foreign key → jurnal_umum.id_jurnal",
+        "id_akun": "foreign key → akun.id_akun",
+        "debit": "decimal",
+        "kredit": "decimal"
+      },
+      "transaksi": {
+        "id_transaksi": "primary key",
+        "tanggal": "date",
+        "jenis_transaksi": "string",
+        "jumlah": "decimal",
+        "keterangan": "string"
+      },
+      "user": {
+        "id_user": "primary key",
+        "nama_user": "string",
+        "username": "string",
+        "password": "string",
+        "role": "string"
+      }
+    }
+  }
+  

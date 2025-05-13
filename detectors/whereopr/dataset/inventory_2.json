@@ -1,0 +1,57 @@
+{
+  "entitas": {
+    "produk": {
+      "id_produk": "primary_key",
+      "nama_produk": "varchar",
+      "deskripsi": "text",
+      "harga": "decimal",
+      "id_kategori": "foreign_key",
+      "id_pemasok": "foreign_key"
+    },
+    "kategori": {
+      "id_kategori": "primary_key",
+      "nama_kategori": "varchar"
+    },
+    "pemasok": {
+      "id_pemasok": "primary_key",
+      "nama_pemasok": "varchar",
+      "alamat": "varchar",
+      "nomor_telepon": "varchar"
+    },
+    "stok": {
+      "id_stok": "primary_key",
+      "jumlah": "int",
+      "tanggal_masuk": "date",
+      "id_produk": "foreign_key"
+    },
+    "transaksi": {
+      "id_transaksi": "primary_key",
+      "tanggal_transaksi": "date",
+      "jenis_transaksi": "varchar",
+      "jumlah": "int",
+      "id_produk": "foreign_key"
+    }
+  },
+  "relasi": [
+    {
+      "dari": "produk",
+      "ke": "kategori",
+      "jenis": "one-to-many"
+    },
+    {
+      "dari": "produk",
+      "ke": "stok",
+      "jenis": "one-to-many"
+    },
+    {
+      "dari": "pemasok",
+      "ke": "produk",
+      "jenis": "one-to-many"
+    },
+    {
+      "dari": "produk",
+      "ke": "transaksi",
+      "jenis": "one-to-many"
+    }
+  ]
+}

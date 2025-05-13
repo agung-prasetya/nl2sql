@@ -1,0 +1,30 @@
+{
+  "entitas": {
+    "Pelanggan": {
+      "id_pelanggan": "PK",
+      "nama": "string",
+      "email": "string",
+      "alamat": "string",
+      "no_telepon": "string"
+    },
+    "Pesanan": {
+      "id_pesanan": "PK",
+      "tanggal_pesanan": "date",
+      "total_harga": "decimal",
+      "id_pelanggan": "FK"
+    },
+    "Produk": {
+      "id_produk": "PK",
+      "nama_produk": "string",
+      "harga": "decimal",
+      "stok": "integer"
+    },
+    "Detail_Pesanan": {
+      "id_detail": "PK",
+      "id_pesanan": "FK",
+      "id_produk": "FK",
+      "jumlah": "integer",
+      "subtotal": "decimal"
+    }
+  }
+}

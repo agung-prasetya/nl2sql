@@ -1,0 +1,58 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "id_mahasiswa": "integer",
+      "npm": "string",
+      "nama": "string",
+      "tanggal_lahir": "date",
+      "alamat": "string",
+      "jenis_kelamin": "enum('L', 'P')",
+      "email": "string",
+      "no_telepon": "string"
+    },
+    "dosen": {
+      "id_dosen": "integer",
+      "nip": "string",
+      "nama": "string",
+      "email": "string",
+      "no_telepon": "string",
+      "jabatan": "string"
+    },
+    "program_studi": {
+      "id_prodi": "integer",
+      "nama_prodi": "string",
+      "fakultas": "string"
+    },
+    "mata_kuliah": {
+      "id_matkul": "integer",
+      "kode_matkul": "string",
+      "nama_matkul": "string",
+      "sks": "integer",
+      "semester": "integer",
+      "id_prodi": "integer"
+    },
+    "kelas": {
+      "id_kelas": "integer",
+      "nama_kelas": "string",
+      "tahun_ajaran": "string",
+      "semester": "enum('Ganjil', 'Genap')",
+      "id_matkul": "integer",
+      "id_dosen": "integer"
+    },
+    "krs": {
+      "id_krs": "integer",
+      "id_mahasiswa": "integer",
+      "id_kelas": "integer",
+      "status": "enum('aktif', 'lulus', 'digugurkan')",
+      "nilai_akhir": "float"
+    },
+    "jadwal": {
+      "id_jadwal": "integer",
+      "id_kelas": "integer",
+      "hari": "enum('Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')",
+      "jam_mulai": "time",
+      "jam_selesai": "time",
+      "ruang": "string"
+    }
+  }
+}

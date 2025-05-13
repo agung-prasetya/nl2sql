@@ -1,0 +1,94 @@
+{
+  "entitas": {
+    "psikotes": {
+      "nopsikotes": "integer",
+      "tanggal": "date",
+      "test": "varchar",
+      "attitude": "varchar",
+      "hasil": "varchar",
+      "no_pelamar": "integer",
+      "id_user": "integer"
+    },
+    "pelamar": {
+      "no_pelamar": "integer",
+      "nama_pelamar": "varchar",
+      "alamat_pelamar": "text",
+      "tempat_lahir": "varchar",
+      "tanggal_lahir": "date",
+      "jenis_kelamin": "varchar",
+      "agama": "varchar",
+      "status": "varchar",
+      "telepon": "varchar",
+      "pendidikan": "varchar",
+      "email": "varchar",
+      "no_ktp": "varchar",
+      "kode_jabatan": "varchar",
+      "id_user": "integer"
+    },
+    "karyawan": {
+      "nik": "varchar",
+      "nama_karyawan": "varchar",
+      "alamat_karyawan": "text",
+      "tempat_lahir": "varchar",
+      "tanggal_lahir": "date",
+      "telepon": "varchar",
+      "jenis_kelamin": "varchar",
+      "tanggal_aktif": "date",
+      "kode_jabatan": "varchar",
+      "no_pelamar": "integer"
+    },
+    "jabatan": {
+      "kode_jabatan": "varchar",
+      "nama_jabatan": "varchar",
+      "gaji_pokok": "decimal",
+      "uang_makan": "decimal",
+      "overtime": "decimal"
+    },
+    "absen": {
+      "no_absen": "integer",
+      "tgl_input": "date",
+      "bulan_absen": "varchar",
+      "tahun_absen": "year",
+      "jam_lembur": "integer",
+      "hari_kerja": "integer",
+      "hadir": "integer",
+      "tidak_hadir": "integer",
+      "id_user": "integer",
+      "nik": "varchar"
+    },
+    "cuti": {
+      "no_cuti": "integer",
+      "tgl": "date",
+      "tanggal_awal": "date",
+      "tanggal_akhir": "date",
+      "nik": "varchar",
+      "id_user": "integer"
+    },
+    "sp": {
+      "no_sp": "integer",
+      "tanggal": "date",
+      "mulai_sp": "date",
+      "selesai_sp": "date",
+      "nik": "varchar",
+      "id_user": "integer"
+    },
+    "gaji": {
+      "no_slip": "integer",
+      "tanggal_slip": "date",
+      "bulan_gaji": "varchar",
+      "tahun_gaji": "year",
+      "total_lembur": "decimal",
+      "total_potongan": "decimal",
+      "total_gaji": "decimal",
+      "id_user": "integer",
+      "no_absen": "integer",
+      "nik": "varchar"
+    },
+    "user": {
+      "id_user": "integer",
+      "nama_user": "varchar",
+      "status_user": "varchar",
+      "password": "varchar"
+    }
+  }
+}

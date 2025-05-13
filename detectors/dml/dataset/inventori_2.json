@@ -1,0 +1,70 @@
+{
+  "entitas": {
+    "barang": {
+      "id_barang": "integer",
+      "nama_barang": "string",
+      "kategori": "string",
+      "stok": "integer",
+      "harga_beli": "decimal",
+      "harga_jual": "decimal",
+      "id_supplier": "integer"
+    },
+    "supplier": {
+      "id_supplier": "integer",
+      "nama_supplier": "string",
+      "kontak": "string",
+      "alamat": "string"
+    },
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama_pelanggan": "string",
+      "kontak": "string",
+      "alamat": "string"
+    },
+    "pembelian": {
+      "id_pembelian": "integer",
+      "id_supplier": "integer",
+      "tanggal_pembelian": "date",
+      "total_harga": "decimal"
+    },
+    "detail_pembelian": {
+      "id_detail": "integer",
+      "id_pembelian": "integer",
+      "id_barang": "integer",
+      "jumlah": "integer",
+      "harga_satuan": "decimal"
+    },
+    "penjualan": {
+      "id_penjualan": "integer",
+      "id_pelanggan": "integer",
+      "tanggal_penjualan": "date",
+      "total_harga": "decimal"
+    },
+    "detail_penjualan": {
+      "id_detail": "integer",
+      "id_penjualan": "integer",
+      "id_barang": "integer",
+      "jumlah": "integer",
+      "harga_satuan": "decimal"
+    },
+    "stok_masuk": {
+      "id_stok_masuk": "integer",
+      "id_barang": "integer",
+      "jumlah": "integer",
+      "tanggal_masuk": "date"
+    },
+    "stok_keluar": {
+      "id_stok_keluar": "integer",
+      "id_barang": "integer",
+      "jumlah": "integer",
+      "tanggal_keluar": "date"
+    },
+    "user": {
+      "id_user": "integer",
+      "nama_user": "string",
+      "email": "string",
+      "password": "string",
+      "role": "string"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "entitas": {
+    "karyawan": {
+      "id_karyawan": "primary_key",
+      "nama": "varchar",
+      "tanggal_lahir": "text",
+      "alamat": "decimal",
+      "nomor_telepon": "foreign_key",
+      "email": "foreign_key",
+      "tanggal_bergabung": "primary_key",
+      "gaji": "varchar",
+      "status_pernikahan": "text"
+    },
+    "jabatan": {
+      "id_jabatan": "decimal",
+      "nama_jabatan": "foreign_key",
+      "deskripsi": "foreign_key"
+    },
+    "departemen": {
+      "id_departemen": "primary_key",
+      "nama_departemen": "varchar",
+      "lokasi": "text"
+    },
+    "absensi": {
+      "id_absensi": "decimal",
+      "id_karyawan": "foreign_key",
+      "tanggal": "foreign_key",
+      "waktu_masuk": "primary_key",
+      "waktu_keluar": "varchar",
+      "keterangan": "text"
+    },
+    "izin": {
+      "id_izin": "decimal",
+      "id_karyawan": "foreign_key",
+      "tanggal_mulai": "foreign_key",
+      "tanggal_berakhir": "primary_key",
+      "jenis_izin": "varchar",
+      "alasan": "text",
+      "status": "decimal"
+    }
+  }
+}

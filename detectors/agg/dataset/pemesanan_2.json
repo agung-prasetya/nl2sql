@@ -1,0 +1,51 @@
+{
+    "entitas": {
+      "pelanggan": {
+        "id_pelanggan": "integer",
+        "nama": "varchar",
+        "email": "varchar",
+        "no_telp": "varchar",
+        "alamat": "text"
+      },
+      "produk": {
+        "id_produk": "integer",
+        "nama": "varchar",
+        "deskripsi": "text",
+        "harga": "decimal",
+        "stok": "integer",
+        "kategori": "varchar"
+      },
+      "pesanan": {
+        "id_pesanan": "integer",
+        "id_pelanggan": "integer",
+        "tanggal": "datetime",
+        "status": "enum('draft','dibayar','diproses','dikirim','selesai','dibatalkan')",
+        "total": "decimal",
+        "metode_pembayaran": "varchar"
+      },
+      "detail_pesanan": {
+        "id_detail": "integer",
+        "id_pesanan": "integer",
+        "id_produk": "integer",
+        "jumlah": "integer",
+        "harga_satuan": "decimal",
+        "subtotal": "decimal"
+      },
+      "pembayaran": {
+        "id_pembayaran": "integer",
+        "id_pesanan": "integer",
+        "jumlah": "decimal", "constraint": "not null",
+        "metode": "varchar",
+        "status": "enum('pending','berhasil','gagal')",
+        "tanggal": "datetime"
+      },
+      "pengiriman": {
+        "id_pengiriman": "integer",
+        "id_pesanan": "integer",
+        "kurir": "varchar",
+        "no_resi": "varchar",
+        "status": "varchar",
+        "alamat_pengiriman": "text"
+      }
+    }
+  }

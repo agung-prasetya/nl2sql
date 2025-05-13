@@ -1,0 +1,30 @@
+{
+    "entitas": {
+      "pengguna": {
+        "user_id": "primary key",
+        "username": "",
+        "password": "",
+        "role": ""
+      },
+      "transaksi": {
+        "transaction_id": "primary key",
+        "tanggal": "",
+        "jumlah": "",
+        "deskripsi": "",
+        "user_id": "foreign key",
+        "account_id": "foreign key",
+        "category_id": "foreign key"
+      },
+      "akun": {
+        "account_id": "primary key",
+        "nama_akun": "",
+        "tipe_akun": ""
+      },
+      "kategorisasi": {
+        "category_id": "primary key",
+        "nama_kategori": ""
+      }
+    }
+  }
+  
+  

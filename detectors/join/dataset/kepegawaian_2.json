@@ -1,0 +1,101 @@
+{
+  "entitas": {
+    "karyawan": {
+      "id_karyawan": {
+        "type": "INT"
+      },
+      "nama_depan": {
+        "type": "VARCHAR"
+      },
+      "nama_belakang": {
+        "type": "VARCHAR"
+      },
+      "tanggal_lahir": {
+        "type": "DATE"
+      },
+      "alamat": {
+        "type": "VARCHAR"
+      },
+      "nomor_telepon": {
+        "type": "VARCHAR"
+      },
+      "email": {
+        "type": "VARCHAR"
+      },
+      "tanggal_bergabung": {
+        "type": "DATE"
+      },
+      "gaji": {
+        "type": "DECIMAL"
+      },
+      "id_departemen": {
+        "type": "INT"
+      },
+      "id_jabatan": {
+        "type": "INT"
+      }
+    },
+    "departemen": {
+      "id_departemen": {
+        "type": "INT"
+      },
+      "nama_departemen": {
+        "type": "VARCHAR"
+      },
+      "lokasi": {
+        "type": "VARCHAR"
+      }
+    },
+    "jabatan": {
+      "id_jabatan": {
+        "type": "INT"
+      },
+      "nama_jabatan": {
+        "type": "VARCHAR"
+      },
+      "deskripsi": {
+        "type": "VARCHAR"
+      }
+    },
+    "cuti": {
+      "id_cuti": {
+        "type": "INT"
+      },
+      "id_karyawan": {
+        "type": "INT"
+      },
+      "tanggal_mulai": {
+        "type": "DATE"
+      },
+      "tanggal_berakhir": {
+        "type": "DATE"
+      },
+      "alasan": {
+        "type": "VARCHAR"
+      },
+      "status": {
+        "type": "VARCHAR"
+      }
+    },
+    "absensi": {
+      "id_absensi": {
+        "type": "INT"
+      },
+      "id_karyawan": {
+        "type": "INT"
+      },
+      "tanggal": {
+        "type": "DATE"
+      },
+      "waktu_masuk": {
+        "type": "TIME"
+      },
+      "waktu_keluar": {
+        "type": "TIME"
+      },
+      "keterangan": {
+        "type": "VARCHAR"
+      }
+    }
+  }
+}

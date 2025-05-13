@@ -1,0 +1,53 @@
+{
+  "entitas": {
+    "akun": {
+      "kode_akun": "primary key",
+      "nama_akun": "string",
+      "jenis_akun": "string"
+    },
+    "transaksi": {
+      "id_transaksi": "primary key",
+      "tanggal_transaksi": "date",
+      "deskripsi": "string",
+      "id_pemasok": "foreign key -> pemasok.id_pemasok (opsional)",
+      "id_pelanggan": "foreign key -> pelanggan.id_pelanggan (opsional)",
+      "id_pengguna": "foreign key -> pengguna.id_pengguna"
+    },
+    "jurnal": {
+      "id_jurnal": "primary key",
+      "nama_jurnal": "string",
+      "periode": "string"
+    },
+    "entri_jurnal": {
+      "id_entri": "primary key",
+      "id_jurnal": "foreign key -> jurnal.id_jurnal",
+      "kode_akun": "foreign key -> akun.kode_akun",
+      "debit": "float",
+      "kredit": "float",
+      "keterangan": "string"
+    },
+    "pemasok": {
+      "id_pemasok": "primary key",
+      "nama_pemasok": "string",
+      "alamat": "string",
+      "kontak": "string"
+    },
+    "pelanggan": {
+      "id_pelanggan": "primary key",
+      "nama_pelanggan": "string",
+      "alamat": "string",
+      "kontak": "string"
+    },
+    "produk_layanan": {
+      "kode_produk": "primary key",
+      "nama_produk": "string",
+      "harga": "float"
+    },
+    "pengguna": {
+      "id_pengguna": "primary key",
+      "nama_pengguna": "string",
+      "username": "string",
+      "password": "string"
+    }
+  }
+}

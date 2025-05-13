@@ -1,0 +1,52 @@
+{
+    "entitas": {
+        "mahasiswa": {
+            "id_mahasiswa": "primary key",
+            "nama": "varchar(255)",
+            "nim": "varchar(20) unique",
+            "email": "varchar(100) unique",
+            "alamat": "text",
+            "id_jurusan": "foreign key references jurusan(id_jurusan)"
+        },
+        "dosen": {
+            "id_dosen": "primary key",
+            "nama": "varchar(255)",
+            "nip": "varchar(20) unique",
+            "email": "varchar(100) unique",
+            "alamat": "text"
+        },
+        "jurusan": {
+            "id_jurusan": "primary key",
+            "nama_jurusan": "varchar(255)",
+            "fakultas": "varchar(255)"
+        },
+        "mata_kuliah": {
+            "id_mk": "primary key",
+            "nama_mk": "varchar(255)",
+            "sks": "int",
+            "semester": "int"
+        },
+        "kelas": {
+            "id_kelas": "primary key",
+            "kode_kelas": "varchar(20)",
+            "id_mk": "foreign key references mata_kuliah(id_mk)",
+            "id_dosen": "foreign key references dosen(id_dosen)",
+            "tahun_akademik": "varchar(9)"
+        },
+        "jadwal": {
+            "id_jadwal": "primary key",
+            "id_kelas": "foreign key references kelas(id_kelas)",
+            "hari": "varchar(10)",
+            "jam_mulai": "time",
+            "jam_selesai": "time",
+            "ruang": "varchar(50)"
+        },
+        "nilai": {
+            "id_nilai": "primary key",
+            "id_mahasiswa": "foreign key references mahasiswa(id_mahasiswa)",
+            "id_kelas": "foreign key references kelas(id_kelas)",
+            "nilai_akhir": "decimal(5,2)",
+            "grade": "char(2)"
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "nim": "varchar",
+      "nama_mahasiswa": "varchar",
+      "tanggal_lahir": "date",
+      "alamat": "varchar",
+      "no_telepon": "varchar",
+      "email": "varchar",
+      "angkatan": "varchar",
+      "status": "varchar",
+      "id_jurusan": "varchar"
+    },
+    "jurusan": {
+      "id_jurusan": "varchar",
+      "nama_jurusan": "varchar",
+      "kode_jurusan": "varchar"
+    },
+    "mata_kuliah": {
+      "kode_mk": "varchar",
+      "nama_mk": "varchar",
+      "sks": "int"
+    },
+    "dosen": {
+      "nidn": "varchar",
+      "nama_dosen": "varchar",
+      "alamat": "varchar",
+      "no_telepon": "varchar",
+      "email": "varchar"
+    },
+    "kelas": {
+      "id_kelas": "varchar",
+      "nama_kelas": "varchar",
+      "kode_mk": "varchar",
+      "nidn": "varchar",
+      "tahun_ajaran": "varchar",
+      "semester": "varchar"
+    },
+    "kelas_mahasiswa": {
+      "id_kelas": "varchar",
+      "nim": "varchar",
+      "nilai": "float"
+    }
+  }
+}

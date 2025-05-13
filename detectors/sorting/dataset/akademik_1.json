@@ -1,0 +1,42 @@
+{
+    "entitas": {
+      "mahasiswa": {
+        "id_mahasiswa": "primary key",
+        "nama": "string",
+        "nim": "string",
+        "tanggal_lahir": "date",
+        "jurusan": "string"
+      },
+      "dosen": {
+        "id_dosen": "primary key",
+        "nama": "string",
+        "nip": "string",
+        "email": "string"
+      },
+      "mata_kuliah": {
+        "id_mata_kuliah": "primary key",
+        "nama_mata_kuliah": "string",
+        "kode_mata_kuliah": "string",
+        "sks": "integer"
+      },
+      "kelas": {
+        "id_kelas": "primary key",
+        "id_mata_kuliah": "foreign key -> mata_kuliah.id_mata_kuliah",
+        "id_dosen": "foreign key -> dosen.id_dosen",
+        "semester": "string",
+        "tahun_ajaran": "string"
+      },
+      "krs": {
+        "id_krs": "primary key",
+        "id_mahasiswa": "foreign key -> mahasiswa.id_mahasiswa",
+        "id_kelas": "foreign key -> kelas.id_kelas"
+      },
+      "nilai": {
+        "id_nilai": "primary key",
+        "id_krs": "foreign key -> krs.id_krs",
+        "nilai_angka": "float",
+        "nilai_huruf": "string"
+      }
+    }
+  }
+  

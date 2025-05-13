@@ -1,0 +1,73 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "integer",
+      "nama": "string",
+      "nip": "string",
+      "alamat": "string",
+      "tanggal_lahir": "date",
+      "jenis_kelamin": "string",
+      "tanggal_masuk": "date",
+      "id_jabatan": "integer",
+      "id_departemen": "integer"
+    },
+    "jabatan": {
+      "id_jabatan": "integer",
+      "nama_jabatan": "string",
+      "gaji_pokok": "decimal"
+    },
+    "departemen": {
+      "id_departemen": "integer",
+      "nama_departemen": "string",
+      "lokasi": "string"
+    },
+    "absensi": {
+      "id_absensi": "integer",
+      "id_pegawai": "integer",
+      "tanggal": "date",
+      "jam_masuk": "time",
+      "jam_keluar": "time",
+      "status": "string"
+    },
+    "gaji": {
+      "id_gaji": "integer",
+      "id_pegawai": "integer",
+      "bulan": "integer",
+      "tahun": "integer",
+      "total_gaji": "decimal"
+    },
+    "riwayat_pendidikan": {
+      "id_pendidikan": "integer",
+      "id_pegawai": "integer",
+      "tingkat": "string",
+      "nama_institusi": "string",
+      "jurusan": "string",
+      "tahun_lulus": "integer"
+    },
+    "pelatihan": {
+      "id_pelatihan": "integer",
+      "id_pegawai": "integer",
+      "nama_pelatihan": "string",
+      "penyelenggara": "string",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "sertifikat": "boolean"
+    },
+    "promosi_jabatan": {
+      "id_promosi": "integer",
+      "id_pegawai": "integer",
+      "id_jabatan_lama": "integer",
+      "id_jabatan_baru": "integer",
+      "tanggal_promosi": "date",
+      "keterangan": "string"
+    },
+    "cuti": {
+      "id_cuti": "integer",
+      "id_pegawai": "integer",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "jenis_cuti": "string",
+      "status_approval": "string"
+    }
+  }
+}

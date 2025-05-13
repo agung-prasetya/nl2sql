@@ -1,0 +1,108 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": {
+        "type": "INT"
+      },
+      "nama_pelanggan": {
+        "type": "VARCHAR"
+      },
+      "alamat": {
+        "type": "VARCHAR"
+      },
+      "nomor_telepon": {
+        "type": "VARCHAR"
+      },
+      "email": {
+        "type": "VARCHAR"
+      },
+      "...": {
+        "description": "atribut lain yang relevan"
+      }
+    },
+    "pesanan": {
+      "id_pesanan": {
+        "type": "INT"
+      },
+      "tanggal_pesanan": {
+        "type": "DATETIME"
+      },
+      "status_pesanan": {
+        "type": "VARCHAR"
+      },
+      "alamat_pengiriman": {
+        "type": "VARCHAR"
+      },
+      "total_harga": {
+        "type": "DECIMAL"
+      },
+      "id_pelanggan": {
+        "type": "INT",
+        "references": "pelanggan"
+      }
+    },
+    "produk": {
+      "id_produk": {
+        "type": "INT"
+      },
+      "nama_produk": {
+        "type": "VARCHAR"
+      },
+      "deskripsi": {
+        "type": "TEXT"
+      },
+      "harga": {
+        "type": "DECIMAL"
+      },
+      "stok": {
+        "type": "INT"
+      },
+      "...": {
+        "description": "atribut lain yang relevan seperti gambar, kategori, dll."
+      }
+    },
+    "detail_pesanan": {
+      "id_detail_pesanan": {
+        "type": "INT"
+      },
+      "id_pesanan": {
+        "type": "INT",
+        "references": "pesanan"
+      },
+      "id_produk": {
+        "type": "INT",
+        "references": "produk"
+      },
+      "jumlah": {
+        "type": "INT"
+      },
+      "harga_satuan": {
+        "type": "DECIMAL"
+      },
+      "subtotal": {
+        "type": "DECIMAL"
+      }
+    },
+    "pembayaran": {
+      "id_pembayaran": {
+        "type": "INT"
+      },
+      "id_pesanan": {
+        "type": "INT",
+        "references": "pesanan"
+      },
+      "tanggal_pembayaran": {
+        "type": "DATETIME"
+      },
+      "metode_pembayaran": {
+        "type": "VARCHAR"
+      },
+      "jumlah_pembayaran": {
+        "type": "DECIMAL"
+      },
+      "status_pembayaran": {
+        "type": "VARCHAR"
+      }
+    }
+  }
+}

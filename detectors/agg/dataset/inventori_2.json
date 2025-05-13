@@ -1,0 +1,49 @@
+{
+  "entitas": {
+    "produk": {
+      "id_produk": "integer",
+      "nama_produk": "varchar",
+      "deskripsi": "text",
+      "harga_beli": "decimal",
+      "harga_jual": "decimal",
+      "stok": "integer",
+      "id_kategori": "integer"
+    },
+    "kategori": {
+      "id_kategori": "integer",
+      "nama_kategori": "varchar"
+    },
+    "supplier": {
+      "id_supplier": "integer",
+      "nama_supplier": "varchar",
+      "alamat": "text",
+      "telepon": "varchar",
+      "email": "varchar"
+    },
+    "transaksi_pembelian": {
+      "id_pembelian": "integer",
+      "tanggal_pembelian": "date",
+      "total_harga": "decimal",
+      "id_supplier": "integer"
+    },
+    "detail_pembelian": {
+      "id_detail_pembelian": "integer",
+      "id_pembelian": "integer",
+      "id_produk": "integer",
+      "jumlah": "integer",
+      "subtotal": "decimal"
+    },
+    "transaksi_penjualan": {
+      "id_penjualan": "integer",
+      "tanggal_penjualan": "date",
+      "total_harga": "decimal"
+    },
+    "detail_penjualan": {
+      "id_detail_penjualan": "integer",
+      "id_penjualan": "integer",
+      "id_produk": "integer",
+      "jumlah": "integer",
+      "subtotal": "decimal"
+    }
+  }
+}

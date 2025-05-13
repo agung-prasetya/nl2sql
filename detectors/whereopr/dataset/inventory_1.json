@@ -1,0 +1,58 @@
+{
+  "entitas": {
+    "produk": {
+      "id_produk": "primary key",
+      "nama_produk": "string",
+      "id_kategori": "foreign key -> kategori.id_kategori",
+      "harga": "float",
+      "stok": "integer"
+    },
+    "kategori": {
+      "id_kategori": "primary key",
+      "nama_kategori": "string"
+    },
+    "pemasok": {
+      "id_pemasok": "primary key",
+      "nama_pemasok": "string",
+      "kontak": "string"
+    },
+    "pelanggan": {
+      "id_pelanggan": "primary key",
+      "nama_pelanggan": "string",
+      "kontak": "string"
+    },
+    "pembelian": {
+      "id_pembelian": "primary key",
+      "id_pemasok": "foreign key -> pemasok.id_pemasok",
+      "tanggal_pembelian": "date"
+    },
+    "detail_pembelian": {
+      "id_detail_pembelian": "primary key",
+      "id_pembelian": "foreign key -> pembelian.id_pembelian",
+      "id_produk": "foreign key -> produk.id_produk",
+      "jumlah": "integer",
+      "harga_beli": "float"
+    },
+    "penjualan": {
+      "id_penjualan": "primary key",
+      "id_pelanggan": "foreign key -> pelanggan.id_pelanggan",
+      "tanggal_penjualan": "date"
+    },
+    "detail_penjualan": {
+      "id_detail_penjualan": "primary key",
+      "id_penjualan": "foreign key -> penjualan.id_penjualan",
+      "id_produk": "foreign key -> produk.id_produk",
+      "jumlah": "integer",
+      "harga_jual": "float"
+    }
+  },
+  "relasi": {
+    "kategori-produk": "one-to-many (kategori.id_kategori -> produk.id_kategori)",
+    "pemasok-pembelian": "one-to-many (pemasok.id_pemasok -> pembelian.id_pemasok)",
+    "pembelian-detail_pembelian": "one-to-many (pembelian.id_pembelian -> detail_pembelian.id_pembelian)",
+    "produk-detail_pembelian": "one-to-many (produk.id_produk -> detail_pembelian.id_produk)",
+    "pelanggan-penjualan": "one-to-many (pelanggan.id_pelanggan -> penjualan.id_pelanggan)",
+    "penjualan-detail_penjualan": "one-to-many (penjualan.id_penjualan -> detail_penjualan.id_penjualan)",
+    "produk-detail_penjualan": "one-to-many (produk.id_produk -> detail_penjualan.id_produk)"
+  }
+}

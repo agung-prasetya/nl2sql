@@ -1,0 +1,33 @@
+{
+    "entitas": {
+      "pelanggan": {
+        "id_pelanggan": "integer",
+        "nama": "string",
+        "email": "string",
+        "telepon": "string",
+        "alamat": "string"
+      },
+      "barang": {
+        "id_barang": "integer",
+        "nama_barang": "string",
+        "deskripsi": "string",
+        "harga": "float",
+        "stok": "integer"
+      },
+      "pesanan": {
+        "id_pesanan": "integer",
+        "tanggal_pesanan": "date",
+        "id_pelanggan": "integer",
+        "total_harga": "float"
+      },
+      "detail_pesanan": {
+        "id_detail": "integer",
+        "id_pesanan": "integer",
+        "id_barang": "integer",
+        "jumlah": "integer",
+        "subtotal": "float"
+      }
+    }
+  }
+  
+  

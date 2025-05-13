@@ -1,0 +1,44 @@
+{
+  "entitas": {
+    "barang": {
+      "id_barang": "int",
+      "nama_barang": "varchar",
+      "kategori": "varchar",
+      "stok": "int",
+      "harga": "decimal",
+      "id_pemasok": "int"
+    },
+    "pemasok": {
+      "id_pemasok": "int",
+      "nama_pemasok": "varchar",
+      "kontak": "varchar",
+      "alamat": "text"
+    },
+    "pelanggan": {
+      "id_pelanggan": "int",
+      "nama_pelanggan": "varchar",
+      "kontak": "varchar",
+      "alamat": "text"
+    },
+    "transaksi": {
+      "id_transaksi": "int",
+      "tanggal": "datetime",
+      "id_pelanggan": "int",
+      "total_harga": "decimal"
+    },
+    "detail_transaksi": {
+      "id_detail": "int",
+      "id_transaksi": "int",
+      "id_barang": "int",
+      "jumlah": "int",
+      "subtotal": "decimal"
+    },
+    "pengguna": {
+      "id_pengguna": "int",
+      "nama": "varchar",
+      "username": "varchar unique",
+      "password": "varchar",
+      "peran": "varchar"
+    }
+  }
+}

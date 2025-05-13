@@ -1,0 +1,109 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": {
+        "type": "int"
+      },
+      "nama_depan": {
+        "type": "varchar"
+      },
+      "nama_belakang": {
+        "type": "varchar"
+      },
+      "email": {
+        "type": "varchar"
+      },
+      "nomor_telepon": {
+        "type": "varchar"
+      },
+      "alamat": {
+        "type": "varchar"
+      }
+    },
+    "pesanan": {
+      "id_pesanan": {
+        "type": "int"
+      },
+      "tanggal_pesanan": {
+        "type": "datetime"
+      },
+      "status_pesanan": {
+        "type": "varchar"
+      },
+      "alamat_pengiriman": {
+        "type": "varchar"
+      },
+      "id_pelanggan": {
+        "type": "int"
+      }
+    },
+    "item_pesanan": {
+      "id_item_pesanan": {
+        "type": "int"
+      },
+      "id_pesanan": {
+        "type": "int"
+      },
+      "id_produk": {
+        "type": "int"
+      },
+      "kuantitas": {
+        "type": "int"
+      },
+      "harga_satuan": {
+        "type": "decimal"
+      },
+      "subtotal": {
+        "type": "decimal"
+      }
+    },
+    "produk": {
+      "id_produk": {
+        "type": "int"
+      },
+      "nama_produk": {
+        "type": "varchar"
+      },
+      "deskripsi": {
+        "type": "text"
+      },
+      "harga": {
+        "type": "decimal"
+      },
+      "jumlah_stok": {
+        "type": "int"
+      },
+      "id_kategori": {
+        "type": "int"
+      },
+      "id_pemasok": {
+        "type": "int"
+      }
+    },
+    "kategori": {
+      "id_kategori": {
+        "type": "int"
+      },
+      "nama_kategori": {
+        "type": "varchar"
+      }
+    },
+    "pemasok": {
+      "id_pemasok": {
+        "type": "int"
+      },
+      "nama_pemasok": {
+        "type": "varchar"
+      },
+      "kontak_person": {
+        "type": "varchar"
+      },
+      "nomor_telepon": {
+        "type": "varchar"
+      },
+      "alamat": {
+        "type": "varchar"
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+    "entitas": {
+      "tamu": {
+        "id_tamu": "int",
+        "nama": "varchar",
+        "alamat": "varchar",
+        "no_telepon": "varchar",
+        "email": "varchar"
+      },
+      "kamar": {
+        "id_kamar": "int",
+        "nomor_kamar": "varchar",
+        "tipe_kamar": "varchar",
+        "harga_per_malam": "decimal",
+        "status": "varchar"
+      },
+      "reservasi": {
+        "id_reservasi": "int",
+        "id_tamu": "int",
+        "id_kamar": "int",
+        "tanggal_checkin": "date",
+        "tanggal_checkout": "date",
+        "status_reservasi": "varchar"
+      },
+      "pembayaran": {
+        "id_pembayaran": "int",
+        "id_reservasi": "int",
+        "tanggal_pembayaran": "date",
+        "jumlah": "decimal",
+        "metode_pembayaran": "varchar"
+      }
+    }
+  }
+  

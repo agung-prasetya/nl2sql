@@ -1,0 +1,62 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "nim": "primary key",
+      "nama": "string",
+      "tanggal_lahir": "date",
+      "jenis_kelamin": "string",
+      "alamat": "string"
+    },
+    "dosen": {
+      "nip": "primary key",
+      "nama": "string",
+      "email": "string",
+      "no_telepon": "string"
+    },
+    "mata_kuliah": {
+      "kode_mk": "primary key",
+      "nama_mk": "string",
+      "sks": "integer"
+    },
+    "kelas": {
+      "id_kelas": "primary key",
+      "nama_kelas": "string",
+      "tahun_akademik": "string",
+      "semester": "string",
+      "kode_mk": "foreign key to mata_kuliah.kode_mk",
+      "nip_dosen": "foreign key to dosen.nip"
+    },
+    "krs": {
+      "id_krs": "primary key",
+      "nim": "foreign key to mahasiswa.nim",
+      "id_kelas": "foreign key to kelas.id_kelas",
+      "nilai": "string"
+    }
+  },
+  "relasi": [
+    {
+      "dari": "mahasiswa",
+      "ke": "krs",
+      "tipe": "one-to-many",
+      "keterangan": "mahasiswa dapat mengambil banyak krs"
+    },
+    {
+      "dari": "dosen",
+      "ke": "kelas",
+      "tipe": "one-to-many",
+      "keterangan": "dosen mengajar banyak kelas"
+    },
+    {
+      "dari": "mata_kuliah",
+      "ke": "kelas",
+      "tipe": "one-to-many",
+      "keterangan": "satu mata kuliah dapat memiliki banyak kelas"
+    },
+    {
+      "dari": "kelas",
+      "ke": "krs",
+      "tipe": "one-to-many",
+      "keterangan": "satu kelas diambil oleh banyak mahasiswa melalui krs"
+    }
+  ]
+}

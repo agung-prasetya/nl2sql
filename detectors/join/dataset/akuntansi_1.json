@@ -1,0 +1,28 @@
+{
+  "entitas": {
+    "pengguna": {
+      "id_pengguna": "integer",
+      "nama_pengguna": "string",
+      "kata_sandi": "string",
+      "peran": "string"
+    },
+    "akun": {
+      "id_akun": "integer",
+      "nama_akun": "string",
+      "jenis_akun": "string"
+    },
+    "transaksi": {
+      "id_transaksi": "integer",
+      "tanggal_transaksi": "date",
+      "deskripsi": "string",
+      "dibuat_oleh": "integer"
+    },
+    "detail_transaksi": {
+      "id_detail": "integer",
+      "id_transaksi": "integer",
+      "id_akun": "integer",
+      "debit": "decimal",
+      "kredit": "decimal"
+    }
+  }
+}
