@@ -1,0 +1,101 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "nim": {
+        "type": "VARCHAR"
+      },
+      "nama": {
+        "type": "VARCHAR"
+      },
+      "tanggal_lahir": {
+        "type": "DATE"
+      },
+      "alamat": {
+        "type": "VARCHAR"
+      },
+      "telepon": {
+        "type": "VARCHAR"
+      },
+      "email": {
+        "type": "VARCHAR"
+      }
+    },
+    "mata_kuliah": {
+      "kode_mk": {
+        "type": "VARCHAR"
+      },
+      "nama_mk": {
+        "type": "VARCHAR"
+      },
+      "sks": {
+        "type": "INT"
+      },
+      "deskripsi": {
+        "type": "VARCHAR"
+      }
+    },
+    "dosen": {
+      "nidn": {
+        "type": "VARCHAR"
+      },
+      "nama": {
+        "type": "VARCHAR"
+      },
+      "alamat": {
+        "type": "VARCHAR"
+      },
+      "telepon": {
+        "type": "VARCHAR"
+      },
+      "email": {
+        "type": "VARCHAR"
+      }
+    },
+    "kelas": {
+      "id_kelas": {
+        "type": "VARCHAR"
+      },
+      "kode_mk": {
+        "type": "VARCHAR"
+      },
+      "nidn": {
+        "type": "VARCHAR"
+      },
+      "nama_kelas": {
+        "type": "VARCHAR"
+      },
+      "semester": {
+        "type": "VARCHAR"
+      },
+      "tahun_ajaran": {
+        "type": "VARCHAR"
+      },
+      "jadwal_mulai": {
+        "type": "TIME"
+      },
+      "jadwal_selesai": {
+        "type": "TIME"
+      },
+      "ruang": {
+        "type": "VARCHAR"
+      }
+    },
+    "krs": {
+      "id_krs": {
+        "type": "VARCHAR"
+      },
+      "nim": {
+        "type": "VARCHAR"
+      },
+      "id_kelas": {
+        "type": "VARCHAR"
+      },
+      "tanggal_ambil": {
+        "type": "DATE"
+      },
+      "nilai": {
+        "type": "CHAR"
+      }
+    }
+  }
+}

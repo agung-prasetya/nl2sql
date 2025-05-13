@@ -1,0 +1,209 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": {
+        "type": "INT"
+      },
+      "nama": {
+        "type": "VARCHAR"
+      },
+      "email": {
+        "type": "VARCHAR"
+      },
+      "nomor_telepon": {
+        "type": "VARCHAR"
+      },
+      "alamat": {
+        "type": "VARCHAR"
+      },
+      "kewarganegaraan": {
+        "type": "VARCHAR"
+      },
+      "tanggal_registrasi": {
+        "type": "DATE"
+      },
+      "nomor_paspor": {
+        "type": "VARCHAR"
+      },
+      "nomor_sim": {
+        "type": "VARCHAR"
+      },
+      "nomor_kartu_kredit": {
+        "type": "VARCHAR"
+      },
+      "masa_berlaku_kartu_kredit": {
+        "type": "VARCHAR"
+      }
+    },
+    "pemesanan": {
+      "id_pemesanan": {
+        "type": "INT"
+      },
+      "id_pelanggan": {
+        "type": "INT"
+      },
+      "id_kamar": {
+        "type": "INT"
+      },
+      "tanggal_check_in": {
+        "type": "DATE"
+      },
+      "tanggal_check_out": {
+        "type": "DATE"
+      },
+      "jumlah_tamu": {
+        "type": "INT"
+      },
+      "status_pemesanan": {
+        "type": "VARCHAR"
+      },
+      "tanggal_waktu_pemesanan": {
+        "type": "DATETIME"
+      },
+      "total_harga": {
+        "type": "DECIMAL"
+      }
+    },
+    "kamar": {
+      "id_kamar": {
+        "type": "INT"
+      },
+      "id_tipe_kamar": {
+        "type": "INT"
+      },
+      "nomor_kamar": {
+        "type": "VARCHAR"
+      },
+      "status_kamar": {
+        "type": "VARCHAR"
+      },
+      "lantai": {
+        "type": "VARCHAR"
+      },
+      "pemandangan": {
+        "type": "VARCHAR"
+      }
+    },
+    "tipe_kamar": {
+      "id_tipe_kamar": {
+        "type": "INT"
+      },
+      "nama_tipe_kamar": {
+        "type": "VARCHAR"
+      },
+      "deskripsi": {
+        "type": "VARCHAR"
+      },
+      "harga_per_malam": {
+        "type": "DECIMAL"
+      },
+      "kapasitas": {
+        "type": "INT"
+      }
+    },
+    "fasilitas": {
+      "id_fasilitas": {
+        "type": "INT"
+      },
+      "nama_fasilitas": {
+        "type": "VARCHAR"
+      },
+      "deskripsi": {
+        "type": "VARCHAR"
+      }
+    },
+    "kamar_fasilitas": {
+      "id_kamar": {
+        "type": "INT"
+      },
+      "id_fasilitas": {
+        "type": "INT"
+      }
+    },
+    "layanan": {
+      "id_layanan": {
+        "type": "INT"
+      },
+      "nama_layanan": {
+        "type": "VARCHAR"
+      },
+      "deskripsi": {
+        "type": "VARCHAR"
+      },
+      "harga": {
+        "type": "DECIMAL"
+      }
+    },
+    "pemesanan_layanan": {
+      "id_pemesanan": {
+        "type": "INT"
+      },
+      "id_layanan": {
+        "type": "INT"
+      },
+      "kuantitas": {
+        "type": "INT"
+      },
+      "subtotal": {
+        "type": "DECIMAL"
+      }
+    },
+    "pegawai": {
+      "id_pegawai": {
+        "type": "INT"
+      },
+      "id_jabatan": {
+        "type": "INT"
+      },
+      "nama": {
+        "type": "VARCHAR"
+      },
+      "email": {
+        "type": "VARCHAR"
+      },
+      "nomor_telepon": {
+        "type": "VARCHAR"
+      },
+      "tanggal_mulai_kerja": {
+        "type": "DATE"
+      },
+      "gaji": {
+        "type": "DECIMAL"
+      }
+    },
+    "jabatan": {
+      "id_jabatan": {
+        "type": "INT"
+      },
+      "nama_jabatan": {
+        "type": "VARCHAR"
+      },
+      "deskripsi": {
+        "type": "VARCHAR"
+      }
+    },
+    "pembayaran": {
+      "id_pembayaran": {
+        "type": "INT"
+      },
+      "id_pemesanan": {
+        "type": "INT"
+      },
+      "tanggal_pembayaran": {
+        "type": "DATE"
+      },
+      "metode_pembayaran": {
+        "type": "VARCHAR"
+      },
+      "jumlah": {
+        "type": "DECIMAL"
+      },
+      "id_transaksi": {
+        "type": "VARCHAR"
+      },
+      "status_pembayaran": {
+        "type": "VARCHAR"
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "entitas": {
+    "perusahaan": {
+      "nama_perusahaan": "VARCHAR",
+      "alamat": "VARCHAR",
+      "npwp": "VARCHAR"
+    },
+    "akun": {
+      "kode_akun": "VARCHAR",
+      "nama_akun": "VARCHAR",
+      "jenis_akun": {
+        "type": "ENUM",
+        "values": [
+          "Aset",
+          "Liabilitas",
+          "Ekuitas",
+          "Pendapatan",
+          "Beban"
+        ]
+      },
+      "saldo": "DECIMAL"
+    },
+    "transaksi": {
+      "id_transaksi": "VARCHAR",
+      "tanggal_transaksi": "DATE",
+      "deskripsi": "VARCHAR",
+      "jenis_transaksi": "VARCHAR",
+      "nomor_bukti": "VARCHAR",
+      "mata_uang": "VARCHAR"
+    },
+    "detail_transaksi": {
+      "id_detail_transaksi": "INTEGER",
+      "id_transaksi": "VARCHAR",
+      "kode_akun": "VARCHAR",
+      "debit": "DECIMAL",
+      "kredit": "DECIMAL"
+    },
+    "periode_akuntansi": {
+      "id_periode": "INTEGER",
+      "tanggal_mulai": "DATE",
+      "tanggal_berakhir": "DATE",
+      "nama_periode": "VARCHAR",
+      "status_aktif": "BOOLEAN"
+    },
+    "pengguna": {
+      "id_pengguna": "INTEGER",
+      "nama_pengguna": "VARCHAR",
+      "username": "VARCHAR",
+      "password": "VARCHAR",
+      "peran": {
+        "type": "ENUM",
+        "values": [
+          "Admin",
+          "Staf Akuntansi"
+        ]
+      }
+    }
+  }
+}

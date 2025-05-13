@@ -1,0 +1,80 @@
+{
+  "entitas": {
+    "produk": {
+      "id_produk": {
+        "type": "INT"
+      },
+      "nama_produk": {
+        "type": "VARCHAR"
+      },
+      "deskripsi": {
+        "type": "TEXT"
+      },
+      "harga": {
+        "type": "DECIMAL"
+      },
+      "satuan": {
+        "type": "VARCHAR"
+      }
+    },
+    "kategori": {
+      "id_kategori": {
+        "type": "INT"
+      },
+      "nama_kategori": {
+        "type": "VARCHAR"
+      }
+    },
+    "pemasok": {
+      "id_pemasok": {
+        "type": "INT"
+      },
+      "nama_pemasok": {
+        "type": "VARCHAR"
+      },
+      "alamat": {
+        "type": "VARCHAR"
+      },
+      "nomor_telepon": {
+        "type": "VARCHAR"
+      }
+    },
+    "stok": {
+      "id_stok": {
+        "type": "INT"
+      },
+      "id_produk": {
+        "type": "INT"
+      },
+      "jumlah": {
+        "type": "INT"
+      },
+      "tanggal_masuk": {
+        "type": "DATE"
+      },
+      "tanggal_keluar": {
+        "type": "DATE"
+      }
+    },
+    "transaksi": {
+      "id_transaksi": {
+        "type": "INT"
+      },
+      "id_produk": {
+        "type": "INT"
+      },
+      "id_pemasok": {
+        "type": "INT"
+      },
+      "jumlah": {
+        "type": "INT"
+      },
+      "tanggal_transaksi": {
+        "type": "DATE"
+      },
+      "jenis_transaksi": {
+        "type": "VARCHAR"
+      }
+    }
+  }
+}
