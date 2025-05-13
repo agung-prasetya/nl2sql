@@ -1,0 +1,35 @@
+{
+    "entitas": {
+      "mahasiswa": {
+        "id_mahasiswa": "",
+        "nama": "",
+        "tanggal_lahir": "",
+        "alamat": "",
+        "email": ""
+      },
+      "dosen": {
+        "id_dosen": "",
+        "nama": "",
+        "gelar": "",
+        "email": ""
+      },
+      "mata_kuliah": {
+        "id_mata_kuliah": "",
+        "nama_mata_kuliah": "",
+        "sks": ""
+      },
+      "kelas": {
+        "id_kelas": "",
+        "id_mata_kuliah": "",
+        "id_dosen": "",
+        "semester": "",
+        "tahun_ajaran": ""
+      },
+      "nilai": {
+        "id_nilai": "",
+        "id_mahasiswa": "",
+        "id_kelas": "",
+        "nilai": ""
+      }
+    }
+  }  

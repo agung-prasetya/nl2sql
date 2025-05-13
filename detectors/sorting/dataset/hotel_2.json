@@ -1,0 +1,42 @@
+{
+    "entitas": {
+      "tamu": {
+        "guestid": "int",
+        "nama": "string",
+        "alamat": "string",
+        "telepon": "string",
+        "email": "string"
+      },
+      "kamar": {
+        "roomid": "int",
+        "tipekamar": "string",
+        "harga": "float",
+        "status": "string"
+      },
+      "reservasi": {
+        "reservationid": "int",
+        "guestid": "int",
+        "roomid": "int",
+        "tanggalcheckin": "date",
+        "tanggalcheckout": "date",
+        "jumlahtamu": "int",
+        "staffid": "int"
+      },
+      "pembayaran": {
+        "paymentid": "int",
+        "reservationid": "int",
+        "tanggalpembayaran": "date",
+        "jumlah": "float",
+        "metodepembayaran": "string"
+      },
+      "staf": {
+        "staffid": "int",
+        "nama": "string",
+        "posisi": "string",
+        "telepon": "string",
+        "email": "string"
+      }
+    }
+  }
+  
+  

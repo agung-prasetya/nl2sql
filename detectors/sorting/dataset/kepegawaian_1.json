@@ -1,0 +1,53 @@
+{
+    "entitas": {
+      "pegawai": {
+        "id_pegawai": "primary key",
+        "nama": "string",
+        "nip": "string",
+        "tanggal_lahir": "date",
+        "jenis_kelamin": "string",
+        "alamat": "text",
+        "no_telepon": "string",
+        "email": "string",
+        "id_jabatan": "foreign key",
+        "id_departemen": "foreign key"
+      },
+      "jabatan": {
+        "id_jabatan": "primary key",
+        "nama_jabatan": "string",
+        "gaji_pokok": "decimal",
+        "tunjangan": "decimal"
+      },
+      "departemen": {
+        "id_departemen": "primary key",
+        "nama_departemen": "string",
+        "lokasi": "string"
+      },
+      "absensi": {
+        "id_absensi": "primary key",
+        "id_pegawai": "foreign key",
+        "tanggal": "date",
+        "waktu_masuk": "time",
+        "waktu_keluar": "time",
+        "status": "enum(hadir, izin, sakit, alpha)"
+      },
+      "gaji": {
+        "id_gaji": "primary key",
+        "id_pegawai": "foreign key",
+        "bulan": "integer",
+        "tahun": "integer",
+        "total_gaji": "decimal",
+        "potongan": "decimal",
+        "tanggal_transfer": "date"
+      },
+      "cuti": {
+        "id_cuti": "primary key",
+        "id_pegawai": "foreign key",
+        "tanggal_mulai": "date",
+        "tanggal_selesai": "date",
+        "jenis_cuti": "string",
+        "status_pengajuan": "enum(disetujui, ditolak, pending)"
+      }
+    }
+  }
+  

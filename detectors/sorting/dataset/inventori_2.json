@@ -1,0 +1,32 @@
+{
+    "entitas": {
+      "kategori": {
+        "id_kategori": "primary key",
+        "nama_kategori": "string",
+        "deskripsi": "string"
+      },
+      "barang": {
+        "id_barang": "primary key",
+        "nama_barang": "string",
+        "deskripsi": "string",
+        "harga": "number",
+        "stok": "number",
+        "kategori_id": "foreign key"
+      },
+      "pemasok": {
+        "id_pemasok": "primary key",
+        "nama_pemasok": "string",
+        "alamat": "string",
+        "telepon": "string"
+      },
+      "transaksi": {
+        "id_transaksi": "primary key",
+        "tanggal_transaksi": "date",
+        "total": "number",
+        "id_barang": "foreign key",
+        "jumlah": "number",
+        "id_pemasok": "foreign key"
+      }
+    }
+  }
+  

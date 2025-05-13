@@ -1,0 +1,39 @@
+{
+    "entitas": {
+      "barang": {
+        "id_barang": "primary key",
+        "nama_barang": "string",
+        "id_kategori": "foreign key",
+        "id_pemasok": "foreign key",
+        "stok": "integer",
+        "satuan": "string",
+        "harga": "integer"
+      },
+      "kategori": {
+        "id_kategori": "primary key",
+        "nama_kategori": "string"
+      },
+      "pemasok": {
+        "id_pemasok": "primary key",
+        "nama_pemasok": "string",
+        "alamat": "string",
+        "telepon": "string"
+      },
+      "transaksi_masuk": {
+        "id_transaksi_masuk": "primary key",
+        "id_barang": "foreign key",
+        "tanggal_masuk": "date",
+        "jumlah": "integer",
+        "keterangan": "string"
+      },
+      "transaksi_keluar": {
+        "id_transaksi_keluar": "primary key",
+        "id_barang": "foreign key",
+        "tanggal_keluar": "date",
+        "jumlah": "integer",
+        "tujuan": "string",
+        "keterangan": "string"
+      }
+    }
+  }
+  

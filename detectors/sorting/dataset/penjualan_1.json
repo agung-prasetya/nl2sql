@@ -1,0 +1,46 @@
+{
+    "entitas": {
+      "pelanggan": {
+        "customer_id": "PK",
+        "nama": "varchar",
+        "email": "varchar",
+        "telepon": "varchar",
+        "alamat": "varchar"
+      },
+      "barang": {
+        "barang_id": "PK",
+        "nama": "varchar",
+        "deskripsi": "text",
+        "harga": "decimal",
+        "jumlah_stok": "int"
+      },
+      "pesanan": {
+        "order_id": "PK",
+        "tanggal_pesanan": "datetime",
+        "total_harga": "decimal",
+        "customer_id": "FK"
+      },
+      "detail_pesanan": {
+        "order_detail_id": "PK",
+        "order_id": "FK",
+        "product_id": "FK",
+        "jumlah": "int",
+        "harga": "decimal"
+      },
+      "pembayaran": {
+        "payment_id": "PK",
+        "order_id": "FK",
+        "tanggal_pembayaran": "datetime",
+        "jumlah_pembayaran": "decimal",
+        "metode_pembayaran": "varchar"
+      },
+      "pengiriman": {
+        "shipping_id": "PK",
+        "order_id": "FK",
+        "alamat_pengiriman": "varchar",
+        "tanggal_pengiriman": "datetime",
+        "status_pengiriman": "varchar"
+      }
+    }
+  }
+  
