@@ -1,0 +1,39 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": "primary key",
+      "nama": "string",
+      "email": "string",
+      "alamat": "string",
+      "nomor_telepon": "string"
+    },
+    "pesanan": {
+      "id_pesanan": "primary key",
+      "tanggal_pemesanan": "datetime",
+      "alamat_pengiriman": "string",
+      "status_pesanan": "string",
+      "id_pelanggan": "foreign key -> pelanggan.id_pelanggan",
+      "id_pembayaran": "foreign key -> pembayaran.id_pembayaran"
+    },
+    "item_pesanan": {
+      "id_item_pesanan": "primary key",
+      "id_pesanan": "foreign key -> pesanan.id_pesanan",
+      "id_produk": "foreign key -> produk.id_produk",
+      "kuantitas": "integer"
+    },
+    "produk": {
+      "id_produk": "primary key",
+      "nama_produk": "string",
+      "deskripsi": "text",
+      "harga": "decimal",
+      "jumlah_stok": "integer"
+    },
+    "pembayaran": {
+      "id_pembayaran": "primary key",
+      "metode_pembayaran": "string",
+      "tanggal_pembayaran": "datetime",
+      "jumlah": "decimal",
+      "id_transaksi": "string"
+    }
+  }
+}

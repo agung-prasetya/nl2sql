@@ -1,0 +1,65 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "primary_key",
+      "nama": "varchar",
+      "alamat": "varchar",
+      "tanggal_lahir": "date",
+      "no_telepon": "varchar",
+      "email": "varchar",
+      "id_jabatan": "foreign_key",
+      "id_departemen": "foreign_key"
+    },
+    "jabatan": {
+      "id_jabatan": "primary_key",
+      "nama_jabatan": "varchar",
+      "gaji_pokok": "decimal"
+    },
+    "departemen": {
+      "id_departemen": "primary_key",
+      "nama_departemen": "varchar",
+      "lokasi": "varchar"
+    },
+    "absensi": {
+      "id_absensi": "primary_key",
+      "id_pegawai": "foreign_key",
+      "tanggal": "date",
+      "jam_masuk": "time",
+      "jam_keluar": "time",
+      "status": "varchar"
+    },
+    "gaji": {
+      "id_gaji": "primary_key",
+      "id_pegawai": "foreign_key",
+      "periode": "varchar",
+      "total_gaji": "decimal",
+      "potongan": "decimal"
+    }
+  },
+  "relasi": [
+    {
+      "dari": "jabatan",
+      "ke": "pegawai",
+      "jenis": "one-to-many",
+      "keterangan": "satu jabatan dapat dimiliki oleh banyak pegawai"
+    },
+    {
+      "dari": "departemen",
+      "ke": "pegawai",
+      "jenis": "one-to-many",
+      "keterangan": "satu departemen dapat memiliki banyak pegawai"
+    },
+    {
+      "dari": "pegawai",
+      "ke": "absensi",
+      "jenis": "one-to-many",
+      "keterangan": "satu pegawai dapat memiliki banyak data absensi"
+    },
+    {
+      "dari": "pegawai",
+      "ke": "gaji",
+      "jenis": "one-to-many",
+      "keterangan": "satu pegawai dapat memiliki banyak data gaji"
+    }
+  ]
+}

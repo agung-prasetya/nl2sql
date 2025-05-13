@@ -1,0 +1,48 @@
+{
+  "entitas": {
+    "hotel": {
+      "hotel_id": "primary key",
+      "nama_hotel": "string",
+      "alamat": "string",
+      "telepon": "string",
+      "email": "string"
+    },
+    "kamar": {
+      "kamar_id": "primary key",
+      "hotel_id": "foreign key → hotel(hotel_id)",
+      "nomor_kamar": "string",
+      "tipe_kamar": "string",
+      "harga": "float",
+      "status": "string"
+    },
+    "tamu": {
+      "tamu_id": "primary key",
+      "nama_tamu": "string",
+      "alamat": "string",
+      "telepon": "string",
+      "email": "string"
+    },
+    "reservasi": {
+      "reservasi_id": "primary key",
+      "tamu_id": "foreign key → tamu(tamu_id)",
+      "kamar_id": "foreign key → kamar(kamar_id)",
+      "tanggal_checkin": "date",
+      "tanggal_checkout": "date",
+      "jumlah_hari": "integer",
+      "status_reservasi": "string"
+    },
+    "pembayaran": {
+      "pembayaran_id": "primary key",
+      "reservasi_id": "foreign key → reservasi(reservasi_id)",
+      "tanggal_pembayaran": "date",
+      "jumlah_bayar": "float",
+      "metode_pembayaran": "string"
+    }
+  },
+  "relasi": {
+    "hotel memiliki banyak kamar": "1:n (hotel → kamar)",
+    "tamu dapat memiliki banyak reservasi": "1:n (tamu → reservasi)",
+    "kamar dapat dipesan berkali-kali dalam reservasi": "1:n (kamar → reservasi)",
+    "satu reservasi dapat memiliki beberapa pembayaran": "1:n atau 1:1 (reservasi → pembayaran)"
+  }
+}
