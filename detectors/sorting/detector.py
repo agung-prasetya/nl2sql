@@ -8,6 +8,183 @@ class SortingDetector(KnowledgeEngine):
     def initial(self):
         yield Fact(jenis_sorting='NOSORTING')
 
+    #ASC
+    @Rule(
+        AND(
+            Fact(kata='sedikit'), Fact(kata='ke'), Fact(kata='banyak')
+        )
+    )
+    def asc_r1(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='A'), Fact(kata='ke'), Fact(kata='Z')
+        )
+    )
+    def asc_r2(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='terlama'), Fact(kata='ke'), Fact(kata='terbaru')
+        )
+    )
+    def asc_r3(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='termurah'), Fact(kata='dahulu')
+        )
+    )
+    def asc_r4(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='terkecil'), Fact(kata='ke'), Fact(kata='terbesar')
+        )
+    )
+    def asc_r5(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='secara'), Fact(kata='menaik') 
+        )
+    )
+    def asc_r6(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='awal'), Fact(kata='ke'), Fact(kata='akhir')
+        )
+    )
+    def asc_r7(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='terendah'), Fact(kata='ke'), Fact(kata='tertinggi')
+        )
+    )
+    def asc_r8(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='tua'), Fact(kata='ke'), Fact(kata='muda')
+        )
+    )
+    def asc_r10(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='januari'), Fact(kata='ke'), Fact(kata='desember')
+        )
+    )
+    def asc_r11(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='aktiva'), Fact(kata='ke'), Fact(kata='beban')
+        )
+    )
+    def asc_r12(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+        
+    #DESC
+    @Rule(
+        AND(
+            Fact(kata='banyak'), Fact(kata='ke'), Fact(kata='sedikit')
+        )
+    )
+    def desc_r1(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+    
+    @Rule(
+        AND(
+            Fact(kata='Z'), Fact(kata='ke'), Fact(kata='A')
+        )
+    )
+    def desc_r2(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='terbaru'), Fact(kata='ke'), Fact(kata='terlama')
+        )
+    )
+    def desc_r3(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='termahal'), Fact(kata='dahulu')
+        )
+    )
+    def desc_r4(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='terbesar'), Fact(kata='ke'), Fact(kata='terkecil')
+        )
+    )
+    def desc_r5(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='secara'), Fact(kata='menurun')
+        )
+    )
+    def desc_r6(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='tertinggi'), Fact(kata='ke'), Fact(kata='terendah')
+        )
+    )
+    def desc_r7(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='akhir'), Fact(kata='ke'), Fact(kata='awal')
+        )
+    )
+    def desc_r8(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='muda'), Fact(kata='ke'), Fact(kata='tua')
+        )
+    )
+    def desc_r9(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='desember'), Fact(kata='ke'), Fact(kata='januari')
+        )
+    )
+    def desc_r10(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+        
+    @Rule(
+        AND(
+            Fact(kata='beban'), Fact(kata='ke'), Fact(kata='aktiva')
+        )
+    )
+    def desc_r11(self):
+        self.declare(Fact(jenis_sorting='DESC'))
 
 
         
