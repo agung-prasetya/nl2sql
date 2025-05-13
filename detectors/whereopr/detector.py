@@ -9,6 +9,141 @@ class WhereoprDetector(KnowledgeEngine):
     def initial(self):
         yield Fact(jenis_whereopr='NOOP')
 
+# Rule LIKE
+    @Rule(
+        AND(
+            Fact(kata='kandung'),
+            Fact(namatabel=True),
+            Fact(namakolom=True),
+            Fact(anggotatabel=True),
+            )
+        )
+    def inventory_1_LIKE_1(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))
+
+    @Rule(
+        AND(
+            Fact(kata='milik'),
+            )
+        )
+    def inventory_1_LIKE_4(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))    
+    
+    @Rule(
+        AND(
+            Fact(kata='akhir'),
+            )
+        )
+    def inventory_1_LIKE_3(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))  
+
+    @Rule(
+        AND(
+            Fact(kata='awal'),
+            )
+        )
+    def inventory_1_LIKE_10(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))    
+
+    @Rule(
+        AND(
+            Fact(kata='isi'),
+            )
+        )
+    def hotel_1_LIKE_67(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))
+
+    @Rule(
+        AND(
+            Fact(kata='muat'),
+            )
+        )
+    def pemesanan_2_LIKE_334(self):
+        self.declare(Fact(jenis_whereopr='LIKE')) 
+
+    @Rule(
+        AND(
+            Fact(kata='guna'),
+            )
+        )
+    def penjualan_1_LIKE_365(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))
+          
+    @Rule(
+        AND(
+            Fact(kata='sebut'),
+            )
+        )
+    def penjualan_2_LIKE_394(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))   
+
+    @Rule(
+        AND(
+            Fact(kata='asal'),
+            )
+        )
+    def hotel_2_LIKE_95(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))  
+
+    @Rule(
+        AND(
+            Fact(kata='diri'),
+            )
+        )
+    def inventory_1_LIKE_8(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))   
+
+    @Rule(
+        AND(
+            Fact(kata='belakang'),
+            )
+        )
+    def akademik_1_LIKE_125(self):
+        self.declare(Fact(jenis_whereopr='LIKE')) 
+
+    @Rule(
+        AND(
+            Fact(kata='mulai'),
+            )
+        )
+    def inventory_1_LIKE_2(self):
+        self.declare(Fact(jenis_whereopr='LIKE'))   
+
+# Rule IN
+ 
+    @Rule(
+        AND(
+            Fact(kata='atau'),
+            )
+        )
+    def inventory_1_IN_14(self):
+        self.declare(Fact(jenis_whereopr='IN'))   
+
+# Rule IS_NULL   
+     
+    @Rule(
+        AND(
+            Fact(kata='belum'),
+            )
+        )
+    def inventory_1_IS_NULL_21(self):
+        self.declare(Fact(jenis_whereopr='ISNULL'))   
+
+    @Rule(
+        AND(
+            Fact(kata='tidak'),
+            )
+        )
+    def inventory_1_IS_NULL_25(self):
+        self.declare(Fact(jenis_whereopr='ISNULL'))   
+
+    @Rule(
+        AND(
+            Fact(kata='kosong'),
+            )
+        )
+    def hotel_2_IS_NULL_113(self):
+        self.declare(Fact(jenis_whereopr='ISNULL'))   
 
 
         
