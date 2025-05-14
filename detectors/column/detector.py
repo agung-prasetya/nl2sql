@@ -1,4 +1,5 @@
 import json
+import re
 
 class ColumnDetector():
     def __init__(self, filepath_database_json):
@@ -17,25 +18,36 @@ class ColumnDetector():
         return daftar_kolom
 
     def tokenisasi(self, kalimat_ternormalisasi):
-        #Tujuan: mengubah kalimat menjadi daftar kata. 
-        #Misalnya, kalimat "tambahkan data baru di produk", daftar kata nya adalah ['tambahkan','data','baru','di','produk']
-        #Gunakan function split()
-        #Tugas: tambahkan code untuk tokenisasi. Jangan lupa mengapus pass
-        pass
+        daftar_kata = kalimat_ternormalisasi.split()
+        return daftar_kata
+
 
     def set_daftar_kolom_simmilarity(self, daftar_kata, daftar_kolom):
-        #Tujuan: memberikan nilai ke setiap kolom database. Nilai ini merepresentasikan nilai maksimal jaccard coefficient 
-        #Tugas: tambahkan code untuk set_daftar_kolom_simmilarity. Lihat di catatan tentang set_daftar_kolom_simmilarity (di googleclassroom).
-        #Jangan lupa mengapus pass
-        pass
+        hasil = []
+        set_kata = set(daftar_kata)
+
+        for kolom in daftar_kolom:
+            
+            tokens_kolom = kolom.lower().replace('_', ' ').split()
+            set_kolom = set(tokens_kolom)
+
+            irisan = set_kata & set_kolom
+            gabungan = set_kata | set_kolom
+            skor = len(irisan) / len(gabungan) if gabungan else 0
+
+            hasil.append({
+                'nama_kolom': kolom,
+                'nilai_simmilarity': skor
+            })
+
+        return hasil
 
     def normalisasi(self,kalimat):
-        #Tujuan: menormalisasi kalimat. Normalisasi disini maksudnya :
-        # 1. menyeragamkan huruf menjadi lowercase, Misal: kalimat "Tambahkan data Produk" menjadi "tambahkan data produk"
-        # 2. menghapus karakter non abjad dan non spasi, Misal: kalimat "tambahkan data produk!" menjadi "tambahkan data produk" 
-        # 3. menjadikan dua spasi atau lebih menjadi 1 spasi. Misal: kalimat "tambahkan    data produk" menjadi "tambahkan data produk" 
-        #Tugas: tambahkan code untuk normalisasi. Jangan lupa mengapus pass
-        pass
+
+        kalimat = kalimat.lower()
+        kalimat = re.sub(r'[^a-z\s]', '', kalimat)        
+        kalimat = re.sub(r'\s+', ' ', kalimat).strip()
+        return kalimat
 
     def filter(self, daftar_kolom_simmilarity, threshold):
         daftar_kolom_select = []
