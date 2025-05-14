@@ -1,0 +1,46 @@
+{
+  "entitas": {
+    "barang": {
+      "id_barang": "string",
+      "nama_barang": "string",
+      "id_kategori": "string",
+      "harga_beli": "number",
+      "harga_jual": "number",
+      "stok": "integer"
+    },
+    "kategori": {
+      "id_kategori": "string",
+      "nama_kategori": "string"
+    },
+    "mutasi_stok": {
+      "id_mutasi": "string",
+      "id_barang": "string",
+      "jenis_mutasi": "string",
+      "jumlah": "integer",
+      "tanggal": "date",
+      "id_pengguna": "string",
+      "keterangan": "string"
+    },
+    "pengguna": {
+      "id_pengguna": "string",
+      "nama_pengguna": "string",
+      "peran": "string",
+      "username": "string",
+      "password": "string"
+    },
+    "pemasok": {
+      "id_pemasok": "string",
+      "nama_pemasok": "string",
+      "kontak": "string",
+      "alamat": "string"
+    },
+    "pembelian": {
+      "id_pembelian": "string",
+      "id_barang": "string",
+      "id_pemasok": "string",
+      "tanggal_pembelian": "date",
+      "jumlah_beli": "integer",
+      "total_harga": "number"
+    }
+  }
+}

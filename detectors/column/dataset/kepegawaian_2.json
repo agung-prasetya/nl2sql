@@ -1,0 +1,41 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "pk",
+      "nama": "string",
+      "tanggal_lahir": "date",
+      "jenis_kelamin": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "id_jabatan": "fk",
+      "id_departemen": "fk"
+    },
+    "jabatan": {
+      "id_jabatan": "pk",
+      "nama_jabatan": "string",
+      "gaji_pokok": "integer",
+      "tunjangan": "integer"
+    },
+    "departemen": {
+      "id_departemen": "pk",
+      "nama_departemen": "string",
+      "lokasi": "string"
+    },
+    "absensi": {
+      "id_absensi": "pk",
+      "id_pegawai": "fk",
+      "tanggal": "date",
+      "jam_masuk": "time",
+      "jam_keluar": "time",
+      "status": "enum"
+    },
+    "gaji": {
+      "id_gaji": "pk",
+      "id_pegawai": "fk",
+      "bulan": "integer",
+      "tahun": "integer",
+      "total_gaji": "integer",
+      "potongan": "integer"
+    }
+  }
+}

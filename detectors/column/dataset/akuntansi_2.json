@@ -1,0 +1,34 @@
+{
+  "entitas": {
+    "akun": {
+      "id_akun": "integer",
+      "nama_akun": "string",
+      "kategori": "string"
+    },
+    "jurnal_transaksi": {
+      "id_jurnal": "integer",
+      "tanggal": "date",
+      "keterangan": "string"
+    },
+    "jurnal_detail": {
+      "id_detail": "integer",
+      "id_jurnal": "integer",
+      "id_akun": "integer",
+      "debit": "decimal",
+      "kredit": "decimal"
+    },
+    "proyek": {
+      "id_proyek": "integer",
+      "nama_proyek": "string",
+      "klien": "string",
+      "tgl_mulai": "date",
+      "tgl_selesai": "date"
+    },
+    "karyawan": {
+      "id_karyawan": "integer",
+      "nama": "string",
+      "posisi": "string",
+      "gaji": "decimal"
+    }
+  }
+}

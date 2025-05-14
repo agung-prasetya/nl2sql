@@ -1,0 +1,44 @@
+{
+  "entitas": {
+    "user": {
+      "id_user": "primary key",
+      "nama": "string",
+      "email": "string",
+      "password": "string"
+    },
+    "produk": {
+      "id_produk": "primary key",
+      "nama": "string",
+      "harga": "number",
+      "stok": "number",
+      "kategori": "string"
+    },
+    "order": {
+      "id_order": "primary key",
+      "id_user": "foreign key",
+      "tanggal_order": "date",
+      "total_bayar": "number"
+    },
+    "order_detail": {
+      "id_orderdetail": "primary key",
+      "id_order": "foreign key",
+      "id_produk": "foreign key",
+      "jumlah": "number",
+      "harga_satuan": "number"
+    },
+    "pembayaran": {
+      "id_pembayaran": "primary key",
+      "id_order": "foreign key",
+      "metode": "string",
+      "status": "string",
+      "tanggal_bayar": "date"
+    },
+    "pengiriman": {
+      "id_pengiriman": "primary key",
+      "id_order": "foreign key",
+      "jasa_kirim": "string",
+      "no_resi": "string",
+      "status": "string"
+    }
+  }
+}

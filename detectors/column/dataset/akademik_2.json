@@ -1,0 +1,32 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "nim": "string",
+      "nama": "string",
+      "prodi": "string"
+    },
+    "kelas": {
+      "id_kelas": "string",
+      "nama_kelas": "string",
+      "kode_mk": "string",
+      "nip_dosen": "string"
+    },
+    "mata_kuliah": {
+      "kode_mk": "string",
+      "nama_mk": "string",
+      "sks": "integer"
+    },
+    "dosen": {
+      "nip": "string",
+      "nama": "string",
+      "jabatan": "string"
+    },
+    "nilai": {
+      "id_nilai": "string",
+      "nim": "string",
+      "id_kelas": "string",
+      "nilai_akhir": "float",
+      "grade": "string"
+    }
+  }
+}

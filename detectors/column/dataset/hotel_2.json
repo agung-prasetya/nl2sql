@@ -1,0 +1,51 @@
+{
+  "entitas": {
+    "tamu": {
+      "id_tamu": "string",
+      "nama_tamu": "string",
+      "alamat": "string",
+      "no_identitas": "string",
+      "no_telepon": "string",
+      "email": "string"
+    },
+    "kamar": {
+      "id_kamar": "string",
+      "nomor_kamar": "string",
+      "id_tipe_kamar": "string",
+      "status": "string"
+    },
+    "tipe_kamar": {
+      "id_tipe_kamar": "string",
+      "nama_tipe": "string",
+      "fasilitas": "string",
+      "harga": "number"
+    },
+    "reservasi": {
+      "id_reservasi": "string",
+      "id_tamu": "string",
+      "id_kamar": "string",
+      "tanggal_checkin": "date",
+      "tanggal_checkout": "date",
+      "status": "string"
+    },
+    "layanan": {
+      "id_layanan": "string",
+      "nama_layanan": "string",
+      "biaya": "number"
+    },
+    "penggunaan_layanan": {
+      "id_penggunaan": "string",
+      "id_reservasi": "string",
+      "id_layanan": "string",
+      "jumlah": "integer",
+      "tanggal": "date"
+    },
+    "pembayaran": {
+      "id_pembayaran": "string",
+      "id_reservasi": "string",
+      "metode_pembayaran": "string",
+      "tanggal_pembayaran": "date",
+      "jumlah_dibayar": "number"
+    }
+  }
+}

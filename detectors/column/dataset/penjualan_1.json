@@ -1,0 +1,28 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": "primary key",
+      "nama": "string",
+      "alamat": "string",
+      "telepon": "string"
+    },
+    "produk": {
+      "id_produk": "primary key",
+      "nama_produk": "string",
+      "harga": "number",
+      "stok": "number"
+    },
+    "penjualan": {
+      "id_penjualan": "primary key",
+      "tanggal": "date",
+      "id_pelanggan": "foreign key"
+    },
+    "detail_penjualan": {
+      "id_detail": "primary key",
+      "id_penjualan": "foreign key",
+      "id_produk": "foreign key",
+      "jumlah": "number",
+      "subtotal": "number"
+    }
+  }
+}

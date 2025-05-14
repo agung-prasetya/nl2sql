@@ -1,0 +1,32 @@
+{
+  "entitas": {
+    "akun": {
+      "id_akun": "integer",
+      "nama_akun": "string",
+      "tipe_akun": "string"
+    },
+    "transaksi": {
+      "id_transaksi": "integer",
+      "tanggal": "date",
+      "deskripsi": "string",
+      "total": "decimal"
+    },
+    "detail_transaksi": {
+      "id_detail": "integer",
+      "id_transaksi": "integer",
+      "id_akun": "integer",
+      "debit": "decimal",
+      "kredit": "decimal"
+    },
+    "supplier": {
+      "id_supplier": "integer",
+      "nama_supplier": "string",
+      "kontak": "string"
+    },
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama_pelanggan": "string",
+      "kontak": "string"
+    }
+  }
+}

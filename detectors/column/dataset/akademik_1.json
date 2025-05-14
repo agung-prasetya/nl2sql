@@ -1,0 +1,32 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "nim": "string",
+      "nama": "string",
+      "tanggal_lahir": "date",
+      "alamat": "string"
+    },
+    "mata_kuliah": {
+      "kode_mk": "string",
+      "nama_mk": "string",
+      "sks": "integer"
+    },
+    "dosen": {
+      "nip": "string",
+      "nama": "string",
+      "email": "string"
+    },
+    "krs": {
+      "id_krs": "string",
+      "nim": "string",
+      "semester": "integer",
+      "tahun_akademik": "string"
+    },
+    "detail_krs": {
+      "id_detail": "string",
+      "id_krs": "string",
+      "kode_mk": "string",
+      "nip": "string"
+    }
+  }
+}

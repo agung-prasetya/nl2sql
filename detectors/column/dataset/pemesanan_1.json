@@ -1,0 +1,26 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama": "string",
+      "no_telepon": "string"
+    },
+    "pesanan": {
+      "id_pesanan": "integer",
+      "tanggal": "date",
+      "total_harga": "decimal",
+      "id_pelanggan": "integer"
+    },
+    "menu": {
+      "id_menu": "integer",
+      "nama_menu": "string",
+      "harga": "decimal"
+    },
+    "detail_pesanan": {
+      "id_detail": "integer",
+      "id_pesanan": "integer",
+      "id_menu": "integer",
+      "jumlah": "integer"
+    }
+  }
+}

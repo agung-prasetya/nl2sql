@@ -1,0 +1,16 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "pk",
+      "nama": "string",
+      "alamat": "string",
+      "tanggal_lahir": "date",
+      "id_jabatan": "fk"
+    },
+    "jabatan": {
+      "id_jabatan": "pk",
+      "nama_jabatan": "string",
+      "gaji_pokok": "integer"
+    }
+  }
+}
