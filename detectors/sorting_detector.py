@@ -21,7 +21,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='A'), Fact(kata='ke'), Fact(kata='Z')
+            Fact(kata='a'), Fact(kata='ke'), Fact(kata='z')
         )
     )
     def asc_r2(self):
@@ -29,7 +29,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terlama'), Fact(kata='ke'), Fact(kata='terbaru')
+            Fact(kata='lama'), Fact(kata='ke'), Fact(kata='baru')
         )
     )
     def asc_r3(self):
@@ -37,7 +37,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='termurah'), Fact(kata='dahulu')
+            Fact(kata='murah'), Fact(kata='dahulu')
         )
     )
     def asc_r4(self):
@@ -45,7 +45,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terkecil'), Fact(kata='ke'), Fact(kata='terbesar')
+            Fact(kata='kecil'), Fact(kata='ke'), Fact(kata='besar')
         )
     )
     def asc_r5(self):
@@ -69,7 +69,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terendah'), Fact(kata='ke'), Fact(kata='tertinggi')
+            Fact(kata='rendah'), Fact(kata='ke'), Fact(kata='tinggi')
         )
     )
     def asc_r8(self):
@@ -110,7 +110,7 @@ class SortingDetector(KnowledgeEngine):
     
     @Rule(
         AND(
-            Fact(kata='Z'), Fact(kata='ke'), Fact(kata='A')
+            Fact(kata='z'), Fact(kata='ke'), Fact(kata='a')
         )
     )
     def desc_r2(self):
@@ -118,7 +118,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terbaru'), Fact(kata='ke'), Fact(kata='terlama')
+            Fact(kata='baru'), Fact(kata='ke'), Fact(kata='lama')
         )
     )
     def desc_r3(self):
@@ -126,7 +126,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='termahal'), Fact(kata='dahulu')
+            Fact(kata='mahal'), Fact(kata='dahulu')
         )
     )
     def desc_r4(self):
@@ -134,7 +134,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terbesar'), Fact(kata='ke'), Fact(kata='terkecil')
+            Fact(kata='besar'), Fact(kata='ke'), Fact(kata='kecil')
         )
     )
     def desc_r5(self):
@@ -150,7 +150,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='tertinggi'), Fact(kata='ke'), Fact(kata='terendah')
+            Fact(kata='tinggi'), Fact(kata='ke'), Fact(kata='rendah')
         )
     )
     def desc_r7(self):
