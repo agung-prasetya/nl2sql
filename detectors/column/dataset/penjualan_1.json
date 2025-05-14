@@ -4,24 +4,30 @@
       "id_pelanggan": "primary key",
       "nama": "string",
       "alamat": "string",
-      "telepon": "string"
+      "no_telepon": "string"
     },
     "produk": {
       "id_produk": "primary key",
       "nama_produk": "string",
       "harga": "number",
-      "stok": "number"
+      "stok": "integer"
     },
-    "penjualan": {
-      "id_penjualan": "primary key",
+    "karyawan": {
+      "id_karyawan": "primary key",
+      "nama": "string",
+      "jabatan": "string"
+    },
+    "transaksi_penjualan": {
+      "id_transaksi": "primary key",
       "tanggal": "date",
-      "id_pelanggan": "foreign key"
+      "id_pelanggan": "foreign key -> pelanggan.id_pelanggan",
+      "id_karyawan": "foreign key -> karyawan.id_karyawan"
     },
-    "detail_penjualan": {
+    "detail_transaksi": {
       "id_detail": "primary key",
-      "id_penjualan": "foreign key",
-      "id_produk": "foreign key",
-      "jumlah": "number",
+      "id_transaksi": "foreign key -> transaksi_penjualan.id_transaksi",
+      "id_produk": "foreign key -> produk.id_produk",
+      "jumlah": "integer",
       "subtotal": "number"
     }
   }

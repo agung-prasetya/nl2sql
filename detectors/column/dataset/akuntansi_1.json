@@ -1,32 +1,32 @@
 {
   "entitas": {
     "akun": {
-      "id_akun": "integer",
+      "id_akun": "primary key",
       "nama_akun": "string",
-      "tipe_akun": "string"
+      "tipe_akun": "string",
+      "kode_akun": "string",
+      "saldo_awal": "decimal"
     },
     "transaksi": {
-      "id_transaksi": "integer",
+      "id_transaksi": "primary key",
       "tanggal": "date",
       "deskripsi": "string",
-      "total": "decimal"
+      "total": "decimal",
+      "id_user": "foreign key"
     },
     "detail_transaksi": {
-      "id_detail": "integer",
-      "id_transaksi": "integer",
-      "id_akun": "integer",
+      "id_detail": "primary key",
+      "id_transaksi": "foreign key",
+      "id_akun": "foreign key",
       "debit": "decimal",
       "kredit": "decimal"
     },
-    "supplier": {
-      "id_supplier": "integer",
-      "nama_supplier": "string",
-      "kontak": "string"
-    },
-    "pelanggan": {
-      "id_pelanggan": "integer",
-      "nama_pelanggan": "string",
-      "kontak": "string"
+    "user": {
+      "id_user": "primary key",
+      "nama_user": "string",
+      "username": "string",
+      "password": "string",
+      "role": "string"
     }
   }
 }

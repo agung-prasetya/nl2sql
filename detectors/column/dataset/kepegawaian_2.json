@@ -1,41 +1,49 @@
 {
   "entitas": {
     "pegawai": {
-      "id_pegawai": "pk",
-      "nama": "string",
-      "tanggal_lahir": "date",
-      "jenis_kelamin": "string",
-      "alamat": "string",
-      "no_telepon": "string",
-      "id_jabatan": "fk",
-      "id_departemen": "fk"
-    },
-    "jabatan": {
-      "id_jabatan": "pk",
-      "nama_jabatan": "string",
-      "gaji_pokok": "integer",
-      "tunjangan": "integer"
+      "id_pegawai": "INT PRIMARY KEY",
+      "nama_lengkap": "VARCHAR",
+      "tanggal_lahir": "DATE",
+      "alamat": "VARCHAR",
+      "nomor_telepon": "VARCHAR",
+      "email": "VARCHAR",
+      "tanggal_mulai_kerja": "DATE",
+      "id_departemen": "INT FOREIGN KEY",
+      "id_jabatan": "INT FOREIGN KEY"
     },
     "departemen": {
-      "id_departemen": "pk",
-      "nama_departemen": "string",
-      "lokasi": "string"
+      "id_departemen": "INT PRIMARY KEY",
+      "nama_departemen": "VARCHAR",
+      "lokasi": "VARCHAR"
+    },
+    "jabatan": {
+      "id_jabatan": "INT PRIMARY KEY",
+      "nama_jabatan": "VARCHAR",
+      "deskripsi_jabatan": "VARCHAR",
+      "gaji_pokok": "DECIMAL"
+    },
+    "proyek": {
+      "id_proyek": "INT PRIMARY KEY",
+      "nama_proyek": "VARCHAR",
+      "tanggal_mulai": "DATE",
+      "tanggal_selesai": "DATE",
+      "deskripsi_proyek": "VARCHAR"
     },
     "absensi": {
-      "id_absensi": "pk",
-      "id_pegawai": "fk",
-      "tanggal": "date",
-      "jam_masuk": "time",
-      "jam_keluar": "time",
-      "status": "enum"
+      "id_absensi": "INT PRIMARY KEY",
+      "id_pegawai": "INT FOREIGN KEY",
+      "tanggal": "DATE",
+      "waktu_masuk": "TIME",
+      "waktu_keluar": "TIME",
+      "keterangan": "VARCHAR"
     },
-    "gaji": {
-      "id_gaji": "pk",
-      "id_pegawai": "fk",
-      "bulan": "integer",
-      "tahun": "integer",
-      "total_gaji": "integer",
-      "potongan": "integer"
+    "penugasan": {
+      "id_penugasan": "INT PRIMARY KEY",
+      "id_pegawai": "INT FOREIGN KEY",
+      "id_proyek": "INT FOREIGN KEY",
+      "tanggal_mulai_penugasan": "DATE",
+      "tanggal_selesai_penugasan": "DATE",
+      "peran_dalam_proyek": "VARCHAR"
     }
   }
 }

@@ -2,33 +2,45 @@
   "entitas": {
     "akun": {
       "id_akun": "integer",
+      "kode_akun": "string",
       "nama_akun": "string",
-      "kategori": "string"
+      "jenis_akun": "string",
+      "saldo": "float"
     },
-    "jurnal_transaksi": {
-      "id_jurnal": "integer",
+    "transaksi": {
+      "id_transaksi": "integer",
       "tanggal": "date",
-      "keterangan": "string"
+      "jumlah": "float",
+      "deskripsi": "string",
+      "id_pelanggan": "integer",
+      "id_pemasok": "integer"
     },
-    "jurnal_detail": {
-      "id_detail": "integer",
+    "jurnal": {
       "id_jurnal": "integer",
+      "id_transaksi": "integer",
       "id_akun": "integer",
-      "debit": "decimal",
-      "kredit": "decimal"
+      "debit": "float",
+      "kredit": "float",
+      "tanggal_posting": "date"
     },
-    "proyek": {
-      "id_proyek": "integer",
-      "nama_proyek": "string",
-      "klien": "string",
-      "tgl_mulai": "date",
-      "tgl_selesai": "date"
-    },
-    "karyawan": {
-      "id_karyawan": "integer",
+    "pelanggan": {
+      "id_pelanggan": "integer",
       "nama": "string",
-      "posisi": "string",
-      "gaji": "decimal"
+      "alamat": "string",
+      "telepon": "string"
+    },
+    "pemasok": {
+      "id_pemasok": "integer",
+      "nama": "string",
+      "alamat": "string",
+      "telepon": "string"
+    },
+    "faktur": {
+      "id_faktur": "integer",
+      "id_transaksi": "integer",
+      "tanggal_faktur": "date",
+      "tanggal_jatuh_tempo": "date",
+      "status": "string"
     }
   }
 }

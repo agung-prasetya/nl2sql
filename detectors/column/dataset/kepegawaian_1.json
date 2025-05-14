@@ -1,16 +1,61 @@
 {
   "entitas": {
     "pegawai": {
-      "id_pegawai": "pk",
+      "id_pegawai": "string",
       "nama": "string",
-      "alamat": "string",
       "tanggal_lahir": "date",
-      "id_jabatan": "fk"
+      "jenis_kelamin": "string",
+      "alamat": "string",
+      "email": "string",
+      "no_telepon": "string",
+      "id_jabatan": "string",
+      "id_departemen": "string"
     },
     "jabatan": {
-      "id_jabatan": "pk",
+      "id_jabatan": "string",
       "nama_jabatan": "string",
-      "gaji_pokok": "integer"
+      "gaji_pokok": "number",
+      "tunjangan": "number"
+    },
+    "departemen": {
+      "id_departemen": "string",
+      "nama_departemen": "string",
+      "lokasi_kantor": "string"
+    },
+    "cuti": {
+      "id_cuti": "string",
+      "id_pegawai": "string",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "jenis_cuti": "string",
+      "status": "string"
+    },
+    "absensi": {
+      "id_absensi": "string",
+      "id_pegawai": "string",
+      "tanggal": "date",
+      "jam_masuk": "time",
+      "jam_pulang": "time",
+      "status_kehadiran": "string"
+    },
+    "gaji": {
+      "id_gaji": "string",
+      "id_pegawai": "string",
+      "bulan": "string",
+      "tahun": "string",
+      "total_gaji": "number",
+      "status_pembayaran": "string"
+    },
+    "pelatihan": {
+      "id_pelatihan": "string",
+      "nama_pelatihan": "string",
+      "tanggal": "date",
+      "lokasi": "string"
+    },
+    "pelatihan_pegawai": {
+      "id_pelatihan": "string",
+      "id_pegawai": "string",
+      "nilai_sertifikat": "string"
     }
   }
 }

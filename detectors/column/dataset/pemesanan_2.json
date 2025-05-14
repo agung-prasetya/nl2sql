@@ -1,53 +1,39 @@
 {
   "entitas": {
-    "pengguna": {
-      "id_pengguna": "integer",
-      "nama": "string",
-      "email": "string",
-      "kata_sandi": "string"
+    "pelanggan": {
+      "id_pelanggan": "",
+      "nama": "",
+      "email": "",
+      "no_telepon": "",
+      "alamat": ""
     },
     "produk": {
-      "id_produk": "integer",
-      "nama_produk": "string",
-      "stok": "integer",
-      "harga": "decimal"
-    },
-    "kategori": {
-      "id_kategori": "integer",
-      "nama_kategori": "string"
+      "id_produk": "",
+      "nama_produk": "",
+      "harga": "",
+      "stok": "",
+      "kategori": ""
     },
     "pesanan": {
-      "id_pesanan": "integer",
-      "id_pengguna": "integer",
-      "tanggal_pesan": "date",
-      "status": "string",
-      "total": "decimal"
+      "id_pesanan": "",
+      "id_pelanggan": "",
+      "tanggal_pemesanan": "",
+      "status": "",
+      "total_harga": ""
     },
-    "detail_pesanan": {
-      "id_detail": "integer",
-      "id_pesanan": "integer",
-      "id_produk": "integer",
-      "kuantitas": "integer",
-      "harga_satuan": "decimal"
+    "item_pesanan": {
+      "id_item": "",
+      "id_pesanan": "",
+      "id_produk": "",
+      "jumlah": "",
+      "harga_satuan": ""
     },
     "pembayaran": {
-      "id_pembayaran": "integer",
-      "id_pesanan": "integer",
-      "metode": "string",
-      "tanggal_bayar": "date",
-      "status": "string"
-    },
-    "alamat_pengiriman": {
-      "id_alamat": "integer",
-      "id_pengguna": "integer",
-      "alamat": "string",
-      "kota": "string",
-      "kode_pos": "string"
-    },
-    "produk_kategori": {
-      "id": "integer",
-      "id_produk": "integer",
-      "id_kategori": "integer"
+      "id_pembayaran": "",
+      "id_pesanan": "",
+      "metode_pembayaran": "",
+      "jumlah_pembayaran": "",
+      "status_pembayaran": ""
     }
   }
 }

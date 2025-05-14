@@ -1,44 +1,43 @@
 {
   "entitas": {
-    "user": {
-      "id_user": "primary key",
-      "nama": "string",
-      "email": "string",
-      "password": "string"
+    "pelanggan": {
+      "id_pelanggan": "pk",
+      "nama": "",
+      "alamat": "",
+      "telepon": "",
+      "email": ""
     },
     "produk": {
-      "id_produk": "primary key",
-      "nama": "string",
-      "harga": "number",
-      "stok": "number",
-      "kategori": "string"
+      "id_produk": "pk",
+      "nama_produk": "",
+      "harga": "",
+      "stok": "",
+      "id_kategori": "fk"
     },
-    "order": {
-      "id_order": "primary key",
-      "id_user": "foreign key",
-      "tanggal_order": "date",
-      "total_bayar": "number"
+    "kategori": {
+      "id_kategori": "pk",
+      "nama_kategori": ""
     },
-    "order_detail": {
-      "id_orderdetail": "primary key",
-      "id_order": "foreign key",
-      "id_produk": "foreign key",
-      "jumlah": "number",
-      "harga_satuan": "number"
+    "pesanan": {
+      "id_pesanan": "pk",
+      "id_pelanggan": "fk",
+      "tanggal_pesanan": "",
+      "total_harga": "",
+      "status": ""
+    },
+    "detail_pesanan": {
+      "id_detail_pesanan": "pk",
+      "id_pesanan": "fk",
+      "id_produk": "fk",
+      "jumlah": "",
+      "subtotal": ""
     },
     "pembayaran": {
-      "id_pembayaran": "primary key",
-      "id_order": "foreign key",
-      "metode": "string",
-      "status": "string",
-      "tanggal_bayar": "date"
-    },
-    "pengiriman": {
-      "id_pengiriman": "primary key",
-      "id_order": "foreign key",
-      "jasa_kirim": "string",
-      "no_resi": "string",
-      "status": "string"
+      "id_pembayaran": "pk",
+      "id_pesanan": "fk",
+      "metode_pembayaran": "",
+      "jumlah_bayar": "",
+      "tanggal_bayar": ""
     }
   }
 }
