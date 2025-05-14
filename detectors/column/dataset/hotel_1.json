@@ -1,27 +1,44 @@
 {
   "entitas": {
     "tamu": {
-      "id_tamu": "string",
-      "nama_tamu": "string",
-      "no_identitas": "string",
+      "id_tamu": "primary key",
+      "nama": "string",
+      "alamat": "string",
       "no_telepon": "string",
       "email": "string"
     },
     "kamar": {
-      "id_kamar": "string",
+      "id_kamar": "primary key",
       "nomor_kamar": "string",
-      "tipe_kamar": "string",
-      "harga_per_malam": "number",
+      "tipe": "string",
+      "harga_per_malam": "float",
       "status": "string"
     },
     "reservasi": {
-      "id_reservasi": "string",
-      "id_tamu": "string",
-      "id_kamar": "string",
+      "id_reservasi": "primary key",
+      "id_tamu": "foreign key → tamu.id_tamu",
+      "id_kamar": "foreign key → kamar.id_kamar",
       "tanggal_checkin": "date",
       "tanggal_checkout": "date",
-      "total_harga": "number",
-      "status_reservasi": "string"
+      "status_pembayaran": "string"
+    },
+    "layanan": {
+      "id_layanan": "primary key",
+      "nama_layanan": "string",
+      "harga": "float"
+    },
+    "penggunaan_layanan": {
+      "id_penggunaan": "primary key",
+      "id_reservasi": "foreign key → reservasi.id_reservasi",
+      "id_layanan": "foreign key → layanan.id_layanan",
+      "tanggal_penggunaan": "date",
+      "jumlah": "integer"
+    },
+    "staf": {
+      "id_staf": "primary key",
+      "nama": "string",
+      "jabatan": "string",
+      "no_telepon": "string"
     }
   }
 }

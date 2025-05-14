@@ -4,17 +4,37 @@
       "nim": "string",
       "nama": "string",
       "tanggal_lahir": "date",
-      "alamat": "string"
-    },
-    "mata_kuliah": {
-      "kode_mk": "string",
-      "nama_mk": "string",
-      "sks": "integer"
+      "alamat": "string",
+      "no_telp": "string",
+      "email": "string",
+      "id_prodi": "string"
     },
     "dosen": {
       "nip": "string",
       "nama": "string",
-      "email": "string"
+      "email": "string",
+      "no_telp": "string",
+      "id_prodi": "string"
+    },
+    "prodi": {
+      "id_prodi": "string",
+      "nama_prodi": "string",
+      "fakultas": "string"
+    },
+    "mata_kuliah": {
+      "kode_mk": "string",
+      "nama_mk": "string",
+      "sks": "integer",
+      "semester": "integer",
+      "id_prodi": "string"
+    },
+    "jadwal": {
+      "id_jadwal": "string",
+      "hari": "string",
+      "jam": "string",
+      "kode_mk": "string",
+      "nip_dosen": "string",
+      "ruang": "string"
     },
     "krs": {
       "id_krs": "string",
@@ -23,10 +43,9 @@
       "tahun_akademik": "string"
     },
     "detail_krs": {
-      "id_detail": "string",
       "id_krs": "string",
       "kode_mk": "string",
-      "nip": "string"
+      "nilai": "string"
     }
   }
 }

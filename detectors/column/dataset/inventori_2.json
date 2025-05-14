@@ -1,46 +1,42 @@
 {
   "entitas": {
-    "barang": {
-      "id_barang": "string",
-      "nama_barang": "string",
-      "id_kategori": "string",
-      "harga_beli": "number",
-      "harga_jual": "number",
-      "stok": "integer"
+    "produk": {
+      "id_produk": "pk",
+      "nama_produk": "",
+      "deskripsi": "",
+      "harga_beli": "",
+      "harga_jual": "",
+      "stok": "",
+      "id_kategori": "fk"
     },
     "kategori": {
-      "id_kategori": "string",
-      "nama_kategori": "string"
+      "id_kategori": "pk",
+      "nama_kategori": ""
     },
-    "mutasi_stok": {
-      "id_mutasi": "string",
-      "id_barang": "string",
-      "jenis_mutasi": "string",
-      "jumlah": "integer",
-      "tanggal": "date",
-      "id_pengguna": "string",
-      "keterangan": "string"
+    "supplier": {
+      "id_supplier": "pk",
+      "nama_supplier": "",
+      "alamat": "",
+      "telepon": ""
     },
-    "pengguna": {
-      "id_pengguna": "string",
-      "nama_pengguna": "string",
-      "peran": "string",
-      "username": "string",
-      "password": "string"
+    "transaksi": {
+      "id_transaksi": "pk",
+      "tanggal": "",
+      "jenis_transaksi": "",
+      "id_user": "fk"
     },
-    "pemasok": {
-      "id_pemasok": "string",
-      "nama_pemasok": "string",
-      "kontak": "string",
-      "alamat": "string"
+    "detail_transaksi": {
+      "id_detail": "pk",
+      "id_transaksi": "fk",
+      "id_produk": "fk",
+      "jumlah": "",
+      "subtotal": ""
     },
-    "pembelian": {
-      "id_pembelian": "string",
-      "id_barang": "string",
-      "id_pemasok": "string",
-      "tanggal_pembelian": "date",
-      "jumlah_beli": "integer",
-      "total_harga": "number"
+    "user": {
+      "id_user": "pk",
+      "username": "",
+      "password": "",
+      "role": ""
     }
   }
 }

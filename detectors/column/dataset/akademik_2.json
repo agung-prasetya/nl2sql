@@ -2,31 +2,40 @@
   "entitas": {
     "mahasiswa": {
       "nim": "string",
-      "nama": "string",
-      "prodi": "string"
+      "nama_mahasiswa": "string",
+      "tanggal_lahir": "date",
+      "alamat": "string",
+      "id_jurusan": "string"
+    },
+    "dosen": {
+      "nidn": "string",
+      "nama_dosen": "string",
+      "spesialisasi": "string"
+    },
+    "mata_kuliah": {
+      "kode_matkul": "string",
+      "nama_matkul": "string",
+      "sks": "integer",
+      "id_jurusan": "string"
     },
     "kelas": {
       "id_kelas": "string",
-      "nama_kelas": "string",
-      "kode_mk": "string",
-      "nip_dosen": "string"
-    },
-    "mata_kuliah": {
-      "kode_mk": "string",
-      "nama_mk": "string",
-      "sks": "integer"
-    },
-    "dosen": {
-      "nip": "string",
-      "nama": "string",
-      "jabatan": "string"
+      "kode_matkul": "string",
+      "nidn": "string",
+      "hari": "string",
+      "jam": "time"
     },
     "nilai": {
       "id_nilai": "string",
       "nim": "string",
-      "id_kelas": "string",
-      "nilai_akhir": "float",
-      "grade": "string"
+      "kode_matkul": "string",
+      "nilai_angka": "float",
+      "nilai_huruf": "string"
+    },
+    "jurusan": {
+      "id_jurusan": "string",
+      "nama_jurusan": "string",
+      "fakultas": "string"
     }
   }
 }

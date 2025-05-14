@@ -1,51 +1,43 @@
 {
   "entitas": {
     "tamu": {
-      "id_tamu": "string",
-      "nama_tamu": "string",
-      "alamat": "string",
-      "no_identitas": "string",
-      "no_telepon": "string",
-      "email": "string"
+      "id_tamu": "pk",
+      "nama": "",
+      "nomor_telepon": "",
+      "email": "",
+      "alamat": ""
     },
     "kamar": {
-      "id_kamar": "string",
-      "nomor_kamar": "string",
-      "id_tipe_kamar": "string",
-      "status": "string"
+      "id_kamar": "pk",
+      "nomor_kamar": "",
+      "tipe": "",
+      "harga_per_malam": "",
+      "status": ""
     },
-    "tipe_kamar": {
-      "id_tipe_kamar": "string",
-      "nama_tipe": "string",
-      "fasilitas": "string",
-      "harga": "number"
+    "pemesanan": {
+      "id_pemesanan": "pk",
+      "id_tamu": "fk",
+      "tanggal_check_in": "",
+      "tanggal_check_out": "",
+      "total_pembayaran": "",
+      "status_pemesanan": ""
     },
-    "reservasi": {
-      "id_reservasi": "string",
-      "id_tamu": "string",
-      "id_kamar": "string",
-      "tanggal_checkin": "date",
-      "tanggal_checkout": "date",
-      "status": "string"
-    },
-    "layanan": {
-      "id_layanan": "string",
-      "nama_layanan": "string",
-      "biaya": "number"
-    },
-    "penggunaan_layanan": {
-      "id_penggunaan": "string",
-      "id_reservasi": "string",
-      "id_layanan": "string",
-      "jumlah": "integer",
-      "tanggal": "date"
+    "detail_pemesanan": {
+      "id_detail": "pk",
+      "id_pemesanan": "fk",
+      "id_kamar": "fk"
     },
     "pembayaran": {
-      "id_pembayaran": "string",
-      "id_reservasi": "string",
-      "metode_pembayaran": "string",
-      "tanggal_pembayaran": "date",
-      "jumlah_dibayar": "number"
+      "id_pembayaran": "pk",
+      "id_pemesanan": "fk",
+      "jumlah": "",
+      "metode_pembayaran": "",
+      "tanggal_pembayaran": ""
+    },
+    "karyawan": {
+      "id_karyawan": "pk",
+      "nama": "",
+      "posisi": ""
     }
   }
 }

@@ -1,52 +1,46 @@
 {
   "entitas": {
-    "produk": {
-      "id_produk": "",
-      "nama_produk": "",
-      "deskripsi": "",
-      "harga_beli": "",
-      "harga_jual": "",
-      "stok": "",
-      "id_kategori": ""
+    "barang": {
+      "id_barang": "pk",
+      "nama_barang": "string",
+      "deskripsi": "string",
+      "stok": "integer",
+      "harga": "decimal",
+      "id_kategori": "fk"
     },
     "kategori": {
-      "id_kategori": "",
-      "nama_kategori": ""
+      "id_kategori": "pk",
+      "nama_kategori": "string"
     },
     "supplier": {
-      "id_supplier": "",
-      "nama_supplier": "",
-      "alamat": "",
-      "telepon": ""
+      "id_supplier": "pk",
+      "nama_supplier": "string",
+      "alamat": "string",
+      "telepon": "string"
     },
-    "transaksi_masuk": {
-      "id_transaksi_masuk": "",
-      "tanggal": "",
-      "id_supplier": ""
+    "pembelian": {
+      "id_pembelian": "pk",
+      "tanggal": "date",
+      "id_supplier": "fk"
     },
-    "detail_transaksi_masuk": {
-      "id_detail_masuk": "",
-      "id_transaksi_masuk": "",
-      "id_produk": "",
-      "jumlah": "",
-      "harga_satuan": ""
+    "detail_pembelian": {
+      "id_detail": "pk",
+      "id_pembelian": "fk",
+      "id_barang": "fk",
+      "jumlah": "integer",
+      "harga_beli": "decimal"
     },
-    "transaksi_keluar": {
-      "id_transaksi_keluar": "",
-      "tanggal": "",
-      "id_pelanggan": ""
+    "pengeluaran": {
+      "id_pengeluaran": "pk",
+      "tanggal": "date",
+      "keterangan": "string"
     },
-    "detail_transaksi_keluar": {
-      "id_detail_keluar": "",
-      "id_transaksi_keluar": "",
-      "id_produk": "",
-      "jumlah": "",
-      "harga_satuan": ""
-    },
-    "pelanggan": {
-      "id_pelanggan": "",
-      "nama_pelanggan": "",
-      "alamat": ""
+    "detail_pengeluaran": {
+      "id_detail": "pk",
+      "id_pengeluaran": "fk",
+      "id_barang": "fk",
+      "jumlah": "integer",
+      "harga_keluar": "decimal"
     }
   }
 }
