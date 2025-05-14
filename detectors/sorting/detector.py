@@ -2,6 +2,8 @@ from experta import *
 import json
 import re
 import textdistance
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+
 
 class SortingDetector(KnowledgeEngine):
     @DefFacts()
@@ -11,7 +13,10 @@ class SortingDetector(KnowledgeEngine):
     #ASC
     @Rule(
         AND(
-            Fact(kata='sedikit'), Fact(kata='ke'), Fact(kata='banyak')
+            Fact(kata='sedikit', posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke', posisi=MATCH.posisi_antara), 
+            Fact(kata='banyak', posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def asc_r1(self):
@@ -19,7 +24,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='A'), Fact(kata='ke'), Fact(kata='Z')
+            Fact(kata='a', posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='z', posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def asc_r2(self):
@@ -27,7 +35,11 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terlama'), Fact(kata='ke'), Fact(kata='terbaru')
+            Fact(kata='lama', posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke', posisi=MATCH.posisi_antara), 
+            Fact(kata='baru', posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
+
         )
     )
     def asc_r3(self):
@@ -35,7 +47,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='termurah'), Fact(kata='dahulu')
+            Fact(kata='murah'), Fact(kata='dahulu')
         )
     )
     def asc_r4(self):
@@ -43,7 +55,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terkecil'), Fact(kata='ke'), Fact(kata='terbesar')
+            Fact(kata='kecil',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='besar',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def asc_r5(self):
@@ -51,15 +66,11 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='secara'), Fact(kata='menaik') 
-        )
-    )
-    def asc_r6(self):
-        self.declare(Fact(jenis_sorting='ASC'))
-        
-    @Rule(
-        AND(
-            Fact(kata='awal'), Fact(kata='ke'), Fact(kata='akhir')
+            Fact(kata='awal',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='akhir',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
+
         )
     )
     def asc_r7(self):
@@ -67,7 +78,11 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terendah'), Fact(kata='ke'), Fact(kata='tertinggi')
+            Fact(kata='rendah',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='tinggi',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
+
         )
     )
     def asc_r8(self):
@@ -75,7 +90,11 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='tua'), Fact(kata='ke'), Fact(kata='muda')
+            Fact(kata='tua',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='muda',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
+
         )
     )
     def asc_r10(self):
@@ -83,7 +102,11 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='januari'), Fact(kata='ke'), Fact(kata='desember')
+            Fact(kata='januari',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='desember',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
+
         )
     )
     def asc_r11(self):
@@ -91,16 +114,118 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='aktiva'), Fact(kata='ke'), Fact(kata='beban')
+            Fact(kata='aktiva',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='beban',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
+
         )
     )
     def asc_r12(self):
         self.declare(Fact(jenis_sorting='ASC'))
-        
+    
+    @Rule(
+        AND(
+            Fact(kata='tanggal',posisi=MATCH.posisi_1),
+            Fact(kata='mulai',posisi=MATCH.posisi_2), 
+            Fact(kata='dari',posisi=MATCH.posisi_3), 
+            Fact(kata='lama',posisi=MATCH.posisi_4),
+            TEST(lambda posisi_1, posisi_2, posisi_3, posisi_4:posisi_1<posisi_2 and posisi_2<posisi_3 and posisi_3<posisi_4)
+        )
+    )
+    def asc_r13(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
+    @Rule(
+        AND(
+            Fact(kata='tanggal',posisi=MATCH.posisi_1),
+            Fact(kata='mulai',posisi=MATCH.posisi_2), 
+            Fact(kata='dari',posisi=MATCH.posisi_3), 
+            Fact(kata='awal',posisi=MATCH.posisi_4),
+            TEST(lambda posisi_1, posisi_2, posisi_3, posisi_4:posisi_1<posisi_2 and posisi_2<posisi_3 and posisi_3<posisi_4)
+        )
+    )
+    def asc_r14(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
+    @Rule(
+        AND(
+            Fact(kata='alfabet',posisi=MATCH.posisi_1),
+            Fact(kata='dari',posisi=MATCH.posisi_2), 
+            Fact(kata='awal',posisi=MATCH.posisi_3),
+            TEST(lambda posisi_1, posisi_2, posisi_3:posisi_1<posisi_2 and posisi_2<posisi_3)
+        )
+    )
+    def asc_r15(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+    
+    @Rule(
+        AND(
+            Fact(kata='cara',posisi=MATCH.posisi_1),
+            Fact(kata='naik',posisi=MATCH.posisi_2), 
+            TEST(lambda posisi_1, posisi_2:posisi_1<posisi_2)
+        )
+    )
+    def asc_r16(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
+    @Rule(
+        AND(
+            Fact(kata='mulai',posisi=MATCH.posisi_1),
+            Fact(kata='tanggal',posisi=MATCH.posisi_2), 
+            Fact(kata='awal',posisi=MATCH.posisi_3), 
+            TEST(lambda posisi_1, posisi_2, posisi_3:posisi_1<posisi_2 and posisi_2<posisi_3)
+        )
+    )
+    def asc_r17(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
+    @Rule(
+        AND(
+            Fact(kata='rendah',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='hingga',posisi=MATCH.posisi_antara), 
+            Fact(kata='tinggi',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
+
+        )
+    )
+    def asc_r18(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
+    @Rule(
+        AND(
+            Fact(kata='tanggal',posisi=MATCH.posisi_1),
+            Fact(kata='awal',posisi=MATCH.posisi_2), 
+            Fact(kata='hingga',posisi=MATCH.posisi_3), 
+            Fact(kata='baru',posisi=MATCH.posisi_4),
+            TEST(lambda posisi_1, posisi_2, posisi_3, posisi_4:posisi_1<posisi_2 and posisi_2<posisi_3 and posisi_3<posisi_4)
+        )
+    )
+    def asc_r19(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
+    @Rule(
+        AND(
+            Fact(kata='sedikit',posisi=MATCH.posisi_1),
+            Fact(kata='hingga',posisi=MATCH.posisi_2), 
+            Fact(kata='banyak',posisi=MATCH.posisi_3), 
+            TEST(lambda posisi_1, posisi_2, posisi_3:posisi_1<posisi_2 and posisi_2<posisi_3)
+        )
+    )
+    def asc_r20(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
+    @Rule(Fact(kata='ascending'))
+    def asc_r21(self):
+        self.declare(Fact(jenis_sorting='ASC'))
+
     #DESC
     @Rule(
         AND(
-            Fact(kata='banyak'), Fact(kata='ke'), Fact(kata='sedikit')
+            Fact(kata='banyak',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='sedikit',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r1(self):
@@ -108,7 +233,10 @@ class SortingDetector(KnowledgeEngine):
     
     @Rule(
         AND(
-            Fact(kata='Z'), Fact(kata='ke'), Fact(kata='A')
+            Fact(kata='z',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='a',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r2(self):
@@ -116,7 +244,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terbaru'), Fact(kata='ke'), Fact(kata='terlama')
+            Fact(kata='baru',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='lama',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r3(self):
@@ -124,7 +255,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='termahal'), Fact(kata='dahulu')
+            Fact(kata='mahal'), Fact(kata='dahulu')
         )
     )
     def desc_r4(self):
@@ -132,7 +263,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='terbesar'), Fact(kata='ke'), Fact(kata='terkecil')
+            Fact(kata='besar',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='kecil',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r5(self):
@@ -140,7 +274,7 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='secara'), Fact(kata='menurun')
+            Fact(kata='cara'), Fact(kata='turun')
         )
     )
     def desc_r6(self):
@@ -148,7 +282,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='tertinggi'), Fact(kata='ke'), Fact(kata='terendah')
+            Fact(kata='tinggi',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='rendah',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r7(self):
@@ -156,7 +293,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='akhir'), Fact(kata='ke'), Fact(kata='awal')
+            Fact(kata='akhir',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='awal',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r8(self):
@@ -164,7 +304,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='muda'), Fact(kata='ke'), Fact(kata='tua')
+            Fact(kata='muda',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='tua',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r9(self):
@@ -172,7 +315,10 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='desember'), Fact(kata='ke'), Fact(kata='januari')
+            Fact(kata='desember',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='januari',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r10(self):
@@ -180,14 +326,54 @@ class SortingDetector(KnowledgeEngine):
         
     @Rule(
         AND(
-            Fact(kata='beban'), Fact(kata='ke'), Fact(kata='aktiva')
+            Fact(kata='beban',posisi=MATCH.posisi_sebelum), 
+            Fact(kata='ke',posisi=MATCH.posisi_antara), 
+            Fact(kata='aktiva',posisi=MATCH.posisi_sesudah),
+            TEST(lambda posisi_sebelum, posisi_antara, posisi_sesudah:posisi_sebelum<posisi_antara and posisi_sesudah>posisi_antara)
         )
     )
     def desc_r11(self):
         self.declare(Fact(jenis_sorting='DESC'))
+    
+    @Rule(
+        AND(
+            Fact(kata='tanggal',posisi=MATCH.posisi_1), 
+            Fact(kata='mulai',posisi=MATCH.posisi_2), 
+            Fact(kata='dari',posisi=MATCH.posisi_3),
+            Fact(kata='baru',posisi=MATCH.posisi_4),
+            TEST(lambda posisi_1, posisi_2, posisi_3, posisi_4:posisi_1<posisi_2 and posisi_3<posisi_4)
+        )
+    )
+    def desc_r12(self):
+        self.declare(Fact(jenis_sorting='DESC'))
 
+    @Rule(
+        AND(
+            Fact(kata='alfabet',posisi=MATCH.posisi_1),
+            Fact(kata='dari',posisi=MATCH.posisi_2), 
+            Fact(kata='akhir',posisi=MATCH.posisi_3),
+            TEST(lambda posisi_1, posisi_2, posisi_3:posisi_1<posisi_2 and posisi_2<posisi_3)
+        )
+    )
+    def desc_r13(self):
+        self.declare(Fact(jenis_sorting='DESC'))
 
-        
+    @Rule(
+        AND(
+            Fact(kata='mulai',posisi=MATCH.posisi_1), 
+            Fact(kata='dari',posisi=MATCH.posisi_2), 
+            Fact(kata='tanggal',posisi=MATCH.posisi_3),
+            Fact(kata='baru',posisi=MATCH.posisi_4),
+            TEST(lambda posisi_1, posisi_2, posisi_3, posisi_4:posisi_1<posisi_2 and posisi_3<posisi_4)
+        )
+    )
+    def desc_r14(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+    
+    @Rule(Fact(kata='descending'))
+    def desc_r15(self):
+        self.declare(Fact(jenis_sorting='DESC'))
+
     @Rule()
     def rule_remove_duplicates_facts(self):
         seen = set()
@@ -209,10 +395,11 @@ class SortingDetector(KnowledgeEngine):
             Fact(jenis_sorting='ASC'), Fact(jenis_sorting='DESC')
         )
     )
-    def rule_remove_nodml_if_dml_exist(self):
+    def rule_remove_nosorting_if_sorting_exist(self):
         for id, fact in list(self.facts.items()):
             if 'jenis_sorting' in fact and fact['jenis_sorting']=='NOSORTING':
                 self.retract(id)
+                break
         self.halt()
 
     
@@ -221,10 +408,14 @@ class SortingDetector(KnowledgeEngine):
         kalimat = kalimat.lower().strip()
         kalimat = re.sub(r'\s+', ' ', kalimat).strip()
         kalimat = re.sub(r'[^a-zA-Z0-9 ]','',kalimat)
-        daftar_kata = kalimat.split()
         
-        for kata in daftar_kata:
-            self.declare(Fact(kata=kata))
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+
+        kalimat_stemming = stemmer.stem(kalimat)
+        daftar_kata_dasar = kalimat_stemming.split()
+        for id, kata in enumerate(daftar_kata_dasar):
+            self.declare(Fact(kata=kata, posisi=id))
 
 
     @Rule(Fact(database=MATCH.database), salience=3)
@@ -238,14 +429,11 @@ class SortingDetector(KnowledgeEngine):
     )
     def rule_add_matching_domain(self, kalimat, database):
         is_domain_match = False
-        daftar_kata = [fact['kata'] for _,fact in self.facts.items() if isinstance(fact, Fact) and 'kata' in fact]
         daftar_tabel = [fact['tabel'] for _,fact in self.facts.items() if isinstance(fact, Fact) and 'tabel' in fact]
-        for kata in daftar_kata:
-            for tabel in daftar_tabel:
-                if textdistance.jaccard.normalized_similarity(kata, tabel)>0.7:
-                    is_domain_match = True
-                    break
-            if is_domain_match:
+        for tabel in daftar_tabel:
+            tabel_name = tabel.replace('_',' ')
+            if tabel_name in kalimat.lower():
+                is_domain_match=True
                 break
         self.declare(Fact(domain_cocok=is_domain_match))
 
@@ -266,3 +454,4 @@ class SortingDetector(KnowledgeEngine):
             if 'jenis_sorting' in fact:
                 return fact['jenis_sorting']
         return 'NOSORTING'
+
