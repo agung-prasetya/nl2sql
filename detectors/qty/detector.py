@@ -15,19 +15,17 @@ class QtyDetector(KnowledgeEngine):
 
 
 
-    #Urutan 2 : jika domain tidak cocok, proses tidak usah diteruskan. Cocok jika kalimat mengandung setidaknya satu nama tabel
-    @Rule(
-        AND(
-            Fact(database=MATCH.database),
-            Fact(kalimat=MATCH.kalimat, ternormalisasi=True),
-            TEST(lambda kalimat, database: 
-                 not any(tabel for tabel in database['entitas'] if tabel.replace('_',' ') in kalimat)
-            )
-        ),     
-        salience=295
-    )
-    def rule_cek_kecocokan_domain(self):
-        self.halt()
+    # #Urutan 2 : jika domain tidak cocok, proses tidak usah diteruskan. Cocok jika kalimat mengandung setidaknya satu nama tabel
+    # @Rule(
+    #     AND(
+    #         Fact(database=MATCH.database),
+    #         Fact(kalimat=MATCH.kalimat, ternormalisasi=True),
+    #         TEST(lambda kalimat, database: not any([tabel for tabel in database['entitas'] if tabel.replace('_',' ') in kalimat]))
+    #     ),     
+    #     salience=295
+    # )
+    # def rule_cek_kecocokan_domain(self):
+    #     self.halt()
 
 
 
@@ -41,11 +39,10 @@ class QtyDetector(KnowledgeEngine):
     def rule_ekstraksi_kalimat_to_kata(self, fact_kalimat):
         daftar_kata = fact_kalimat['kalimat'].split()
         for id,kata in enumerate(daftar_kata):
-            self.declare(
-                Fact(kata=kata, posisi=id, kelas_kata='unknown', bagian_frase=False, kuantitas=False))
+            self.declare(Fact(kata=kata, posisi=id, kelas_kata='unknown', bagian_frase=False, kuantitas=False))
         
-        self.declare(Fact(pembatas_kalimat='awal', posisi=len(daftar_kata)))
-        self.declare(Fact(pembatas_kalimat='akhir', posisi=-1))
+        self.declare(Fact(pembatas_kalimat='akhir', posisi=len(daftar_kata)))
+        self.declare(Fact(pembatas_kalimat='awal', posisi=-1))
 
         self.retract(fact_kalimat)
 
@@ -84,7 +81,7 @@ class QtyDetector(KnowledgeEngine):
     @Rule(
         AND(
             AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
-            TEST(lambda kata: re.match(r'\b(?:\d{1,3}(?:[.,]\d{3})+)\b') is not None)
+            TEST(lambda kata: re.match(r'\b(?:\d{1,3}(?:[.,]\d{3})+)\b', kata) is not None)
         ), 
         salience=285
     )
@@ -120,13 +117,13 @@ class QtyDetector(KnowledgeEngine):
         AND(
             AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
             TEST(lambda kata:
-                re.match('^ke-?') is not None 
+                re.match('^ke-?', kata) is not None 
                 and 
-                any(
+                any([
                     token for token in ['satu','dua','tiga','empat','lima','enam','tujuh',
                                         'delapan','sembilan','sepuluh','sebelas','seratus',
                                         'seribu','sejuta','semilyar','setriliun']
-                    if token in kata
+                    if token in kata]
                 )
             )
         ), 
@@ -139,7 +136,7 @@ class QtyDetector(KnowledgeEngine):
     @Rule(
         AND(
             AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
-            TEST(lambda kata: re.match('^ke-?\d+') is not None)
+            TEST(lambda kata: re.match(r'^ke-?\d+', kata) is not None)
         ), 
         salience=285)
     def rule_identifikasi_kata_awalan_ke_diikuti_angka_ke_urutan(self, fact_kata):
@@ -153,9 +150,9 @@ class QtyDetector(KnowledgeEngine):
             AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
             OR(
                 TEST(lambda kata: kata == 'setengah'),
-                TEST(lambda kata: re.match('^seper') is not None and 
-                     any(token for token in ['dua','tiga','empat','lima','enam','tujuh','delapan','sembilan']
-                         if token in kata)
+                TEST(lambda kata: re.match('^seper', kata) is not None and 
+                     any([token for token in ['dua','tiga','empat','lima','enam','tujuh','delapan','sembilan']
+                         if token in kata])
                 )
             )
         ),
@@ -252,7 +249,7 @@ class QtyDetector(KnowledgeEngine):
             TEST(lambda kata: re.match(r"\b(0?[1-9]|[12][0-9]|3[01])[-/](0?[1-9]|1[0-2])[-/](\d{2}|\d{4})\b",kata) is not None)
         ),
         salience=285)
-    def rule_identifikasi_kata_hari(self, fact_kata):
+    def rule_identifikasi_literal_tanggal(self, fact_kata):
         self.modify(fact_kata, kelas_kata='tanggal')
 
     
@@ -260,16 +257,8 @@ class QtyDetector(KnowledgeEngine):
     # misalnya 20 oktober / oktober 2020 / 20 oktober 2025
     #Rule-rule ini harus memiliki urutan sebelum rule-rule sebelum urutan 6 agar tidak terdeteksi oleh rule-rule urutan 6
 
-    #Urutan 5 - 
-    @Rule(
-        AND(
-            AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
-            TEST(lambda kata: re.match(r"\b(0?[1-9]|[12][0-9]|3[01])[-/](0?[1-9]|1[0-2])[-/](\d{2}|\d{4})\b") is not None)
-        ),
-        salience=285)
-    def rule_identifikasi_kata_hari(self, fact_kata):
-        self.modify(fact_kata, kelas_kata='tanggal')
-
+    #Urutan 5 - BELUM DIKERJAKAN
+    
 
     #Rule-rule berikut ini applicable untuk mendeteksi frase (melibatkan kata sebelum dan sesudahnya) 
     #Urutan rule-rule yang termasuk frase harus setelah rule yang aplicable untuk kata.
@@ -313,97 +302,97 @@ class QtyDetector(KnowledgeEngine):
 
     
     
-    @Rule(
-        AND(
-            'fact_urutan' << Fact(kata=MATCH.kata1, kelas_kata='urutan',posisi=MATCH.posisi1, bagian_frase=False),
-            'fact_bilangan_bulat' << Fact(kata=MATCH.kata2, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False),
-            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
-        )
-        ,salience=3)
-    def rule11_join_kata_kelas_urutan_dengan_kata_bilangan_bulat_ke_frase_urutan(self, fact_urutan, fact_bilangan_bulat):
-        frase = f"{fact_urutan['kata']} {fact_bilangan_bulat['kata']}"
+#     @Rule(
+#         AND(
+#             'fact_urutan' << Fact(kata=MATCH.kata1, kelas_kata='urutan',posisi=MATCH.posisi1, bagian_frase=False),
+#             'fact_bilangan_bulat' << Fact(kata=MATCH.kata2, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False),
+#             TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+#         )
+#         ,salience=3)
+#     def rule11_join_kata_kelas_urutan_dengan_kata_bilangan_bulat_ke_frase_urutan(self, fact_urutan, fact_bilangan_bulat):
+#         frase = f"{fact_urutan['kata']} {fact_bilangan_bulat['kata']}"
 
-        self.declare(Fact(frase=frase, kelas_kata='urutan', posisi=fact_bilangan_bulat['posisi'], bagian_frase=False, adalah_kuantitas=False))
+#         self.declare(Fact(frase=frase, kelas_kata='urutan', posisi=fact_bilangan_bulat['posisi'], bagian_frase=False, adalah_kuantitas=False))
 
-        self.modify(fact_urutan, bagian_frase=True)
-        self.modify(fact_bilangan_bulat, bagian_frase=True)
+#         self.modify(fact_urutan, bagian_frase=True)
+#         self.modify(fact_bilangan_bulat, bagian_frase=True)
     
 
-    #mendeteksi tampilkan data kedua puluh lima
-    @Rule(
-        AND(
-            'fact_frase_urutan' << Fact(frase=MATCH.frase, kelas_kata='urutan',posisi=MATCH.posisi1, bagian_frase=False),
-            'fact_bilangan_bulat' << Fact(kata=MATCH.kata, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False),
-            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
-        )
-        ,salience=3)
-    def rule11_join_frase_kelas_urutan_dengan_kata_bilangan_bulat_ke_frase_urutan(self, fact_frase_urutan, fact_bilangan_bulat):
-        frase = f"{fact_frase_urutan['frase']} {fact_bilangan_bulat['kata']}"
+#     #mendeteksi tampilkan data kedua puluh lima
+#     @Rule(
+#         AND(
+#             'fact_frase_urutan' << Fact(frase=MATCH.frase, kelas_kata='urutan',posisi=MATCH.posisi1, bagian_frase=False),
+#             'fact_bilangan_bulat' << Fact(kata=MATCH.kata, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False),
+#             TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+#         )
+#         ,salience=3)
+#     def rule11_join_frase_kelas_urutan_dengan_kata_bilangan_bulat_ke_frase_urutan(self, fact_frase_urutan, fact_bilangan_bulat):
+#         frase = f"{fact_frase_urutan['frase']} {fact_bilangan_bulat['kata']}"
 
-        self.declare(Fact(frase=frase, kelas_kata='urutan', posisi=fact_bilangan_bulat['posisi'], bagian_frase=False, adalah_kuantitas=False))
+#         self.declare(Fact(frase=frase, kelas_kata='urutan', posisi=fact_bilangan_bulat['posisi'], bagian_frase=False, adalah_kuantitas=False))
 
-        self.retract(fact_frase_urutan)
-        self.modify(fact_bilangan_bulat, bagian_frase=True)
+#         self.retract(fact_frase_urutan)
+#         self.modify(fact_bilangan_bulat, bagian_frase=True)
 
         
-    #semua rule harus dikelompokkan, kelompok mana yang didahulukan. set salience nya
+#     #semua rule harus dikelompokkan, kelompok mana yang didahulukan. set salience nya
 
-    @Rule(
-        AND(
-            'fact_kata1' << Fact(kata=MATCH.kata1, kelas_kata='bilangan_bulat',posisi=MATCH.posisi1, bagian_frase=False),
-            OR(
-                'fact_kata2' << Fact(kata=MATCH.kata2, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False),
-                'fact_kata2' << Fact(kata=MATCH.kata2, kelas_kata='satuan_kelipatan',posisi=MATCH.posisi2, bagian_frase=False),
-            ),
-            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
-        )
-    )
-    def rule10_join_pasangan_kata_ke_frase_bil_bulat(self, fact_kata1, fact_kata2):
-        frase = f"{fact_kata1['kata']} {fact_kata2['kata']}"
+#     @Rule(
+#         AND(
+#             'fact_kata1' << Fact(kata=MATCH.kata1, kelas_kata='bilangan_bulat',posisi=MATCH.posisi1, bagian_frase=False),
+#             OR(
+#                 'fact_kata2' << Fact(kata=MATCH.kata2, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False),
+#                 'fact_kata2' << Fact(kata=MATCH.kata2, kelas_kata='satuan_kelipatan',posisi=MATCH.posisi2, bagian_frase=False),
+#             ),
+#             TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+#         )
+#     )
+#     def rule10_join_pasangan_kata_ke_frase_bil_bulat(self, fact_kata1, fact_kata2):
+#         frase = f"{fact_kata1['kata']} {fact_kata2['kata']}"
 
-        self.declare(Fact(frase=frase, kelas_kata='bilangan_bulat', posisi=fact_kata2['posisi'], bagian_frase=False, adalah_kuantitas=False))
-        self.modify(fact_kata1, bagian_frase=True)
-        self.modify(fact_kata2, bagian_frase=True)
+#         self.declare(Fact(frase=frase, kelas_kata='bilangan_bulat', posisi=fact_kata2['posisi'], bagian_frase=False, adalah_kuantitas=False))
+#         self.modify(fact_kata1, bagian_frase=True)
+#         self.modify(fact_kata2, bagian_frase=True)
 
 
 
-    @Rule(
-        AND(
-            'fact_frase' << Fact(frase=MATCH.frase, kelas_kata='bilangan_bulat',posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
-            OR(
-                'fact_kata' << Fact(kata=MATCH.kata, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False),
-                'fact_kata' << Fact(kata=MATCH.kata, kelas_kata='satuan_kelipatan',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False),
-            ),
-            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
-        )
-    )
-    def rule11_join_frase_kata_ke_frase_bil_bulat(self, fact_frase, fact_kata):
-        frase = f"{fact_frase['frase']} {fact_kata['kata']}"
+#     @Rule(
+#         AND(
+#             'fact_frase' << Fact(frase=MATCH.frase, kelas_kata='bilangan_bulat',posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
+#             OR(
+#                 'fact_kata' << Fact(kata=MATCH.kata, kelas_kata='bilangan_bulat',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False),
+#                 'fact_kata' << Fact(kata=MATCH.kata, kelas_kata='satuan_kelipatan',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False),
+#             ),
+#             TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+#         )
+#     )
+#     def rule11_join_frase_kata_ke_frase_bil_bulat(self, fact_frase, fact_kata):
+#         frase = f"{fact_frase['frase']} {fact_kata['kata']}"
         
-        self.declare(Fact(frase=frase, kelas_kata='bilangan_bulat', posisi=fact_kata['posisi'], bagian_frase=False, adalah_kuantitas=False))
-        self.retract(fact_frase)
-        self.modify(fact_kata, bagian_frase=True)
+#         self.declare(Fact(frase=frase, kelas_kata='bilangan_bulat', posisi=fact_kata['posisi'], bagian_frase=False, adalah_kuantitas=False))
+#         self.retract(fact_frase)
+#         self.modify(fact_kata, bagian_frase=True)
 
 
-    @Rule(
-        AND(
-            OR(
-                'fact' << Fact(frase=MATCH.frase, kelas_kata='bilangan_bulat', posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
-                'fact' << Fact(frase=MATCH.frase, kelas_kata='urutan', posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
-                'fact' << Fact(kata=MATCH.kata, kelas_kata='bilangan_bulat', posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
-            ),
-            OR(
-                Fact(fullstop=True, posisi=MATCH.posisi2),
-                Fact(kata=MATCH.kata, kelas_kata='unknown',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False),
-                Fact(kata=MATCH.kata, kelas_kata='satuan',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False)
-            ),
-            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
-        )
-    )
-    def rule12_penentuan_kuantitas_bil_bulat(self, fact):
-        self.modify(fact, adalah_kuantitas=True)
+#     @Rule(
+#         AND(
+#             OR(
+#                 'fact' << Fact(frase=MATCH.frase, kelas_kata='bilangan_bulat', posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
+#                 'fact' << Fact(frase=MATCH.frase, kelas_kata='urutan', posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
+#                 'fact' << Fact(kata=MATCH.kata, kelas_kata='bilangan_bulat', posisi=MATCH.posisi1, bagian_frase=False, adalah_kuantitas=False),
+#             ),
+#             OR(
+#                 Fact(fullstop=True, posisi=MATCH.posisi2),
+#                 Fact(kata=MATCH.kata, kelas_kata='unknown',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False),
+#                 Fact(kata=MATCH.kata, kelas_kata='satuan',posisi=MATCH.posisi2, bagian_frase=False, adalah_kuantitas=False)
+#             ),
+#             TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+#         )
+#     )
+#     def rule12_penentuan_kuantitas_bil_bulat(self, fact):
+#         self.modify(fact, adalah_kuantitas=True)
 
- #rule ini mendeteksi kata-kata yang telah jelas bahwa kata-kata tersebut adalah kuantitas, misalnya $10, Rp500.000,00 10%
+#  #rule ini mendeteksi kata-kata yang telah jelas bahwa kata-kata tersebut adalah kuantitas, misalnya $10, Rp500.000,00 10%
     @Rule(
         AND(
             AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown', kuantitas=False),
@@ -416,24 +405,20 @@ class QtyDetector(KnowledgeEngine):
     def rule_eksplisit_literal_kuantitas(self, fact_kata):
         self.modify(fact_kata, kuantitas=True)
 
-    #rule pembagi bilangan dan pecahan
-    # tanggal
-    # huruf romawi
-    # urutan pertama, kedua, ketiga, keempat
-    #letter angka
     #frase
-    #% persen
     
     
-    def detect(self, kalimat, filepath_database_json):
-        with open(filepath_database_json, 'r') as file:
-            database = json.load(file)
+    def detect(self, kalimat):
+        # with open(filepath_database_json, 'r') as file:
+        #     database = json.load(file)
 
         self.reset()
-        self.declare(Fact(kalimat=kalimat, ternormalisasi=False), Fact(database=database))
+        self.declare(
+                    Fact(kalimat=kalimat, ternormalisasi=False), 
+                    # Fact(database=database)
+        )
         self.run()
 
-        x = self.facts.items()
         for fact in self.facts.items():
             print(fact)
 

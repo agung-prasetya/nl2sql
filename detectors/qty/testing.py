@@ -6,4 +6,4 @@ from detector import *
 from evaluator import *
 
 detector = QtyDetector()
-detector.detect('tampilkan data produk sebanyak lima puluh dua dan tampilkan keseratus dua puluh lima beserta data kelima untuk nama pemasok')
+detector.detect('tampilkan total penjualan diatas Rp50.000.000,00 beserta nama pembelinya')
