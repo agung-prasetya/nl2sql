@@ -6,4 +6,4 @@ from detector import *
 from evaluator import *
 
 detector = QtyDetector()
-detector.detect('pertama 156.0001 3,89823888 Rp5.000.000,00')
+detector.detect('tampilkan data produk sebanyak lima puluh dua dan tampilkan keseratus dua puluh lima beserta data kelima untuk nama pemasok')
