@@ -181,6 +181,14 @@ class WhereoprDetector(KnowledgeEngine):
         
         for kata in daftar_kata:
             self.declare(Fact(kata=kata))
+        
+        factory = StemmerFactory()
+        stemmer = factory.create_stemmer()
+
+        kalimat_stemming = stemmer.stem(kalimat)
+        daftar_kata_dasar = kalimat_stemming.split()
+        for kata in daftar_kata_dasar:
+            self.declare(Fact(kata=kata)) 
 
 
     @Rule(Fact(database=MATCH.database), salience=3)
