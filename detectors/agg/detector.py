@@ -2,15 +2,52 @@ from experta import *
 import json
 import re
 import textdistance
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+# from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 class AGGDetector(KnowledgeEngine):
     @DefFacts()
     def initial(self):
-        yield Fact(jenis_agg='NOAGG')
+        yield Fact(jenis_agregasi='NOAGG')
 
 
+    @Rule(Fact(kata=MATCH.k), TEST(lambda k: k in [
+        "jumlah", "total", "akumulasi", "keseluruhan", "penjumlahan",
+        "agregasi", "jumlahkan", "semua", "akumulatif", "rekap"
+    ]))
+    def fungsi_sum(self):
+        self.declare(Fact(jenis_agregasi="SUM"))
+        
 
+    @Rule(Fact(kata=MATCH.k), TEST(lambda k: k in [
+        "rata-rata", "rerata", "average", "mean", "perhitungan rata-rata",
+        "rataan", "nilai rata", "hitung rata-rata", "rata", "per rata"
+    ]))
+    def fungsi_avg(self):
+        self.declare(Fact(jenis_agregasi="AVG"))
+        
+    @Rule(Fact(kata=MATCH.k), TEST(lambda k: k in [
+        "maksimum", "tertinggi", "paling tinggi", "puncak", "nilai maksimum",
+        "max", "angka tertinggi", "data terbesar", "jumlah terbesar", "terbesar"
+    ]))
+    def fungsi_max(self):
+        self.declare(Fact(jenis_agregasi="MAX"))
+        
+    @Rule(Fact(kata=MATCH.k), TEST(lambda k: k in [
+        "minimum", "terendah", "paling sedikit", "paling kecil", "terkecil",
+        "min", "angka terkecil", "nilai minimum", "jumlah terkecil", "data terkecil"
+    ]))
+    def fungsi_min(self):
+        self.declare(Fact(jenis_agregasi="MIN"))
+        
+    @Rule(Fact(kata=MATCH.k), TEST(lambda k: k in [
+        "berapa banyak", "jumlah data", "total baris", "hitung", "jumlahkan data",
+        "data berapa", "kuantitas", "count", "berapa", "jumlah entry"
+    ]))
+    def fungsi_count(self):
+        self.declare(Fact(jenis_agregasi="COUNT"))
+        
+
+    
         
     @Rule()
     def rule_remove_duplicates_facts(self):
@@ -30,12 +67,12 @@ class AGGDetector(KnowledgeEngine):
     
     @Rule(
         OR(
-            Fact(jenis_agg='AVG'), Fact(jenis_agg='COUNT'), Fact(jenis_agg='MAX'), Fact(jenis_agg='MIN'), Fact(jenis_agg='SUM')
+            Fact(jenis_agregasi='AVG'), Fact(jenis_agregasi='COUNT'), Fact(jenis_agregasi='MAX'), Fact(jenis_agregasi='MIN'), Fact(jenis_agregasi='SUM')
         )
     )
     def rule_remove_noagg_if_agg_exist(self):
         for id, fact in list(self.facts.items()):
-            if 'jenis_agg' in fact and fact['jenis_agg']=='NOAGG':
+            if 'jenis_agregasi' in fact and fact['jenis_agregasi']=='NOAGG':
                 self.retract(id)
         self.halt()
 
@@ -44,18 +81,9 @@ class AGGDetector(KnowledgeEngine):
     def rule_extract_kalimat_to_kata(self, kalimat):
         kalimat = kalimat.lower().strip()
         kalimat = re.sub(r'\s+', ' ', kalimat).strip()
-        kalimat = re.sub(r'[^a-zA-Z0-9 ]','',kalimat)
         daftar_kata = kalimat.split()
         
         for kata in daftar_kata:
-            self.declare(Fact(kata=kata))
-
-        factory = StemmerFactory()
-        stemmer = factory.create_stemmer()
-
-        kalimat_stemming = stemmer.stem(kalimat)
-        daftar_kata_dasar = kalimat_stemming.split()
-        for kata in daftar_kata_dasar:
             self.declare(Fact(kata=kata))
 
 
@@ -70,15 +98,12 @@ class AGGDetector(KnowledgeEngine):
     )
     def rule_add_matching_domain(self, kalimat, database):
         is_domain_match = False
-        daftar_kata = [fact['kata'] for _,fact in self.facts.items() if isinstance(fact, Fact) and 'kata' in fact]
         daftar_tabel = [fact['tabel'] for _,fact in self.facts.items() if isinstance(fact, Fact) and 'tabel' in fact]
-        for kata in daftar_kata:
-            for tabel in daftar_tabel:
-                if textdistance.jaccard.normalized_similarity(kata, tabel)>0.7:
-                    is_domain_match = True
-                    break
-            if is_domain_match:
+        for tabel in daftar_tabel:
+            if tabel.replace('_',' ') in kalimat:
+                is_domain_match = True
                 break
+            
         self.declare(Fact(domain_cocok=is_domain_match))
 
 
@@ -95,6 +120,6 @@ class AGGDetector(KnowledgeEngine):
         self.run()
 
         for fact in self.facts.values():
-            if 'jenis_agg' in fact:
-                return fact['jenis_agg']
+            if 'jenis_agregasi' in fact:
+                return fact['jenis_agregasi']
         return 'NOAGG'
