@@ -1,0 +1,31 @@
+{
+  "entitas": {
+    "perusahaan": {
+      "id_perusahaan": null,
+      "nama_perusahaan": null,
+      "alamat": null
+    },
+    "akun": {
+      "id_akun": null,
+      "kode_akun": null,
+      "nama_akun": null,
+      "jenis_akun": null,
+      "saldo": null
+    },
+    "transaksi": {
+      "id_transaksi": null,
+      "tanggal_transaksi": null,
+      "deskripsi": null,
+      "jumlah": null,
+      "jenis_transaksi": null,
+      "id_akun": null
+    },
+    "pengguna": {
+      "id_pengguna": null,
+      "nama_pengguna": null,
+      "username": null,
+      "password": null,
+      "peran": null
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "",
+      "nama": "",
+      "alamat": "",
+      "tanggal_lahir": "",
+      "jenis_kelamin": "",
+      "email": "",
+      "no_telepon": "",
+      "id_jabatan": "",
+      "id_departemen": ""
+    },
+    "jabatan": {
+      "id_jabatan": "",
+      "nama_jabatan": "",
+      "deskripsi": ""
+    },
+    "departemen": {
+      "id_departemen": "",
+      "nama_departemen": "",
+      "lokasi": ""
+    },
+    "gaji": {
+      "id_gaji": "",
+      "id_pegawai": "",
+      "gaji_pokok": "",
+      "tunjangan": "",
+      "periode": ""
+    },
+    "cuti": {
+      "id_cuti": "",
+      "id_pegawai": "",
+      "tanggal_mulai": "",
+      "tanggal_selesai": "",
+      "alasan": "",
+      "status": ""
+    }
+  }
+}

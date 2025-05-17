@@ -1,0 +1,32 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": null,
+      "nama_pelanggan": null,
+      "alamat": null,
+      "nomor_telepon": null,
+      "email": null
+    },
+    "produk": {
+      "id_produk": null,
+      "nama_produk": null,
+      "deskripsi": null,
+      "harga_satuan": null,
+      "stok": null
+    },
+    "pesanan": {
+      "id_pesanan": null,
+      "id_pelanggan": null,
+      "tanggal_pesanan": null,
+      "status_pesanan": null
+    },
+    "detail_pesanan": {
+      "id_detail": null,
+      "id_pesanan": null,
+      "id_produk": null,
+      "jumlah": null,
+      "harga_satuan": null,
+      "subtotal": null
+    }
+  }
+}

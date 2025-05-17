@@ -1,0 +1,51 @@
+{
+  "entitas": {
+    "tamu": {
+      "id_tamu": "pk",
+      "nama": "",
+      "telepon": "",
+      "email": "",
+      "alamat": ""
+    },
+    "kamar": {
+      "id_kamar": "pk",
+      "nomor_kamar": "",
+      "tipe": "",
+      "harga_per_malam": "",
+      "status": ""
+    },
+    "pemesanan": {
+      "id_pemesanan": "pk",
+      "id_tamu": "fk",
+      "id_kamar": "fk",
+      "tanggal_check_in": "",
+      "tanggal_check_out": "",
+      "total_harga": "",
+      "status": ""
+    },
+    "pembayaran": {
+      "id_pembayaran": "pk",
+      "id_pemesanan": "fk",
+      "jumlah": "",
+      "metode_pembayaran": "",
+      "tanggal_pembayaran": "",
+      "status": ""
+    },
+    "karyawan": {
+      "id_karyawan": "pk",
+      "nama": "",
+      "posisi": ""
+    },
+    "layanan": {
+      "id_layanan": "pk",
+      "nama": "",
+      "harga": ""
+    },
+    "layanan_kamar": {
+      "id_layanan_kamar": "pk",
+      "id_pemesanan": "fk",
+      "id_layanan": "fk",
+      "tanggal_permintaan": ""
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "entitas": {
+    "barang": {
+      "id_barang": null,
+      "nama_barang": null,
+      "deskripsi": null,
+      "harga": null,
+      "jumlah_stok": null,
+      "tanggal_update_stok": null,
+      "id_kategori": null,
+      "id_pemasok": null
+    },
+    "kategori": {
+      "id_kategori": null,
+      "nama_kategori": null
+    },
+    "pemasok": {
+      "id_pemasok": null,
+      "nama_pemasok": null,
+      "nama_kontak": null,
+      "nomor_telepon": null,
+      "alamat": null
+    },
+    "pembelian": {
+      "id_pembelian": null,
+      "tanggal_pembelian": null,
+      "jumlah_total": null,
+      "id_pemasok": null
+    },
+    "detail_pembelian": {
+      "id_detail_pembelian": null,
+      "id_pembelian": null,
+      "id_barang": null,
+      "kuantitas": null,
+      "harga_satuan": null
+    },
+    "penjualan": {
+      "id_penjualan": null,
+      "tanggal_penjualan": null,
+      "jumlah_total": null
+    },
+    "detail_penjualan": {
+      "id_detail_penjualan": null,
+      "id_penjualan": null,
+      "id_barang": null,
+      "kuantitas": null,
+      "harga_satuan": null
+    }
+  }
+}

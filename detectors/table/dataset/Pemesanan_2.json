@@ -1,0 +1,43 @@
+{
+  "pelanggan": {
+    "customer_id": "INTEGER PRIMARY KEY",
+    "nama": "TEXT",
+    "email": "TEXT",
+    "alamat": "TEXT",
+    "nomor_telepon": "TEXT",
+    "username": "TEXT",
+    "password": "TEXT"
+  },
+  "pesanan": {
+    "order_id": "INTEGER PRIMARY KEY",
+    "customer_id": "INTEGER",
+    "tanggal_pemesanan": "DATETIME",
+    "alamat_pengiriman": "TEXT",
+    "status_pemesanan": "TEXT",
+    "jumlah_total": "REAL",
+    "FOREIGN KEY": "customer_id REFERENCES pelanggan(customer_id)"
+  },
+  "item_pesanan": {
+    "order_item_id": "INTEGER PRIMARY KEY",
+    "order_id": "INTEGER",
+    "product_id": "INTEGER",
+    "kuantitas": "INTEGER",
+    "harga_satuan": "REAL",
+    "subtotal": "REAL",
+    "FOREIGN KEY": "order_id REFERENCES pesanan(order_id)",
+    "FOREIGN KEY": "product_id REFERENCES produk(product_id)"
+  },
+  "produk": {
+    "product_id": "INTEGER PRIMARY KEY",
+    "nama": "TEXT",
+    "deskripsi": "TEXT",
+    "harga": "REAL",
+    "jumlah_stok": "INTEGER",
+    "category_id": "INTEGER",
+    "FOREIGN KEY": "category_id REFERENCES kategori(category_id)"
+  },
+  "kategori": {
+    "category_id": "INTEGER PRIMARY KEY",
+    "nama": "TEXT"
+  }
+}

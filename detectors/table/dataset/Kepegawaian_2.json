@@ -1,0 +1,41 @@
+{
+  "entitas": {
+    "karyawan": {
+      "nip": null,
+      "nama": null,
+      "tanggal_lahir": null,
+      "alamat": null,
+      "nomor_telepon": null,
+      "email": null,
+      "tanggal_bergabung": null,
+      "id_jabatan": null
+    },
+    "jabatan": {
+      "id_jabatan": null,
+      "nama_jabatan": null,
+      "deskripsi": null
+    },
+    "departemen": {
+      "id_departemen": null,
+      "nama_departemen": null,
+      "lokasi": null
+    },
+    "absensi": {
+      "id_absensi": null,
+      "nip": null,
+      "tanggal": null,
+      "jam_masuk": null,
+      "jam_keluar": null,
+      "keterangan": null
+    },
+    "gaji": {
+      "id_gaji": null,
+      "nip": null,
+      "bulan_tahun": null,
+      "gaji_pokok": null,
+      "tunjangan": null,
+      "potongan": null,
+      "total_gaji": null
+    }
+  }
+}

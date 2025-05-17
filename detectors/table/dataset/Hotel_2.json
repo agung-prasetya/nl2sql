@@ -1,0 +1,49 @@
+{
+  "tamu": {
+    "id_tamu": {},
+    "nama": {},
+    "alamat": {},
+    "nomor_telepon": {},
+    "email": {}
+  },
+  "kamar": {
+    "nomor_kamar": {},
+    "tipe_kamar": {},
+    "kapasitas": {},
+    "harga_per_malam": {},
+    "ketersediaan": {}
+  },
+  "pemesanan": {
+    "id_pemesanan": {},
+    "id_tamu": {},
+    "nomor_kamar": {},
+    "tanggal_check_in": {},
+    "tanggal_check_out": {},
+    "jumlah_tamu": {},
+    "total_harga": {},
+    "status_pemesanan": {}
+  },
+  "layanan": {
+    "id_layanan": {},
+    "nama_layanan": {},
+    "harga_layanan": {}
+  },
+  "pemesanan_layanan": {
+    "id_pemesanan": {},
+    "id_layanan": {},
+    "kuantitas": {}
+  },
+  "staf": {
+    "id_staf": {},
+    "nama_staf": {},
+    "posisi": {}
+  },
+  "pembayaran": {
+    "id_pembayaran": {},
+    "id_pemesanan": {},
+    "tanggal_pembayaran": {},
+    "jumlah": {},
+    "metode_pembayaran": {},
+    "status_pembayaran": {}
+  }
+}

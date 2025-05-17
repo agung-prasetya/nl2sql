@@ -1,0 +1,59 @@
+{
+  "entitas": {
+    "kategori": {
+      "kategori_id": "",
+      "nama": "",
+      "deskripsi": ""
+    },
+    "produk": {
+      "produk_id": "",
+      "nama_produk": "",
+      "deskripsi": "",
+      "harga_beli": "",
+      "harga_jual": "",
+      "stok_minimum": "",
+      "kategori_id": ""
+    },
+    "supplier": {
+      "supplier_id": "",
+      "nama_supplier": "",
+      "alamat": "",
+      "telepon": "",
+      "email": ""
+    },
+    "transaksi_masuk": {
+      "transaksi_id": "",
+      "tanggal": "",
+      "supplier_id": "",
+      "total_harga": "",
+      "status_pembayaran": ""
+    },
+    "detail_transaksi_masuk": {
+      "detail_id": "",
+      "transaksi_id": "",
+      "produk_id": "",
+      "jumlah": "",
+      "harga_satuan": ""
+    },
+    "transaksi_keluar": {
+      "penjualan_id": "",
+      "tanggal": "",
+      "pelanggan_id": "",
+      "total_harga": "",
+      "status_pembayaran": ""
+    },
+    "detail_transaksi_keluar": {
+      "detail_id": "",
+      "penjualan_id": "",
+      "produk_id": "",
+      "jumlah": "",
+      "harga_satuan": ""
+    },
+    "pelanggan": {
+      "pelanggan_id": "",
+      "nama_pelanggan": "",
+      "alamat": "",
+      "telepon": ""
+    }
+  }
+}
