@@ -5,5 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '.
 from detector import *
 from evaluator import *
 
+filepath_dataset = str(Path(__file__).parent / 'dataset' / 'dataset.xlsx')
+folderpath_database = str(Path(__file__).parent / 'dataset')
 detector = QtyDetector()
-detector.detect('tampilkan total penjualan diatas Rp50.000.000,00 beserta nama pembelinya')
+evaluator=MultiLabelEvaluator(filepath_dataset=filepath_dataset,folderpath_database=folderpath_database, detector=detector)
+evaluator.evaluate()

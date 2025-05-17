@@ -64,6 +64,7 @@ class MultiLabelEvaluator():
     def evaluate(self):
         y_true = []
         y_predicted = []
+        
         for _, row in self.dataframe.iterrows():
             kalimat = row['kalimat']
 
@@ -71,8 +72,13 @@ class MultiLabelEvaluator():
             predicted_label = self.detector.detect(kalimat=kalimat, filepath_database_json=filepath_database_json)
             
             y_predicted.append(predicted_label)
-
-            labels = [label.strip() for label in row['label'].strip().split(',')]
+            
+            labels = []
+            if not pd.isna(row['label']):
+                for token in str(row['label']).split(';'):
+                    labels.append(token.strip().lower())            
+                 
+            print(labels,predicted_label,kalimat)
             y_true.append(labels)
 
         binarizer = MultiLabelBinarizer()

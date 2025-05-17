@@ -4,18 +4,13 @@ import re
 
 
 class QtyDetector(KnowledgeEngine):
-    def __init__(self, filepath_database_json):
-        super().__init__()
-        with open(filepath_database_json, 'r') as file:
-            self.database = json.load(file)
-    
     #Urutan 1
     @Rule(AS.fact_kalimat_tak_ternormalisasi << Fact(kalimat=MATCH.kalimat, ternormalisasi=False), salience=300)
     def rule_normalisasi_kalimat(self, fact_kalimat_tak_ternormalisasi):
         kalimat_tak_ternormalisasi = fact_kalimat_tak_ternormalisasi['kalimat']
         kalimat_ternormalisasi = kalimat_tak_ternormalisasi.lower().strip()
         kalimat_ternormalisasi = re.sub(r'\s+', ' ', kalimat_ternormalisasi).strip()
-        kalimat_ternormalisasi = re.sub(r'\.$','', kalimat_ternormalisasi)
+        kalimat_ternormalisasi = re.sub(r'[.?!]$','', kalimat_ternormalisasi)
 
         self.modify(fact_kalimat_tak_ternormalisasi, kalimat=kalimat_ternormalisasi, ternormalisasi=True)
         
@@ -95,14 +90,15 @@ class QtyDetector(KnowledgeEngine):
 
 
     #Urutan - bilangan bulat bulat
-    @Rule(
-        AND(
-            AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
-            TEST(lambda kata:re.fullmatch(r'[ivxlcdm]+',kata) is not None)
-        ), 
-        salience=285)
-    def rule_identifikasi_kata_angka_romawi(self, fact_kata):
-        self.modify(fact_kata, kelas_kata='bilangan_bulat')
+    #Rule pendeteksi angka romawi ini dinonaktifkan karena diasumsikan bahwa angka romawi hanya untuk urutan
+    # @Rule(
+    #     AND(
+    #         AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
+    #         TEST(lambda kata:re.fullmatch(r'\bm{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})\b',kata) is not None)
+    #     ), 
+    #     salience=285)
+    # def rule_identifikasi_kata_angka_romawi(self, fact_kata):
+    #     self.modify(fact_kata, kelas_kata='bilangan_bulat')
         
 
 
@@ -129,7 +125,6 @@ class QtyDetector(KnowledgeEngine):
     )
     def rule_identifikasi_kata_pertama_urutan(self, fact_kata):
         self.modify(fact_kata, kelas_kata='urutan')
-        print('rule_identifikasi_kata_pertama_urutan')
 
     
     #Urutan 4 - kelas kata urutan
@@ -227,8 +222,8 @@ class QtyDetector(KnowledgeEngine):
         AND(
             AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
             TEST(lambda kata: kata in 
-                ["buah", "biji", "butir", "batang", "lembar", "helai", "meter", "milimeter", 
-                "sentimeter", "kilometer", "inci", "kaki", "yard", "mil", "kilogram", 
+                ["buah", "biji", "butir", "batang", "barang", "jenis","lembar", "helai", "meter", "milimeter", 
+                "sentimeter", "kilometer", "inci", "kaki", "yard", "mil", "kilogram", "unit"
                 "gram", "ons", "ton", "pon", "liter", "mililiter", "gallon", "cup", 
                 "hektar", "meter persegi", "detik", "menit", "jam", "hari", "minggu", 
                 "bulan", "tahun", "milidetik", "orang", "ekor", "pasang", 
@@ -545,8 +540,10 @@ class QtyDetector(KnowledgeEngine):
         self.modify(fact_frase, kuantitas=True)
         
     
-    def detect(self, kalimat):
-        
+    def detect(self, kalimat, filepath_database_json):
+        with open(filepath_database_json, 'r') as file:
+            self.database = json.load(file)
+            
         self.reset()
         self.declare(Fact(kalimat=kalimat, ternormalisasi=False), Fact(database=self.database))
         self.run()

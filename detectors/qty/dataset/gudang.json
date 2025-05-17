@@ -1,0 +1,33 @@
+{
+  "entitas": {
+    "kategori": {
+      "id_kategori": null,
+      "nama": null
+    },
+    "gudang": {
+      "id_gudang": null,
+      "nama": null,
+      "alamat": null
+    },
+    "barang": {
+      "id_barang": null,
+      "nama": null,
+      "id_kategori": null,
+      "id_gudang": null,
+      "stok": null,
+      "satuan": null
+    },
+    "transaksi_masuk": {
+      "id_transaksi": null,
+      "tanggal": null,
+      "id_barang": null,
+      "jumlah": null
+    },
+    "transaksi_keluar": {
+      "id_transaksi": null,
+      "tanggal": null,
+      "id_barang": null,
+      "jumlah": null
+    }
+  }
+}
