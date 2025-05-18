@@ -1,0 +1,112 @@
+{
+  "entitas": {
+    "akun": {
+      "kode_akun": "string",
+      "nama_akun": "string",
+      "tipe_akun": "string",
+      "kelompok_akun": "string",
+      "saldo_normal": "string",
+      "deskripsi": "string"
+    },
+    "transaksi": {
+      "id_transaksi": "integer",
+      "tanggal": "date",
+      "keterangan": "string",
+      "jumlah": "decimal",
+      "id_jenis_transaksi": "integer",
+      "id_user": "integer",
+      "status": "string"
+    },
+    "jurnal": {
+      "id_jurnal": "integer",
+      "id_transaksi": "integer",
+      "kode_akun": "string",
+      "debit": "decimal",
+      "kredit": "decimal",
+      "keterangan": "string"
+    },
+    "jenis_transaksi": {
+      "id_jenis_transaksi": "integer",
+      "nama_jenis": "string",
+      "kategori": "string",
+      "deskripsi": "string"
+    },
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "email": "string",
+      "npwp": "string"
+    },
+    "pemasok": {
+      "id_pemasok": "integer",
+      "nama": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "email": "string",
+      "npwp": "string"
+    },
+    "faktur_penjualan": {
+      "no_faktur": "string",
+      "id_transaksi": "integer",
+      "id_pelanggan": "integer",
+      "tanggal_jatuh_tempo": "date",
+      "status_pembayaran": "string",
+      "ppn": "decimal",
+      "total": "decimal"
+    },
+    "faktur_pembelian": {
+      "no_faktur": "string",
+      "id_transaksi": "integer",
+      "id_pemasok": "integer",
+      "tanggal_jatuh_tempo": "date",
+      "status_pembayaran": "string",
+      "ppn": "decimal",
+      "total": "decimal"
+    },
+    "pembayaran": {
+      "id_pembayaran": "integer",
+      "id_transaksi": "integer",
+      "metode_pembayaran": "string",
+      "jumlah": "decimal",
+      "tanggal": "date",
+      "keterangan": "string"
+    },
+    "aset": {
+      "id_aset": "integer",
+      "nama_aset": "string",
+      "kategori": "string",
+      "tanggal_perolehan": "date",
+      "nilai_perolehan": "decimal",
+      "penyusutan": "decimal",
+      "nilai_buku": "decimal",
+      "masa_manfaat": "integer",
+      "kode_akun": "string"
+    },
+    "pajak": {
+      "id_pajak": "integer",
+      "id_transaksi": "integer",
+      "jenis_pajak": "string",
+      "jumlah": "decimal",
+      "tanggal_jatuh_tempo": "date",
+      "status": "string"
+    },
+    "laporan": {
+      "id_laporan": "integer",
+      "jenis_laporan": "string",
+      "periode": "string",
+      "tanggal_dibuat": "date",
+      "id_user": "integer",
+      "file": "string"
+    },
+    "user": {
+      "id_user": "integer",
+      "username": "string",
+      "password": "string",
+      "nama": "string",
+      "role": "string",
+      "status": "string"
+    }
+  }
+}

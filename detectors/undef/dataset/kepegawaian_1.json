@@ -1,0 +1,68 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "integer",
+      "nama": "string",
+      "nip": "string",
+      "email": "string",
+      "telepon": "string",
+      "alamat": "string",
+      "tanggal_lahir": "date",
+      "jabatan": "string",
+      "departemen": "string",
+      "gaji": "decimal",
+      "status_kepegawaian": "string"
+    },
+    "departemen": {
+      "id_departemen": "integer",
+      "nama_departemen": "string",
+      "kepala_departemen": "integer"
+    },
+    "jabatan": {
+      "id_jabatan": "integer",
+      "nama_jabatan": "string",
+      "tingkatan": "string",
+      "gaji_minimum": "decimal",
+      "gaji_maksimum": "decimal"
+    },
+    "absensi": {
+      "id_absensi": "integer",
+      "id_pegawai": "integer",
+      "tanggal": "date",
+      "waktu_masuk": "time",
+      "waktu_keluar": "time",
+      "status": "string"
+    },
+    "gaji": {
+      "id_gaji": "integer",
+      "id_pegawai": "integer",
+      "bulan": "string",
+      "tahun": "integer",
+      "jumlah_gaji": "decimal",
+      "status_pembayaran": "string",
+      "tanggal_pembayaran": "date"
+    },
+    "cuti": {
+      "id_cuti": "integer",
+      "id_pegawai": "integer",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "jenis_cuti": "string",
+      "status_persetujuan": "string"
+    },
+    "pelatihan": {
+      "id_pelatihan": "integer",
+      "nama_pelatihan": "string",
+      "deskripsi": "string",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "penyelenggara": "string"
+    },
+    "keikutsertaan_pelatihan": {
+      "id_keikutsertaan": "integer",
+      "id_pegawai": "integer",
+      "id_pelatihan": "integer",
+      "status": "string"
+    }
+  }
+}

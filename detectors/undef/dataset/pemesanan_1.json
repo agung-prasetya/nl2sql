@@ -1,0 +1,49 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama": "string",
+      "email": "string",
+      "telepon": "string",
+      "alamat": "string"
+    },
+    "produk": {
+      "id_produk": "integer",
+      "nama_produk": "string",
+      "deskripsi": "string",
+      "harga": "decimal",
+      "stok": "integer"
+    },
+    "pemesanan": {
+      "id_pemesanan": "integer",
+      "id_pelanggan": "integer",
+      "tanggal_pemesanan": "date",
+      "total_harga": "decimal",
+      "status_pemesanan": "string"
+    },
+    "detail_pemesanan": {
+      "id_detail": "integer",
+      "id_pemesanan": "integer",
+      "id_produk": "integer",
+      "jumlah": "integer",
+      "harga_satuan": "decimal",
+      "subtotal": "decimal"
+    },
+    "pembayaran": {
+      "id_pembayaran": "integer",
+      "id_pemesanan": "integer",
+      "tanggal_pembayaran": "date",
+      "metode_pembayaran": "string",
+      "jumlah_pembayaran": "decimal",
+      "status_pembayaran": "string"
+    },
+    "pengiriman": {
+      "id_pengiriman": "integer",
+      "id_pemesanan": "integer",
+      "tanggal_pengiriman": "date",
+      "status_pengiriman": "string",
+      "nomor_resi": "string",
+      "kurir": "string"
+    }
+  }
+}

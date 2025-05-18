@@ -1,0 +1,70 @@
+{
+  "entitas": {
+    "tamu": {
+      "id_tamu": "integer",
+      "nama": "string",
+      "no_identitas": "string",
+      "jenis_identitas": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "email": "string"
+    },
+    "kamar": {
+      "no_kamar": "string",
+      "id_tipe_kamar": "integer",
+      "status": "string",
+      "lantai": "integer"
+    },
+    "tipe_kamar": {
+      "id_tipe_kamar": "integer",
+      "nama_tipe": "string",
+      "harga_per_malam": "decimal",
+      "kapasitas": "integer",
+      "deskripsi": "string"
+    },
+    "reservasi": {
+      "id_reservasi": "integer",
+      "id_tamu": "integer",
+      "tanggal_checkin": "date",
+      "tanggal_checkout": "date",
+      "status_reservasi": "string",
+      "total_pembayaran": "decimal",
+      "tanggal_reservasi": "date"
+    },
+    "detail_reservasi": {
+      "id_detail": "integer",
+      "id_reservasi": "integer",
+      "no_kamar": "string",
+      "harga_kamar": "decimal"
+    },
+    "karyawan": {
+      "id_karyawan": "integer",
+      "nama": "string",
+      "posisi": "string",
+      "no_telepon": "string",
+      "email": "string"
+    },
+    "layanan": {
+      "id_layanan": "integer",
+      "nama_layanan": "string",
+      "harga": "decimal",
+      "deskripsi": "string"
+    },
+    "penggunaan_layanan": {
+      "id_penggunaan": "integer",
+      "id_reservasi": "integer",
+      "id_layanan": "integer",
+      "jumlah": "integer",
+      "total_harga": "decimal",
+      "tanggal": "date"
+    },
+    "pembayaran": {
+      "id_pembayaran": "integer",
+      "id_reservasi": "integer",
+      "jumlah": "decimal",
+      "metode_pembayaran": "string",
+      "tanggal_pembayaran": "date",
+      "status_pembayaran": "string"
+    }
+  }
+}

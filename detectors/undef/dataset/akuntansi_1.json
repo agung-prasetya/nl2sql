@@ -1,0 +1,61 @@
+{
+  "entitas": {
+    "akun": {
+      "id_akun": "integer",
+      "kode_akun": "string",
+      "nama_akun": "string",
+      "jenis_akun": "string",
+      "saldo_awal": "decimal"
+    },
+    "transaksi": {
+      "id_transaksi": "integer",
+      "tanggal": "date",
+      "deskripsi": "string",
+      "jenis_transaksi": "string",
+      "jumlah": "decimal",
+      "id_akun": "integer"
+    },
+    "jurnal": {
+      "id_jurnal": "integer",
+      "id_transaksi": "integer",
+      "tanggal": "date",
+      "keterangan": "string",
+      "debit": "decimal",
+      "kredit": "decimal"
+    },
+    "buku_besar": {
+      "id_buku_besar": "integer",
+      "id_akun": "integer",
+      "tanggal": "date",
+      "deskripsi": "string",
+      "debit": "decimal",
+      "kredit": "decimal",
+      "saldo": "decimal"
+    },
+    "laporan_keuangan": {
+      "id_laporan": "integer",
+      "jenis_laporan": "string",
+      "periode": "string",
+      "tanggal_pembuatan": "date",
+      "total_pendapatan": "decimal",
+      "total_pengeluaran": "decimal",
+      "laba_rugi": "decimal"
+    },
+    "utang": {
+      "id_utang": "integer",
+      "id_akun": "integer",
+      "tanggal": "date",
+      "deskripsi": "string",
+      "jumlah": "decimal",
+      "status_pembayaran": "string"
+    },
+    "piutang": {
+      "id_piutang": "integer",
+      "id_akun": "integer",
+      "tanggal": "date",
+      "deskripsi": "string",
+      "jumlah": "decimal",
+      "status_penerimaan": "string"
+    }
+  }
+}

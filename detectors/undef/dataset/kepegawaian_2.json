@@ -1,0 +1,105 @@
+{
+  "entitas": {
+    "pegawai": {
+      "nip": "string",
+      "nama": "string",
+      "tempat_lahir": "string",
+      "tanggal_lahir": "date",
+      "jenis_kelamin": "string",
+      "agama": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "email": "string",
+      "id_jabatan": "integer",
+      "id_departemen": "integer",
+      "status_kawin": "string",
+      "tanggal_masuk": "date",
+      "status_pegawai": "string"
+    },
+    "jabatan": {
+      "id_jabatan": "integer",
+      "nama_jabatan": "string",
+      "level": "string",
+      "gaji_pokok": "decimal",
+      "tunjangan": "decimal",
+      "deskripsi": "string"
+    },
+    "departemen": {
+      "id_departemen": "integer",
+      "nama_departemen": "string",
+      "lokasi": "string",
+      "id_manajer": "string"
+    },
+    "absensi": {
+      "id_absensi": "integer",
+      "nip": "string",
+      "tanggal": "date",
+      "jam_masuk": "time",
+      "jam_pulang": "time",
+      "status_kehadiran": "string",
+      "keterangan": "string"
+    },
+    "cuti": {
+      "id_cuti": "integer",
+      "nip": "string",
+      "jenis_cuti": "string",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "alasan": "string",
+      "status_pengajuan": "string",
+      "tanggal_pengajuan": "date"
+    },
+    "gaji": {
+      "id_gaji": "integer",
+      "nip": "string",
+      "bulan": "integer",
+      "tahun": "integer",
+      "gaji_pokok": "decimal",
+      "tunjangan": "decimal",
+      "bonus": "decimal",
+      "potongan": "decimal",
+      "total_gaji": "decimal",
+      "status_pembayaran": "string",
+      "tanggal_pembayaran": "date"
+    },
+    "pelatihan": {
+      "id_pelatihan": "integer",
+      "nama_pelatihan": "string",
+      "penyelenggara": "string",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "lokasi": "string",
+      "biaya": "decimal",
+      "deskripsi": "string"
+    },
+    "partisipasi_pelatihan": {
+      "id_partisipasi": "integer",
+      "id_pelatihan": "integer",
+      "nip": "string",
+      "nilai_pelatihan": "decimal",
+      "sertifikat": "boolean"
+    },
+    "kinerja": {
+      "id_penilaian": "integer",
+      "nip": "string",
+      "periode": "string",
+      "indikator_1": "integer",
+      "indikator_2": "integer",
+      "indikator_3": "integer",
+      "indikator_4": "integer",
+      "indikator_5": "integer",
+      "total_nilai": "integer",
+      "catatan": "string"
+    },
+    "mutasi": {
+      "id_mutasi": "integer",
+      "nip": "string",
+      "id_departemen_lama": "integer",
+      "id_departemen_baru": "integer",
+      "id_jabatan_lama": "integer",
+      "id_jabatan_baru": "integer",
+      "tanggal_mutasi": "date",
+      "alasan": "string"
+    }
+  }
+}

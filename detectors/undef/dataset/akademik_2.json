@@ -1,0 +1,84 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "nim": "string",
+      "nama": "string",
+      "tanggal_lahir": "date",
+      "jenis_kelamin": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "email": "string",
+      "id_prodi": "integer"
+    },
+    "dosen": {
+      "nidn": "string",
+      "nama": "string",
+      "gelar": "string",
+      "jenis_kelamin": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "email": "string",
+      "id_prodi": "integer"
+    },
+    "prodi": {
+      "id_prodi": "integer",
+      "nama_prodi": "string",
+      "kode_prodi": "string",
+      "fakultas": "string",
+      "jenjang": "string"
+    },
+    "mata_kuliah": {
+      "kode_mk": "string",
+      "nama_mk": "string",
+      "sks": "integer",
+      "semester": "integer",
+      "id_prodi": "integer"
+    },
+    "kelas": {
+      "id_kelas": "integer",
+      "kode_mk": "string",
+      "nidn": "string",
+      "hari": "string",
+      "jam": "string",
+      "ruangan": "string",
+      "tahun_ajaran": "string",
+      "semester": "string"
+    },
+    "krs": {
+      "id_krs": "integer",
+      "nim": "string",
+      "id_kelas": "integer",
+      "tanggal_daftar": "date",
+      "status": "string"
+    },
+    "nilai": {
+      "id_nilai": "integer",
+      "id_krs": "integer",
+      "nilai_uts": "decimal",
+      "nilai_uas": "decimal",
+      "nilai_tugas": "decimal",
+      "nilai_akhir": "decimal",
+      "grade": "string"
+    },
+    "jadwal": {
+      "id_jadwal": "integer",
+      "id_kelas": "integer",
+      "pertemuan": "integer",
+      "tanggal": "date",
+      "materi": "string",
+      "status": "string"
+    },
+    "presensi": {
+      "id_presensi": "integer",
+      "id_jadwal": "integer",
+      "nim": "string",
+      "status": "string",
+      "keterangan": "string"
+    },
+    "fakultas": {
+      "kode_fakultas": "string",
+      "nama_fakultas": "string",
+      "dekan": "string"
+    }
+  }
+}

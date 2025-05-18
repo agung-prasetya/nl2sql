@@ -1,0 +1,85 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama": "string",
+      "alamat": "string",
+      "no_telepon": "string",
+      "email": "string",
+      "member": "boolean"
+    },
+    "produk": {
+      "id_produk": "integer",
+      "nama_produk": "string",
+      "kategori": "string",
+      "harga": "decimal",
+      "stok": "integer",
+      "deskripsi": "string"
+    },
+    "pesanan": {
+      "id_pesanan": "integer",
+      "id_pelanggan": "integer",
+      "tanggal_pesanan": "date",
+      "total_harga": "decimal",
+      "status_pesanan": "string",
+      "metode_pembayaran": "string",
+      "alamat_pengiriman": "string"
+    },
+    "detail_pesanan": {
+      "id_detail": "integer",
+      "id_pesanan": "integer",
+      "id_produk": "integer",
+      "jumlah": "integer",
+      "harga_satuan": "decimal",
+      "subtotal": "decimal"
+    },
+    "pembayaran": {
+      "id_pembayaran": "integer",
+      "id_pesanan": "integer",
+      "jumlah": "decimal",
+      "tanggal_pembayaran": "date",
+      "metode": "string",
+      "status": "string",
+      "bukti_pembayaran": "string"
+    },
+    "pengiriman": {
+      "id_pengiriman": "integer",
+      "id_pesanan": "integer",
+      "kurir": "string",
+      "no_resi": "string",
+      "tanggal_kirim": "date",
+      "estimasi": "string",
+      "status": "string"
+    },
+    "ulasan": {
+      "id_ulasan": "integer",
+      "id_pesanan": "integer",
+      "id_produk": "integer",
+      "rating": "integer",
+      "komentar": "string",
+      "tanggal": "date"
+    },
+    "keranjang": {
+      "id_keranjang": "integer",
+      "id_pelanggan": "integer",
+      "id_produk": "integer",
+      "jumlah": "integer",
+      "tanggal_tambah": "date"
+    },
+    "promo": {
+      "id_promo": "integer",
+      "kode_promo": "string",
+      "diskon": "decimal",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "syarat": "string",
+      "deskripsi": "string"
+    },
+    "penggunaan_promo": {
+      "id_penggunaan": "integer",
+      "id_pesanan": "integer",
+      "id_promo": "integer",
+      "potongan": "decimal"
+    }
+  }
+}

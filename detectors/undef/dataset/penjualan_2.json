@@ -1,0 +1,82 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama": "string",
+      "alamat": "string",
+      "no_telp": "string",
+      "email": "string",
+      "tgl_daftar": "date"
+    },
+    "produk": {
+      "id_produk": "integer",
+      "nama": "string",
+      "kategori": "string",
+      "harga": "decimal",
+      "stok": "integer",
+      "deskripsi": "string"
+    },
+    "penjualan": {
+      "id_penjualan": "integer",
+      "id_pelanggan": "integer",
+      "tgl_penjualan": "date",
+      "total": "decimal",
+      "status": "string",
+      "metode_bayar": "string"
+    },
+    "detail_penjualan": {
+      "id_detail": "integer",
+      "id_penjualan": "integer",
+      "id_produk": "integer",
+      "qty": "integer",
+      "harga": "decimal",
+      "subtotal": "decimal"
+    },
+    "pembayaran": {
+      "id_pembayaran": "integer",
+      "id_penjualan": "integer",
+      "jumlah": "decimal",
+      "tgl_bayar": "date",
+      "metode": "string",
+      "status": "string"
+    },
+    "karyawan": {
+      "id_karyawan": "integer",
+      "nama": "string",
+      "jabatan": "string",
+      "no_telp": "string",
+      "email": "string"
+    },
+    "transaksi_kas": {
+      "id_transaksi": "integer",
+      "id_penjualan": "integer",
+      "jenis": "string",
+      "jumlah": "decimal",
+      "tgl_transaksi": "date",
+      "keterangan": "string"
+    },
+    "retur": {
+      "id_retur": "integer",
+      "id_penjualan": "integer",
+      "tgl_retur": "date",
+      "alasan": "string",
+      "status": "string",
+      "total_pengembalian": "decimal"
+    },
+    "detail_retur": {
+      "id_detail": "integer",
+      "id_retur": "integer",
+      "id_produk": "integer",
+      "qty": "integer",
+      "alasan": "string"
+    },
+    "diskon": {
+      "id_diskon": "integer",
+      "id_produk": "integer",
+      "besar": "decimal",
+      "tgl_mulai": "date",
+      "tgl_selesai": "date",
+      "keterangan": "string"
+    }
+  }
+}
