@@ -316,8 +316,10 @@ class DMLDetector(KnowledgeEngine):
     )
     def rule_add_matching_domain(self, kalimat, database):
         is_domain_match = False
-        daftar_kata = [fact['kata'] for _,fact in self.facts.items() if isinstance(fact, Fact) and 'kata' in fact]
-        daftar_tabel = [fact['tabel'] for _,fact in self.facts.items() if isinstance(fact, Fact) and 'tabel' in fact]
+        daftar_kata = [fact['kata'] for _,fact in self.facts.items() 
+                       if isinstance(fact, Fact) and 'kata' in fact]
+        daftar_tabel = [fact['tabel'] for _,fact in self.facts.items() 
+                        if isinstance(fact, Fact) and 'tabel' in fact]
         for kata in daftar_kata:
             for tabel in daftar_tabel:
                 if textdistance.jaccard.normalized_similarity(kata, tabel)>0.7:
