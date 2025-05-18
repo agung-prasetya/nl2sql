@@ -305,7 +305,7 @@ class QtyDetector(KnowledgeEngine):
         salience=280
     )
     def rule_identifikasi_frase_tanggal_bulan_tahun(self, fact_tanggal, fact_bulan, fact_tahun):
-        frase = f'{fact_tanggal['kata']} {fact_bulan['kata']} {fact_tahun['kata']}'
+        frase = f"{fact_tanggal['kata']} {fact_bulan['kata']} {fact_tahun['kata']}"
         
         self.declare(Fact(frase=frase, posisi=fact_tahun['posisi'],kuantitas=True))
         self.retract(fact_tanggal)
@@ -328,7 +328,7 @@ class QtyDetector(KnowledgeEngine):
         salience=275
     )
     def rule_identifikasi_kuantitas_dari_frase_tanggal_bulan(self, fact_tanggal, fact_bulan):
-        frase = f'{fact_tanggal['kata']} {fact_bulan['kata']}'
+        frase = f"{fact_tanggal['kata']} {fact_bulan['kata']}"
         
         self.declare(Fact(frase=frase, posisi=fact_bulan['posisi'], kuantitas=True))
         self.retract(fact_tanggal)
@@ -350,7 +350,7 @@ class QtyDetector(KnowledgeEngine):
         salience=275
     )
     def rule_identifikasi_kuantitas_dari_frase_bulan_tahun(self, fact_kata1, fact_kata2):
-        frase = f'{fact_kata1['kata']} {fact_kata2['kata']}'
+        frase = f"{fact_kata1['kata']} {fact_kata2['kata']}"
         
         self.declare(Fact(frase=frase, posisi=fact_kata2['posisi'], kuantitas=True))
         self.retract(fact_kata1)
@@ -383,7 +383,7 @@ class QtyDetector(KnowledgeEngine):
         ),
         salience=270)
     def rule_penggabungan_bilangan_bulat_atau_urutan_dengan_kelipatan_atau_bilangan_bulat_ke_frase(self, fact_kata1, fact_kata2):
-        frase = f'{fact_kata1['kata']} {fact_kata2['kata']}'
+        frase = f"{fact_kata1['kata']} {fact_kata2['kata']}"
 
         self.declare(Fact(frase=frase, bagian_frase=False, posisi=fact_kata2['posisi'],kuantitas=False))
         self.retract(fact_kata1)
@@ -407,7 +407,7 @@ class QtyDetector(KnowledgeEngine):
         
     )
     def rule_penggabungan_frase_dengan_bilangan_bulat_atau_kelipatan_ke_frase(self, fact_frase,fact_kata):
-        frase = f'{fact_frase['frase']} {fact_kata['kata']}'
+        frase = f"{fact_frase['frase']} {fact_kata['kata']}"
         self.declare(Fact(frase=frase, bagian_frase=False, posisi=fact_kata['posisi'],kuantitas=False))
         self.retract(fact_kata)
         self.retract(fact_frase)
@@ -427,7 +427,7 @@ class QtyDetector(KnowledgeEngine):
         salience=260
     )
     def rule_identifikasi_kuantitas_dari_gabungan_kata_bilangan_bulat_dengan_satuan(self, fact_kata1, fact_kata2):
-        frase = f'{fact_kata1['kata']} {fact_kata2['kata']}'
+        frase = f"{fact_kata1['kata']} {fact_kata2['kata']}"
         
         self.declare(Fact(frase=frase, posisi=fact_kata2['posisi'], kuantitas=True))
         self.retract(fact_kata1)
@@ -468,7 +468,7 @@ class QtyDetector(KnowledgeEngine):
         )
     )
     def rule_identifikasi_kuantitas_dari_gabungan_satuan_dan_bilangan_bulat_atau_pecahan(self, fact_kata1, fact_kata2):
-        frase = f'{fact_kata1['kata']} {fact_kata2['kata']}'
+        frase = f"{fact_kata1['kata']} {fact_kata2['kata']}"
         
         self.declare(Fact(frase=frase, posisi=fact_kata2['posisi'], kuantitas=True))
         self.retract(fact_kata1)
@@ -511,7 +511,7 @@ class QtyDetector(KnowledgeEngine):
         )
     )
     def rule_identifikasi_kuantitas_dari_gabungan_frase_dan_satuan(self, fact_frase, fact_kata):
-        frase = f'{fact_frase['frase']} {fact_kata['kata']}'
+        frase = f"{fact_frase['frase']} {fact_kata['kata']}"
         
         self.declare(Fact(frase=frase, posisi=fact_kata['posisi'], kuantitas=True))
         self.retract(fact_frase)
