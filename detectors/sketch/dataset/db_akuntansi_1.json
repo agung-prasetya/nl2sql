@@ -1,0 +1,37 @@
+{
+  "Entitas": {
+    "Akun": {
+      "ID_Akun": "integer",
+      "Kode_Akun": "string",
+      "Nama_Akun": "string",
+      "Tipe_Akun": "string"
+    },
+    "Jurnal": {
+      "ID_Jurnal": "integer",
+      "Tanggal": "date",
+      "Deskripsi": "string",
+      "ID_Pengguna": "integer"
+    },
+    "Detail_Jurnal": {
+      "ID_Detail": "integer",
+      "ID_Jurnal": "integer",
+      "ID_Akun": "integer",
+      "Debit": "decimal",
+      "Kredit": "decimal"
+    },
+    "Pengguna": {
+      "ID_Pengguna": "integer",
+      "Nama": "string",
+      "Username": "string",
+      "Password": "string",
+      "Peran": "string"
+    },
+    "Buku_Besar": {
+      "ID_BukuBesar": "integer",
+      "ID_Akun": "integer",
+      "Tanggal": "date",
+      "Saldo_Debit": "decimal",
+      "Saldo_Kredit": "decimal"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "Entitas": {
+    "Pegawai": {
+      "pegawai_id": "integer",
+      "nama": "string",
+      "alamat": "string",
+      "tanggal_lahir": "date",
+      "jenis_kelamin": "string",
+      "email": "string",
+      "no_telepon": "string",
+      "tanggal_masuk": "date",
+      "jabatan_id": "integer",
+      "divisi_id": "integer"
+    },
+    "Jabatan": {
+      "jabatan_id": "integer",
+      "nama_jabatan": "string",
+      "gaji_pokok": "decimal"
+    },
+    "Divisi": {
+      "divisi_id": "integer",
+      "nama_divisi": "string",
+      "lokasi": "string"
+    },
+    "Absensi": {
+      "absensi_id": "integer",
+      "pegawai_id": "integer",
+      "tanggal": "date",
+      "status": "string"
+    },
+    "Gaji": {
+      "gaji_id": "integer",
+      "pegawai_id": "integer",
+      "bulan": "integer",
+      "tahun": "integer",
+      "jumlah_gaji": "decimal"
+    }
+  }
+}

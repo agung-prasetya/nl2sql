@@ -40,31 +40,5 @@
       "nama_jenis": "string",
       "deskripsi": "string"
     }
-  },
-  "Relasi": {
-    "Pelanggan_Reservasi": {
-      "tipe": "one-to-many",
-      "dari": "Pelanggan",
-      "ke": "Reservasi",
-      "kunci_asing": "id_pelanggan"
-    },
-    "Reservasi_Kamar": {
-      "tipe": "many-to-one",
-      "dari": "Reservasi",
-      "ke": "Kamar",
-      "kunci_asing": "id_kamar"
-    },
-    "Reservasi_Pembayaran": {
-      "tipe": "one-to-many",
-      "dari": "Reservasi",
-      "ke": "Pembayaran",
-      "kunci_asing": "id_reservasi"
-    },
-    "Kamar_JenisKamar": {
-      "tipe": "many-to-one",
-      "dari": "Kamar",
-      "ke": "JenisKamar",
-      "kunci_asing": "id_jenis_kamar"
-    }
   }
 }

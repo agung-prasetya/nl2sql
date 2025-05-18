@@ -49,31 +49,5 @@
         "metode_pembayaran": "string"
       }
     }
-  ],
-  "Relasi": [
-    {
-      "dari": "Pelanggan",
-      "ke": "Pesanan",
-      "jenis": "1..N",
-      "keterangan": "Satu pelanggan bisa membuat banyak pesanan"
-    },
-    {
-      "dari": "Pesanan",
-      "ke": "DetailPesanan",
-      "jenis": "1..N",
-      "keterangan": "Satu pesanan bisa memiliki banyak detail produk"
-    },
-    {
-      "dari": "Produk",
-      "ke": "DetailPesanan",
-      "jenis": "1..N",
-      "keterangan": "Satu produk bisa muncul di banyak detail pesanan"
-    },
-    {
-      "dari": "Pesanan",
-      "ke": "Pembayaran",
-      "jenis": "1..1",
-      "keterangan": "Satu pesanan memiliki satu pembayaran"
-    }
   ]
 }
