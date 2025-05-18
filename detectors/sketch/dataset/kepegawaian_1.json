@@ -1,6 +1,6 @@
 {
-  "Entitas": {
-    "Pegawai": {
+  "entitas": {
+    "pegawai": {
       "pegawai_id": "integer",
       "nama": "string",
       "alamat": "string",
@@ -12,23 +12,23 @@
       "jabatan_id": "integer",
       "divisi_id": "integer"
     },
-    "Jabatan": {
+    "jabatan": {
       "jabatan_id": "integer",
       "nama_jabatan": "string",
       "gaji_pokok": "decimal"
     },
-    "Divisi": {
+    "divisi": {
       "divisi_id": "integer",
       "nama_divisi": "string",
       "lokasi": "string"
     },
-    "Absensi": {
+    "absensi": {
       "absensi_id": "integer",
       "pegawai_id": "integer",
       "tanggal": "date",
       "status": "string"
     },
-    "Gaji": {
+    "gaji": {
       "gaji_id": "integer",
       "pegawai_id": "integer",
       "bulan": "integer",

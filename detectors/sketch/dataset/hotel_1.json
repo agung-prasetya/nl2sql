@@ -1,19 +1,19 @@
 {
-  "Entitas": {
-    "Pelanggan": {
+  "entitas": {
+    "pelanggan": {
       "id_pelanggan": "integer",
       "nama": "string",
       "email": "string",
       "nomor_telepon": "string"
     },
-    "Kamar": {
+    "kamar": {
       "id_kamar": "integer",
       "nomor_kamar": "string",
       "id_jenis_kamar": "integer",
       "harga_per_malam": "decimal",
       "status": "string"
     },
-    "Reservasi": {
+    "reservasi": {
       "id_reservasi": "integer",
       "id_pelanggan": "integer",
       "tanggal_reservasi": "date",
@@ -22,20 +22,20 @@
       "total_biaya": "decimal",
       "id_kamar": "integer"
     },
-    "Pembayaran": {
+    "pembayaran": {
       "id_pembayaran": "integer",
       "id_reservasi": "integer",
       "tanggal_pembayaran": "date",
       "jumlah_pembayaran": "decimal",
       "metode_pembayaran": "string"
     },
-    "Staf": {
+    "staf": {
       "id_staf": "integer",
       "nama": "string",
       "posisi": "string",
       "email": "string"
     },
-    "JenisKamar": {
+    "jeniskamar": {
       "id_jenis_kamar": "integer",
       "nama_jenis": "string",
       "deskripsi": "string"

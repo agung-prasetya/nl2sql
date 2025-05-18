@@ -1,0 +1,37 @@
+{
+  "entitas": {
+    "akun": {
+      "id_akun": "integer",
+      "kode_akun": "string",
+      "nama_akun": "string",
+      "tipe_akun": "string"
+    },
+    "jurnal": {
+      "id_jurnal": "integer",
+      "tanggal": "date",
+      "deskripsi": "string",
+      "id_Pengguna": "integer"
+    },
+    "detail_jurnal": {
+      "id_detail": "integer",
+      "id_jurnal": "integer",
+      "id_akun": "integer",
+      "debit": "decimal",
+      "kredit": "decimal"
+    },
+    "pengguna": {
+      "id_pengguna": "integer",
+      "nama": "string",
+      "username": "string",
+      "password": "string",
+      "peran": "string"
+    },
+    "buku_besar": {
+      "id_bukuBesar": "integer",
+      "id_akun": "integer",
+      "tanggal": "date",
+      "saldo_debit": "decimal",
+      "saldo_kredit": "decimal"
+    }
+  }
+}
