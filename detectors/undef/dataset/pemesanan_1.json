@@ -1,4 +1,5 @@
 {
+  "database":"pemesanan",
   "entitas": {
     "pelanggan": {
       "id_pelanggan": "integer",

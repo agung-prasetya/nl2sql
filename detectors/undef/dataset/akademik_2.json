@@ -1,4 +1,5 @@
 {
+  "database":"akademik",
   "entitas": {
     "mahasiswa": {
       "nim": "string",

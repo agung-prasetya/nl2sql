@@ -1,4 +1,5 @@
 {
+  "database":"kepegawaian",
   "entitas": {
     "pegawai": {
       "id_pegawai": "integer",

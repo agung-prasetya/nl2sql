@@ -1,4 +1,5 @@
 {
+  "database":"akuntansi",
   "entitas": {
     "akun": {
       "kode_akun": "string",

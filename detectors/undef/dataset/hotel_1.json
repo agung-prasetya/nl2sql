@@ -1,4 +1,5 @@
 {
+  "database":"hotel",
   "entitas": {
     "tamu": {
       "id_tamu": "integer",

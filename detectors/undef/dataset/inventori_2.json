@@ -1,4 +1,5 @@
 {
+  "database":"inventori",
   "entitas": {
     "produk": {
       "id_produk": "integer",
