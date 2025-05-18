@@ -1,0 +1,57 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "id_mahasiswa": "integer",
+      "nama": "string",
+      "nim": "string",
+      "email": "string",
+      "telepon": "string",
+      "alamat": "string",
+      "tanggal_lahir": "date",
+      "jurusan": "string"
+    },
+    "dosen": {
+      "id_dosen": "integer",
+      "nama": "string",
+      "nip": "string",
+      "email": "string",
+      "telepon": "string",
+      "bidang_keahlian": "string"
+    },
+    "mata_kuliah": {
+      "id_mata_kuliah": "integer",
+      "kode_mata_kuliah": "string",
+      "nama_mata_kuliah": "string",
+      "sks": "integer",
+      "semester": "integer"
+    },
+    "kelas": {
+      "id_kelas": "integer",
+      "id_mata_kuliah": "integer",
+      "id_dosen": "integer",
+      "tahun_akademik": "string",
+      "semester": "integer",
+      "kapasitas": "integer"
+    },
+    "jadwal": {
+      "id_jadwal": "integer",
+      "id_kelas": "integer",
+      "hari": "string",
+      "jam_mulai": "time",
+      "jam_selesai": "time",
+      "ruang": "string"
+    },
+    "pendaftaran_kelas": {
+      "id_pendaftaran": "integer",
+      "id_mahasiswa": "integer",
+      "id_kelas": "integer",
+      "tanggal_pendaftaran": "date"
+    },
+    "nilai": {
+      "id_nilai": "integer",
+      "id_pendaftaran": "integer",
+      "nilai_angka": "decimal",
+      "nilai_huruf": "string"
+    }
+  }
+}
