@@ -1,0 +1,32 @@
+{
+  "Mahasiswa": {
+    "NIM": "string",
+    "Nama": "string",
+    "Alamat": "string",
+    "Tanggal_Lahir": "date",
+    "Program_Studi": "string"
+  },
+  "Dosen": {
+    "NIP": "string",
+    "Nama": "string",
+    "Alamat": "string",
+    "Keahlian": "string"
+  },
+  "Mata_Kuliah": {
+    "Kode_MK": "string",
+    "Nama_MK": "string",
+    "SKS": "integer"
+  },
+  "Kelas": {
+    "ID_Kelas": "integer",
+    "Kode_MK": "string",
+    "NIP": "string",
+    "Semester": "string"
+  },
+  "KRS": {
+    "ID_KRS": "integer",
+    "NIM": "string",
+    "ID_Kelas": "integer",
+    "Nilai": "string"
+  }
+}

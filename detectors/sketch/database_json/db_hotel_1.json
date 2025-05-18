@@ -1,0 +1,70 @@
+{
+  "Entitas": {
+    "Pelanggan": {
+      "id_pelanggan": "integer",
+      "nama": "string",
+      "email": "string",
+      "nomor_telepon": "string"
+    },
+    "Kamar": {
+      "id_kamar": "integer",
+      "nomor_kamar": "string",
+      "id_jenis_kamar": "integer",
+      "harga_per_malam": "decimal",
+      "status": "string"
+    },
+    "Reservasi": {
+      "id_reservasi": "integer",
+      "id_pelanggan": "integer",
+      "tanggal_reservasi": "date",
+      "tanggal_checkin": "date",
+      "tanggal_checkout": "date",
+      "total_biaya": "decimal",
+      "id_kamar": "integer"
+    },
+    "Pembayaran": {
+      "id_pembayaran": "integer",
+      "id_reservasi": "integer",
+      "tanggal_pembayaran": "date",
+      "jumlah_pembayaran": "decimal",
+      "metode_pembayaran": "string"
+    },
+    "Staf": {
+      "id_staf": "integer",
+      "nama": "string",
+      "posisi": "string",
+      "email": "string"
+    },
+    "JenisKamar": {
+      "id_jenis_kamar": "integer",
+      "nama_jenis": "string",
+      "deskripsi": "string"
+    }
+  },
+  "Relasi": {
+    "Pelanggan_Reservasi": {
+      "tipe": "one-to-many",
+      "dari": "Pelanggan",
+      "ke": "Reservasi",
+      "kunci_asing": "id_pelanggan"
+    },
+    "Reservasi_Kamar": {
+      "tipe": "many-to-one",
+      "dari": "Reservasi",
+      "ke": "Kamar",
+      "kunci_asing": "id_kamar"
+    },
+    "Reservasi_Pembayaran": {
+      "tipe": "one-to-many",
+      "dari": "Reservasi",
+      "ke": "Pembayaran",
+      "kunci_asing": "id_reservasi"
+    },
+    "Kamar_JenisKamar": {
+      "tipe": "many-to-one",
+      "dari": "Kamar",
+      "ke": "JenisKamar",
+      "kunci_asing": "id_jenis_kamar"
+    }
+  }
+}

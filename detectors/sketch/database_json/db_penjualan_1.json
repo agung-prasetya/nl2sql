@@ -1,0 +1,79 @@
+{
+  "Entitas": [
+    {
+      "nama": "Pelanggan",
+      "atribut": {
+        "id_pelanggan": "integer",
+        "nama": "string",
+        "alamat": "string",
+        "telepon": "string",
+        "email": "string"
+      }
+    },
+    {
+      "nama": "Produk",
+      "atribut": {
+        "id_produk": "integer",
+        "nama_produk": "string",
+        "harga": "float",
+        "stok": "integer"
+      }
+    },
+    {
+      "nama": "Pesanan",
+      "atribut": {
+        "id_pesanan": "integer",
+        "tanggal_pesanan": "date",
+        "id_pelanggan": "integer",
+        "total_harga": "float"
+      }
+    },
+    {
+      "nama": "DetailPesanan",
+      "atribut": {
+        "id_detail_pesanan": "integer",
+        "id_pesanan": "integer",
+        "id_produk": "integer",
+        "jumlah": "integer",
+        "harga_satuan": "float",
+        "sub_total": "float"
+      }
+    },
+    {
+      "nama": "Pembayaran",
+      "atribut": {
+        "id_pembayaran": "integer",
+        "id_pesanan": "integer",
+        "tanggal_bayar": "date",
+        "jumlah_bayar": "float",
+        "metode_pembayaran": "string"
+      }
+    }
+  ],
+  "Relasi": [
+    {
+      "dari": "Pelanggan",
+      "ke": "Pesanan",
+      "jenis": "1..N",
+      "keterangan": "Satu pelanggan bisa membuat banyak pesanan"
+    },
+    {
+      "dari": "Pesanan",
+      "ke": "DetailPesanan",
+      "jenis": "1..N",
+      "keterangan": "Satu pesanan bisa memiliki banyak detail produk"
+    },
+    {
+      "dari": "Produk",
+      "ke": "DetailPesanan",
+      "jenis": "1..N",
+      "keterangan": "Satu produk bisa muncul di banyak detail pesanan"
+    },
+    {
+      "dari": "Pesanan",
+      "ke": "Pembayaran",
+      "jenis": "1..1",
+      "keterangan": "Satu pesanan memiliki satu pembayaran"
+    }
+  ]
+}
