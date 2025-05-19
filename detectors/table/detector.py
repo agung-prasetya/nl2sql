@@ -1,4 +1,5 @@
 import json
+import re
 
 class TableDetector():
     def __init__(self, filepath_database_json):
