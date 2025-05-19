@@ -43,7 +43,7 @@ class UndefDetector(KnowledgeEngine):
     #Urutan 3 - penambahan fact kata dari kedua kalimat ternormalisasi dan terstemming
     #Kata yang sudah dalam bentuk kata dasar tidak ditambahkan untuk mengurangi jumlah fact.
     @Rule(
-        OR(
+        AND(
             Fact(kalimat=MATCH.kalimat_ternormalisasi, ternormalisasi=True), 
             Fact(kalimat=MATCH.kalimat_terstemming, terstemming=True)
         ),
@@ -51,48 +51,43 @@ class UndefDetector(KnowledgeEngine):
     )    
     def rule_penambahan_fact_kata(self, kalimat_ternormalisasi, kalimat_terstemming):
         daftar_kata_kalimat_ternormalisasi = kalimat_ternormalisasi.split()
-        for id, kata in daftar_kata_kalimat_ternormalisasi:
+        for id, kata in enumerate(daftar_kata_kalimat_ternormalisasi):
             self.declare(Fact(kata=kata, posisi=id))
             
         daftar_kata_kalimat_terstemming = kalimat_terstemming.split()
-        for id, kata in daftar_kata_kalimat_terstemming:
+        for id, kata in enumerate(daftar_kata_kalimat_terstemming):
             if kata not in daftar_kata_kalimat_ternormalisasi:
                 self.declare(Fact(kata=kata, posisi=id))
         
-        
-        
-    #Urutan 2 - identifikasi apakah DDL - CREATE DATABASE nama_database
-    #Kalimat yang teridentifikasi DDL - CREARE DATABASE sudah bisa disimpulkan kalimat TERDEFINISI
+    
     @Rule(
-        AND(
-            Fact(kata='buat', posisi=MATCH.posisi1),
-            OR(
-                AND(
-                    Fact(kata='basis', posisi=MATCH.posisi2), 
-                    Fact(kata='data', posisi=MATCH.posisi3),
-                    TEST(lambda posisi1,posisi2,posisi3: posisi1<posisi2 and posisi2==posisi3-1)
-                ),
-                AND(
-                    Fact(kata='database', posisi=MATCH.posisi3),
-                    TEST(lambda posisi1,posisi3: posisi1<posisi3)
-                )
-            ),
-            Fact(kata=MATCH.kata, posisi=MATCH.posisi2)
-            
+        AS.fact_kata << Fact(kata=MATCH.kata),
+        TEST(lambda fact_kata: 'jenis_aksi' not in fact_kata),
+        TEST(lambda kata: kata in ['buat','bangun','cipta','tambah','siap','sedia','inisialisasi',
+                                   'mulai dengan','rancang','susun','tetap','formula','bentuk',
+                                    'konstruksi']
         ),
         salience=285
     )
-    def rule_identifikasi_apakah_ddl(self):
-        self.declare(Fact(jenis_kalimat='TERDEFINISI'))
-    
+    def rule_identifikasi_jenis_aksi_create(self,fact_kata):
+        self.modify(fact_kata, jenis_aksi='create')
         
         
-        
-    #Urutan 2 - identifikasi apakah DML
-    
-    
-    
-        
+    #Delete == drop
+    @Rule(
+        AS.fact_kata << Fact(kata=MATCH.kata),
+        TEST(lambda fact_kata: 'jenis_aksi' not in fact_kata),
+        TEST(lambda kata: kata in ['hapus','hilang','buang','copot','lepas','singkir','musnah',
+                                   'bersih','kosong','enyah','rusak']
+        ),
+        salience=285
+    )
+    def rule_identifikasi_jenis_aksi_create(self,fact_kata):
+        self.modify(fact_kata, jenis_aksi='drop')
+     
+     
+     
+     
         
     def detect(self, kalimat, filepath_database_json):
         with open(filepath_database_json, 'r') as file:
@@ -104,7 +99,9 @@ class UndefDetector(KnowledgeEngine):
             Fact(database=database)
         )
         self.run()
-        
+        for fact in self.facts.items():
+            print(fact)
+            
         for fact in self.facts.values():
             if 'jenis_kalimat' in fact:
                 return fact['jenis_kalimat']
