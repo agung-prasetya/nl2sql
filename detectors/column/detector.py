@@ -63,3 +63,17 @@ class ColumnDetector():
         daftar_kolom_simmilarity = self.set_daftar_kolom_simmilarity(daftar_kata=daftar_kata, daftar_kolom=daftar_kolom)
         daftar_kolom_select = self.filter(daftar_kolom_simmilarity=daftar_kolom_simmilarity,threshold=0.55)
         return daftar_kolom_select
+
+def set_daftar_kolom_simmilarity(self, daftar_kolom, daftar_kata):
+    daftar_kolom_simmilarity = []
+
+    for kolom in daftar_kolom:
+        max_nilai = 0
+        for kata in daftar_kata:
+            nilai_jaccard_coefficient = jaccard_coefficient(kolom, kata)
+            if nilai_jaccard_coefficient > max_nilai:
+                max_nilai = nilai_jaccard_coefficient
+        data = {'nama_kolom': kolom, 'nilai_simmilarity': max_nilai}
+        daftar_kolom_simmilarity.append(data)
+
+    return daftar_kolom_simmilarity
