@@ -64,7 +64,7 @@ class MultiLabelEvaluator():
     def evaluate(self):
         y_true = []
         y_predicted = []
-        for _, row in self.dataframe.iterrows():
+        for id, row in self.dataframe.iterrows():
             kalimat = row['kalimat']
 
             filepath_database_json = str(Path(self.folderpath_database)/row['database'])
@@ -74,6 +74,8 @@ class MultiLabelEvaluator():
 
             labels = [label.strip() for label in row['label'].strip().split(',')]
             y_true.append(labels)
+            
+            print(f"{labels==predicted_label};{id};{labels};{predicted_label};{kalimat}")
 
         binarizer = MultiLabelBinarizer()
         y_true_binerized = binarizer.fit_transform(y_true)
@@ -97,7 +99,6 @@ class MultiLabelEvaluator():
         print(f"Micro Precision: {precision_micro:.2f}, Recall: {recall_micro:.2f}, F1: {f1_micro:.2f}")
         print(f"Macro Precision: {precision_macro:.2f}, Recall: {recall_macro:.2f}, F1: {f1_macro:.2f}")
         print(f"Hamming Loss: {hamming:.2f}")
-        print(f"Jaccard Similarity: {jaccard:.2f}")
 
         return {
             'exact_match_ratio':exact_match_ratio,
@@ -111,6 +112,5 @@ class MultiLabelEvaluator():
                 'recall':recall_macro,
                 'f1':f1_macro
             },
-            'hamming':hamming,
-            'jaccard':jaccard
+            'hamming':hamming
         }
