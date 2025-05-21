@@ -21,7 +21,6 @@ class TableDetector():
 
 
     def normalisasi(self,kalimat):
-       
         kalimat = kalimat.lower()
         kalimat = re.sub(r'[^a-z\s]', '', kalimat)        
         kalimat = re.sub(r'\s+', ' ', kalimat).strip()
@@ -44,7 +43,6 @@ class TableDetector():
         with open(filepath_database_json, 'r') as file:
             database = json.load(file)
             
-            
         daftar_table = self.ekstraksi_semua_table_json(database)
         kalimat_ternormalisasi = self.normalisasi(kalimat=kalimat)
         daftar_kata = self.tokenisasi(kalimat_ternormalisasi=kalimat_ternormalisasi)
@@ -58,7 +56,6 @@ class TableDetector():
     
     def set_daftar_table_simmilarity(self, daftar_table, daftar_kata):
         daftar_table_simmilarity = []
-
         for table in daftar_table:
             max_nilai = 0
             for kata in daftar_kata:
@@ -69,6 +66,7 @@ class TableDetector():
             daftar_table_simmilarity.append(data)
 
             return daftar_table_simmilarity
+
 
 
     
