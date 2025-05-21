@@ -1,0 +1,32 @@
+{
+  "entitas": {
+    "produk": {
+      "id_produk": "INTEGER (Primary Key)",
+      "nama_produk": "VARCHAR",
+      "deskripsi": "TEXT",
+      "harga": "DECIMAL"
+    },
+    "kategori": {
+      "id_kategori": "INTEGER (Primary Key)",
+      "nama_kategori": "VARCHAR"
+    },
+    "pemasok": {
+      "id_pemasok": "INTEGER (Primary Key)",
+      "nama_pemasok": "VARCHAR",
+      "alamat": "VARCHAR",
+      "nomor_telepon": "VARCHAR"
+    },
+    "stok": {
+      "id_stok": "INTEGER (Primary Key)",
+      "jumlah": "INTEGER",
+      "tanggal_masuk": "DATE"
+    },
+    "transaksi": {
+      "id_transaksi": "INTEGER (Primary Key)",
+      "tanggal_transaksi": "DATE",
+      "jenis_transaksi": "VARCHAR",
+      "jumlah": "INTEGER",
+      "harga_satuan": "DECIMAL"
+    }
+  }
+}

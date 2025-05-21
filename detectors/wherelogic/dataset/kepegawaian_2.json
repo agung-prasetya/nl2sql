@@ -1,0 +1,43 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "INTEGER (Primary Key)",
+      "nama": "VARCHAR",
+      "email": "VARCHAR",
+      "nomor_telepon": "VARCHAR",
+      "tanggal_masuk": "DATE",
+      "id_jabatan": "INTEGER",
+      "id_departemen": "INTEGER"
+    },
+    "jabatan": {
+      "id_jabatan": "INTEGER (Primary Key)",
+      "nama_jabatan": "VARCHAR",
+      "gaji_pokok": "DECIMAL"
+    },
+    "departemen": {
+      "id_departemen": "INTEGER (Primary Key)",
+      "nama_departemen": "VARCHAR"
+    },
+    "gaji": {
+      "id_gaji": "INTEGER (Primary Key)",
+      "id_pegawai": "INTEGER",
+      "tanggal": "DATE",
+      "jumlah": "DECIMAL",
+      "status_pembayaran": "VARCHAR"
+    },
+    "cuti": {
+      "id_cuti": "INTEGER (Primary Key)",
+      "id_pegawai": "INTEGER",
+      "tanggal_mulai": "DATE",
+      "tanggal_selesai": "DATE",
+      "jenis_cuti": "VARCHAR",
+      "status_cuti": "VARCHAR"
+    },
+    "absensi": {
+      "id_absensi": "INTEGER (Primary Key)",
+      "id_pegawai": "INTEGER",
+      "tanggal": "DATE",
+      "status_hadir": "VARCHAR"
+    }
+  }
+}

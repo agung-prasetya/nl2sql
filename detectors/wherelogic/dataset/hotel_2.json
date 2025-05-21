@@ -1,0 +1,53 @@
+{
+  "entitas": {
+    "kamar": {
+      "id_kamar": "INTEGER (Primary Key)",
+      "nomor_kamar": "VARCHAR",
+      "kategori": "VARCHAR",
+      "harga_per_malam": "DECIMAL",
+      "status": "VARCHAR",
+      "fasilitas": "TEXT"
+    },
+    "kategori_kamar": {
+      "id_kategori_kamar": "INTEGER (Primary Key)",
+      "nama_kategori_kamar": "VARCHAR"
+    },
+    "pelanggan": {
+      "id_pelanggan": "INTEGER (Primary Key)",
+      "nama_pelanggan": "VARCHAR",
+      "email": "VARCHAR",
+      "nomor_telepon": "VARCHAR",
+      "alamat": "VARCHAR"
+    },
+    "reservasi": {
+      "id_reservasi": "INTEGER (Primary Key)",
+      "id_pelanggan": "INTEGER",
+      "id_kamar": "INTEGER",
+      "tanggal_check_in": "DATE",
+      "tanggal_check_out": "DATE",
+      "total_harga": "DECIMAL",
+      "status_reservasi": "VARCHAR"
+    },
+    "pembayaran": {
+      "id_pembayaran": "INTEGER (Primary Key)",
+      "id_reservasi": "INTEGER",
+      "tanggal_pembayaran": "DATE",
+      "jumlah_pembayaran": "DECIMAL",
+      "metode_pembayaran": "VARCHAR",
+      "status_pembayaran": "VARCHAR"
+    },
+    "fasilitas": {
+      "id_fasilitas": "INTEGER (Primary Key)",
+      "nama_fasilitas": "VARCHAR",
+      "deskripsi": "TEXT",
+      "biaya_tambahan": "DECIMAL"
+    },
+    "transaksi_fasilitas": {
+      "id_transaksi_fasilitas": "INTEGER (Primary Key)",
+      "id_reservasi": "INTEGER",
+      "id_fasilitas": "INTEGER",
+      "jumlah": "INTEGER",
+      "biaya": "DECIMAL"
+    }
+  }
+}

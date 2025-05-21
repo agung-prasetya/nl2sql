@@ -1,0 +1,39 @@
+{
+  "entitas": {
+    "produk": {
+      "id_produk": "integer",
+      "nama_produk": "string",
+      "kategori": "string",
+      "harga_satuan": "float",
+      "stok": "integer"
+    },
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama_pelanggan": "string",
+      "email": "string",
+      "telepon": "string",
+      "alamat": "string"
+    },
+    "penjualan": {
+      "id_penjualan": "integer",
+      "id_pelanggan": "integer",
+      "tanggal_penjualan": "date",
+      "total_harga": "float",
+      "status_penjualan": "string"
+    },
+    "detail_penjualan": {
+      "id_detail_penjualan": "integer",
+      "id_penjualan": "integer",
+      "id_produk": "integer",
+      "jumlah": "integer",
+      "harga_satuan": "float"
+    },
+    "pengguna": {
+      "id_pengguna": "integer",
+      "nama_pengguna": "string",
+      "email": "string",
+      "password": "string",
+      "role": "string"
+    }
+  }
+}

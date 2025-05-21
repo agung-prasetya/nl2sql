@@ -1,0 +1,36 @@
+{
+  "entitas": {
+    "akun": {
+      "id_akun": "INTEGER (Primary Key)",
+      "kode_akun": "VARCHAR",
+      "nama_akun": "VARCHAR",
+      "jenis_akun": "VARCHAR"
+    },
+    "jurnal_umum": {
+      "id_jurnal": "INTEGER (Primary Key)",
+      "tanggal": "DATE",
+      "keterangan": "TEXT"
+    },
+    "jurnal_rinci": {
+      "id_jurnal_rinci": "INTEGER (Primary Key)",
+      "id_jurnal": "INTEGER",
+      "id_akun": "INTEGER",
+      "debit": "DECIMAL",
+      "kredit": "DECIMAL"
+    },
+    "transaksi_keuangan": {
+      "id_transaksi": "INTEGER (Primary Key)",
+      "tanggal": "DATE",
+      "keterangan": "TEXT",
+      "nominal": "DECIMAL",
+      "kategori": "VARCHAR"
+    },
+    "pengguna": {
+      "id_pengguna": "INTEGER (Primary Key)",
+      "nama": "VARCHAR",
+      "email": "VARCHAR",
+      "password": "VARCHAR",
+      "peran": "VARCHAR"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "id_mahasiswa": "INTEGER (Primary Key)",
+      "nama": "VARCHAR",
+      "program_studi": "VARCHAR"
+    },
+    "dosen": {
+      "id_dosen": "INTEGER (Primary Key)",
+      "nama": "VARCHAR",
+      "departemen": "VARCHAR"
+    },
+    "mata_kuliah": {
+      "id_mk": "INTEGER (Primary Key)",
+      "kode_mk": "VARCHAR",
+      "nama_mk": "VARCHAR",
+      "sks": "INTEGER"
+    },
+    "jadwal": {
+      "id_jadwal": "INTEGER (Primary Key)",
+      "id_mk": "INTEGER",
+      "id_dosen": "INTEGER",
+      "hari": "VARCHAR",
+      "jam_mulai": "TIME",
+      "jam_selesai": "TIME",
+      "ruangan": "VARCHAR"
+    },
+    "krs": {
+      "id_krs": "INTEGER (Primary Key)",
+      "id_mahasiswa": "INTEGER",
+      "id_jadwal": "INTEGER",
+      "tahun_akademik": "VARCHAR",
+      "semester": "VARCHAR"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "entitas": {
+    "kamar": {
+      "id_kamar": "integer",
+      "nomor_kamar": "string",
+      "kategori": "string",
+      "harga_per_malam": "float",
+      "status": "string",
+      "fasilitas": "string"
+    },
+    "pelanggan": {
+      "id_pelanggan": "integer",
+      "nama_pelanggan": "string",
+      "email": "string",
+      "nomor_telepon": "string",
+      "alamat": "string"
+    },
+    "reservasi": {
+      "id_reservasi": "integer",
+      "id_pelanggan": "integer",
+      "id_kamar": "integer",
+      "tanggal_check_in": "date",
+      "tanggal_check_out": "date",
+      "total_harga": "float",
+      "status_reservasi": "string"
+    },
+    "pembayaran": {
+      "id_pembayaran": "integer",
+      "id_reservasi": "integer",
+      "tanggal_pembayaran": "date",
+      "jumlah_pembayaran": "float",
+      "metode_pembayaran": "string",
+      "status_pembayaran": "string"
+    },
+    "fasilitas": {
+      "id_fasilitas": "integer",
+      "nama_fasilitas": "string",
+      "deskripsi": "string",
+      "biaya_tambahan": "float"
+    },
+    "transaksi_fasilitas": {
+      "id_transaksi": "integer",
+      "id_reservasi": "integer",
+      "id_fasilitas": "integer",
+      "jumlah": "integer",
+      "biaya": "float"
+    },
+    "pengguna": {
+      "id_pengguna": "integer",
+      "nama_pengguna": "string",
+      "email": "string",
+      "password": "string",
+      "role": "string"
+    }
+  }
+}

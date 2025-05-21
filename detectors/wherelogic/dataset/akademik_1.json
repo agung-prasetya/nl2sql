@@ -1,0 +1,36 @@
+{
+  "entitas": {
+    "mahasiswa": {
+      "id_mahasiswa": "integer",
+      "nama": "string",
+      "email": "string",
+      "tanggal_lahir": "date",
+      "program_studi": "string"
+    },
+    "dosen": {
+      "id_dosen": "integer",
+      "nama": "string",
+      "email": "string",
+      "departemen": "string"
+    },
+    "mata_kuliah": {
+      "id_mk": "integer",
+      "kode_mk": "string",
+      "nama_mk": "string",
+      "sks": "integer",
+      "id_dosen": "integer"
+    },
+    "krs": {
+      "id_krs": "integer",
+      "id_mahasiswa": "integer",
+      "id_mk": "integer",
+      "semester": "string",
+      "tahun_akademik": "string"
+    },
+    "khs": {
+      "id_khs": "integer",
+      "id_krs": "integer",
+      "nilai": "string"
+    }
+  }
+}

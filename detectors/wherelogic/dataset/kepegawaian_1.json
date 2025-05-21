@@ -1,0 +1,41 @@
+{
+  "entitas": {
+    "pegawai": {
+      "id_pegawai": "integer",
+      "nama": "string",
+      "email": "string",
+      "nomor_telepon": "string",
+      "jabatan": "string",
+      "departemen": "string",
+      "tanggal_masuk": "date"
+    },
+    "gaji": {
+      "id_gaji": "integer",
+      "id_pegawai": "integer",
+      "tanggal": "date",
+      "jumlah": "float",
+      "status_pembayaran": "string"
+    },
+    "cuti": {
+      "id_cuti": "integer",
+      "id_pegawai": "integer",
+      "tanggal_mulai": "date",
+      "tanggal_selesai": "date",
+      "jenis_cuti": "string",
+      "status_cuti": "string"
+    },
+    "absensi": {
+      "id_absensi": "integer",
+      "id_pegawai": "integer",
+      "tanggal": "date",
+      "status_hadir": "string"  // hadir, izin, sakit, alpha
+    },
+    "pengguna": {
+      "id_pengguna": "integer",
+      "nama_pengguna": "string",
+      "email": "string",
+      "password": "string",
+      "role": "string"
+    }
+  }
+}
