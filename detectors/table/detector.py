@@ -11,7 +11,7 @@ class TableDetector():
     def ekstraksi_semua_table_json(self):
         set_tabel = set()
         for table in self.database['entitas']:
-            for table in self.database['entitas'][tabel]:
+            for table in self.database['entitas'][table]:
                 set_table.add(table)
 
         daftar_table = list(set_table)
@@ -29,7 +29,7 @@ class TableDetector():
          for table in daftar_table:
             
             tokens_kolom = table.lower().replace('_', ' ').split()
-            set_table = set(tokens_table)
+            set_table = set(token_table)
 
             irisan = set_kata & set_table
             gabungan = set_kata | set_table
@@ -63,3 +63,16 @@ class TableDetector():
         daftar_table_simmilarity = self.set_daftar_table_simmilarity(daftar_kata=daftar_kata, daftar_table=daftar_table)
         daftar_table_select = self.filter(daftar_table_simmilarity=daftar_table_simmilarity,threshold=0.55)
         return daftar_table_select
+    def set_daftar_table_simmilarity(daftar_table, daftar_kata):
+    daftar_table_simmilarity = []
+
+    for table in daftar_table:
+        max_nilai = 0
+        for kata in daftar_kata:
+            nilai_jaccard_coefficient = jaccard_coefficient(table, kata)
+            if nilai_jaccard_coefficient > max_nilai:
+                max_nilai = nilai_jaccard_coefficient
+        data = {'nama_table': table, 'nilai_simmilarity': max_nilai}
+        daftar_table_simmilarity.append(data)
+
+        return daftar_table_simmilarity
