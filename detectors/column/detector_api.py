@@ -1,5 +1,4 @@
-from detectors import *
-from evaluator import *
+from detector import *
 from flask import Flask, request, jsonify
 import tempfile
 import os
@@ -33,14 +32,6 @@ def predict_column():
         'detected_label': detected_label
     })
 
-@app.route('/column/evaluate', methods=['POST'])
-def evaluate():
-    filepath_dataset = str(Path(__file__).parent / 'dataset' / 'dataset.xlsx')
-    folderpath_database = str(Path(__file__).parent / 'dataset')
-    detector = ColumnDetector()
-    evaluator=MultiLabelEvaluator(filepath_dataset=filepath_dataset,folderpath_database=folderpath_database, detector=detector)
-    hasil = evaluator.evaluate()
-    return jsonify(hasil)
 
 if __name__ == '__main__':
     app.run(debug=True)
