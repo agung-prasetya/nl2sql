@@ -28,7 +28,7 @@
       "id_absensi": "integer",
       "id_pegawai": "integer",
       "tanggal": "date",
-      "status_hadir": "string"  // hadir, izin, sakit, alpha
+      "status_hadir": "string" 
     },
     "pengguna": {
       "id_pengguna": "integer",

@@ -64,7 +64,7 @@ class MultiLabelEvaluator():
     def evaluate(self):
         y_true = []
         y_predicted = []
-        for _, row in self.dataframe.iterrows():
+        for id, row in self.dataframe.iterrows():
             kalimat = row['kalimat']
 
             filepath_database_json = str(Path(self.folderpath_database)/row['database'])
@@ -74,6 +74,8 @@ class MultiLabelEvaluator():
 
             labels = [label.strip() for label in row['label'].strip().split(',')]
             y_true.append(labels)
+            
+            print(f"{id};{labels};{predicted_label};{kalimat}")
 
         binarizer = MultiLabelBinarizer()
         y_true_binerized = binarizer.fit_transform(y_true)
