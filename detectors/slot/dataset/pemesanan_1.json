@@ -1,25 +1,49 @@
 {
   "entitas": {
-    "pengguna": {
-      "id": "PRIMARY KEY",
-      "nama": "VARCHAR(100)",
-      "nama_pengguna": "VARCHAR(50)",
-      "kata_sandi": "VARCHAR(50)",
-      "divisi": "VARCHAR(50)",
-      "tingkatan": "VARCHAR(20)"
+    "pelanggan": {
+      "id_pelanggan": "primary key",
+      "nama": "varchar(100)",
+      "email": "varchar(100)",
+      "no_hp": "varchar(20)",
+      "alamat": "varchar(255)"
     },
-    "pemesanan": {
-      "id_pemesanan": "PRIMARY KEY",
-      "id_pengguna": "FOREIGN KEY REFERENCES pengguna(id)",
-      "id_ruang": "FOREIGN KEY REFERENCES ruang_rapat(id_ruang)",
-      "waktu_mulai": "DATETIME",
-      "waktu_selesai": "DATETIME",
-      "tujuan": "TEXT"
+    "produk": {
+      "id_produk": "primary key",
+      "nama_produk": "varchar(100)",
+      "harga": "decimal",
+      "stok": "integer",
+      "deskripsi": "text"
     },
-    "ruang_rapat": {
-      "id_ruang": "PRIMARY KEY",
-      "nama": "VARCHAR(100)",
-      "deskripsi": "TEXT"
+    "pesanan": {
+      "id_pesanan": "primary key",
+      "id_pelanggan": "foreign key references pelanggan(id_pelanggan)",
+      "tanggal_pesan": "date",
+      "status": "varchar(50)",
+      "total_bayar": "decimal"
+    },
+    "detail_pesanan": {
+      "id_detail": "primary key",
+      "id_pesanan": "foreign key references pesanan(id_pesanan)",
+      "id_produk": "foreign key references produk(id_produk)",
+      "kuantitas": "integer",
+      "harga_satuan": "decimal",
+      "subtotal": "decimal"
+    },
+    "pembayaran": {
+      "id_pembayaran": "primary key",
+      "id_pesanan": "foreign key references pesanan(id_pesanan)",
+      "metode": "varchar(50)",
+      "status_pembayaran": "varchar(50)",
+      "tanggal_pembayaran": "date"
+    },
+    "pengiriman": {
+      "id_pengiriman": "primary key",
+      "id_pesanan": "foreign key references pesanan(id_pesanan)",
+      "jasa_kurir": "varchar(100)",
+      "no_resi": "varchar(100)",
+      "status_pengiriman": "varchar(50)",
+      "tanggal_kirim": "date",
+      "tanggal_terima": "date"
     }
   }
 }

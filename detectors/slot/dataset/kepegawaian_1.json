@@ -1,161 +1,34 @@
 {
   "entitas": {
-    "klien": {
-      "id_klien": "PRIMARY KEY",
-      "nama": "VARCHAR",
-      "alamat": "TEXT",
-      "no_telp": "VARCHAR",
-      "email": "VARCHAR",
-      "password": "VARCHAR"
-    },
-    "kontrak_klien": {
-      "no_kontrak": "PRIMARY KEY",
-      "lama_kontrak": "INT",
-      "id_klien": "FOREIGN KEY REFERENCES klien(id_klien)",
-      "status": "VARCHAR",
-      "tanggal_mulai": "DATE",
-      "jam_kerja": "VARCHAR",
-      "nilai_kontrak": "DECIMAL",
-      "jumlah_pegawai": "INT"
-    },
-    "nilai_kualitas": {
-      "id_nilai_kualitas": "PRIMARY KEY",
-      "no_kontrak": "FOREIGN KEY REFERENCES kontrak_klien(no_kontrak)",
-      "id_kriteria": "FOREIGN KEY REFERENCES kriteria(id_kriteria)",
-      "nilai": "DECIMAL",
-      "periode": "VARCHAR"
-    },
-    "kriteria": {
-      "id_kriteria": "PRIMARY KEY",
-      "keterangan": "TEXT",
-      "jenis": "VARCHAR",
-      "tipe": "VARCHAR"
-    },
-    "rekrutmen": {
-      "id_rekrutmen": "PRIMARY KEY",
-      "nama": "VARCHAR",
-      "alamat": "TEXT",
-      "tpt_lahir": "VARCHAR",
-      "tgl_lahir": "DATE",
-      "pendidikan_terakhir": "VARCHAR",
-      "jenis_kelamin": "VARCHAR",
-      "status_perkawinan": "VARCHAR",
-      "agama": "VARCHAR",
-      "email": "VARCHAR",
-      "no_hp": "VARCHAR",
-      "posisi_dilamar": "VARCHAR",
-      "file": "VARCHAR",
-      "tanggal": "DATE",
-      "status": "VARCHAR"
-    },
     "pegawai": {
-      "nik": "PRIMARY KEY",
+      "id_pegawai": "PRIMARY KEY",
+      "nama": "VARCHAR(100)",
+      "tanggal_lahir": "DATE",
       "alamat": "TEXT",
-      "tpt_lahir": "VARCHAR",
-      "tgl_lahir": "DATE",
-      "nama_jabatan": "VARCHAR",
-      "id_posisi": "FOREIGN KEY REFERENCES posisi(id_posisi)",
-      "pendidikan": "VARCHAR",
-      "password": "VARCHAR",
-      "status": "VARCHAR",
-      "lama_kontrak": "INT",
-      "tanggal_masuk": "DATE",
-      "tanggal_keluar": "DATE",
-      "jenis_kelamin": "VARCHAR",
-      "agama": "VARCHAR",
-      "status_perkawinan": "VARCHAR",
-      "jumlah_tanggungan": "INT",
-      "email": "VARCHAR",
-      "no_hp": "VARCHAR",
-      "no_bpps_kes": "VARCHAR",
-      "no_bpps_tk": "VARCHAR",
-      "jatah_cuti": "INT"
+      "telepon": "VARCHAR(20)",
+      "id_jabatan": "FOREIGN KEY REFERENCES jabatan(id_jabatan)"
     },
-    "posisi": {
-      "id_posisi": "PRIMARY KEY",
-      "nama_jabatan": "VARCHAR",
-      "nama_posisi": "VARCHAR"
-    },
-    "mutasi": {
-      "id_mutasi": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "tanggal_mutasi": "DATE",
-      "upah_lama": "DECIMAL",
-      "upah_baru": "DECIMAL",
-      "area_kerja": "VARCHAR",
-      "area_mutasi": "VARCHAR",
-      "alasan_mutasi": "TEXT"
-    },
-    "nilai_pegawai": {
-      "id_nilai_pegawai": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "id_outsourcing": "FOREIGN KEY REFERENCES outsourcing(id_outsourcing)",
-      "id_kriteria": "FOREIGN KEY REFERENCES kriteria(id_kriteria)",
-      "nilai": "DECIMAL"
-    },
-    "outsourcing": {
-      "id_outsourcing": "PRIMARY KEY",
-      "no_kontrak": "FOREIGN KEY REFERENCES kontrak_klien(no_kontrak)",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "upah": "DECIMAL"
-    },
-    "ganti_jabatan": {
-      "id_ganti_jabatan": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "jabatan_lama": "VARCHAR",
-      "lama_jabatan": "INT",
-      "jabatan_baru": "VARCHAR",
-      "posisi_baru": "VARCHAR",
-      "tanggal_ganti_jabatan": "DATE",
-      "jenis": "VARCHAR",
-      "upah_lama": "DECIMAL",
-      "upah_baru": "DECIMAL",
-      "alasan_ganti_jabatan": "TEXT"
-    },
-    "pengunduran_diri": {
-      "id_pengunduran_diri": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "tanggal_pengunduran_diri": "DATE",
-      "alasan": "TEXT",
-      "status": "VARCHAR"
-    },
-    "izin": {
-      "id_izin": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "mulai_izin": "DATE",
-      "lama_izin": "INT",
-      "selesai_izin": "DATE",
-      "status": "VARCHAR",
-      "keterangan": "TEXT"
+    "jabatan": {
+      "id_jabatan": "PRIMARY KEY",
+      "nama_jabatan": "VARCHAR(100)",
+      "gaji_pokok": "DECIMAL(10,2)",
+      "tunjangan": "DECIMAL(10,2)"
     },
     "absensi": {
       "id_absensi": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "hari": "DATE",
+      "id_pegawai": "FOREIGN KEY REFERENCES pegawai(id_pegawai)",
+      "tanggal": "DATE",
       "jam_masuk": "TIME",
       "jam_keluar": "TIME",
-      "over_time": "INT"
+      "status": "VARCHAR(20)"
     },
-    "cuti": {
-      "id_cuti": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "mulai_cuti": "DATE",
-      "lama_cuti": "INT",
-      "selesai_cuti": "DATE",
-      "status": "VARCHAR",
+    "gaji": {
+      "id_gaji": "PRIMARY KEY",
+      "id_pegawai": "FOREIGN KEY REFERENCES pegawai(id_pegawai)",
+      "tanggal_gaji": "DATE",
+      "total_gaji": "DECIMAL(10,2)",
+      "potongan": "DECIMAL(10,2)",
       "keterangan": "TEXT"
-    },
-    "surat_peringatan": {
-      "id_surat_peringatan": "PRIMARY KEY",
-      "nik": "FOREIGN KEY REFERENCES pegawai(nik)",
-      "tgl_surat_peringatan": "DATE",
-      "surat_ke": "INT",
-      "keterangan": "TEXT"
-    },
-    "pengguna": {
-      "username": "PRIMARY KEY",
-      "password": "VARCHAR",
-      "akses": "VARCHAR"
     }
   }
 }

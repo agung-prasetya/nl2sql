@@ -1,36 +1,44 @@
 {
   "entitas": {
-    "petugas": {
-      "id_petugas": "PRIMARY KEY",
-      "nama_petugas": "VARCHAR(25)",
-      "tingkat": "ENUM('admin','resepsionis')",
-      "nama_pengguna": "VARCHAR(25)",
-      "kata_sandi": "VARCHAR(50)"
+    "tamu": {
+      "id_tamu": "primary key",
+      "nama": "varchar(100)",
+      "alamat": "varchar(255)",
+      "telepon": "varchar(20)",
+      "email": "varchar(100)"
     },
     "kamar": {
-      "id_kamar": "PRIMARY KEY",
-      "nama_kamar": "VARCHAR(20)",
-      "fasilitas_kamar": "TEXT",
-      "jumlah_kasur": "INT",
-      "harga": "VARCHAR(15)",
-      "gambar_kamar": "VARCHAR(55)"
+      "id_kamar": "primary key",
+      "nomor_kamar": "varchar(10)",
+      "id_tipe_kamar": "foreign key references tipe_kamar(id_tipe_kamar)",
+      "status": "varchar(20)",
+      "harga_per_malam": "decimal(12,2)"
     },
-    "pemesanan": {
-      "id_pemesanan": "PRIMARY KEY",
-      "nama_pemesan": "VARCHAR(10)",
-      "nomor_hp": "VARCHAR(30)",
-      "surel": "VARCHAR(30)",
-      "nama_tamu": "VARCHAR(30)",
-      "tanggal_masuk": "VARCHAR(15)",
-      "tanggal_keluar": "VARCHAR(15)",
-      "jumlah_kamar": "INT",
-      "tipe_kamar": "VARCHAR(15)"
+    "tipe_kamar": {
+      "id_tipe_kamar": "primary key",
+      "nama_tipe": "varchar(50)",
+      "fasilitas": "text",
+      "kapasitas": "integer"
     },
-    "fasilitas": {
-      "id_fasilitas": "PRIMARY KEY",
-      "nama_fasilitas": "VARCHAR(25)",
-      "keterangan_fasilitas": "TEXT",
-      "gambar_fasilitas": "VARCHAR(50)"
+    "reservasi": {
+      "id_reservasi": "primary key",
+      "id_tamu": "foreign key references tamu(id_tamu)",
+      "tanggal_checkin": "date",
+      "tanggal_checkout": "date",
+      "status_reservasi": "varchar(20)"
+    },
+    "detail_reservasi": {
+      "id_reservasi": "foreign key references reservasi(id_reservasi)",
+      "id_kamar": "foreign key references kamar(id_kamar)",
+      "primary_key": "id_reservasi, id_kamar"
+    },
+    "pembayaran": {
+      "id_pembayaran": "primary key",
+      "id_reservasi": "foreign key references reservasi(id_reservasi)",
+      "tanggal_pembayaran": "date",
+      "total_pembayaran": "decimal(12,2)",
+      "metode_pembayaran": "varchar(50)",
+      "status_pembayaran": "varchar(20)"
     }
   }
 }

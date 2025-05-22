@@ -1,54 +1,57 @@
 {
   "entitas": {
-    "konsumen": {
-      "id_konsumen": "PRIMARY KEY",
-      "nama": "VARCHAR(50)",
-      "alamat": "VARCHAR(100)",
-      "no_telepon": "VARCHAR(20)",
-      "email": "VARCHAR(50)",
-      "password": "VARCHAR(50)"
+    "pelanggan": {
+      "id_pelanggan": "primary key",
+      "nama": "varchar(100)",
+      "no_hp": "varchar(20)",
+      "alamat": "varchar(255)"
     },
-    "pemesanan": {
-      "id_pemesanan": "PRIMARY KEY",
-      "id_konsumen": "FOREIGN KEY REFERENCES konsumen(id_konsumen)",
-      "tgl_pesan": "VARCHAR(15)",
-      "tgl_bayar": "VARCHAR(15)",
-      "no_rekening": "VARCHAR(20)",
-      "status": "VARCHAR(20)"
-    },
-    "detail_pesanan": {
-      "id_konsumen": "FOREIGN KEY REFERENCES konsumen(id_konsumen)",
-      "id_barang": "FOREIGN KEY REFERENCES barang(id_barang)",
-      "id_pemesanan": "FOREIGN KEY REFERENCES pemesanan(id_pemesanan)",
-      "total": "VARCHAR(50)"
-    },
-    "barang": {
-      "id_barang": "PRIMARY KEY",
-      "nama_barang": "VARCHAR(25)",
-      "harga_jual": "VARCHAR(20)",
-      "kategori": "VARCHAR(20)",
-      "stok": "VARCHAR(100)"
-    },
-    "admin": {
-      "id_admin": "PRIMARY KEY",
-      "email": "VARCHAR(50)",
-      "password": "VARCHAR(50)"
-    },
-    "laporan_bulanan": {
-      "id_laporanbulanan": "PRIMARY KEY",
-      "hasil_penjualan": "VARCHAR(100)",
-      "laba_rugi": "VARCHAR(100)"
+    "kasir": {
+      "id_kasir": "primary key",
+      "nama": "varchar(100)",
+      "username": "varchar(50)",
+      "password": "varchar(50)"
     },
     "supplier": {
-      "id_supplier": "PRIMARY KEY",
-      "nama_supplier": "VARCHAR(20)",
-      "no_telepon": "VARCHAR(20)",
-      "produk": "VARCHAR(100)",
-      "alamat": "VARCHAR(100)"
+      "id_supplier": "primary key",
+      "nama": "varchar(100)",
+      "kontak": "varchar(20)",
+      "alamat": "varchar(255)"
     },
-    "owner": {
-      "id_owner": "PRIMARY KEY",
-      "id_laporanbulanan": "FOREIGN KEY REFERENCES laporan_bulanan(id_laporanbulanan)"
+    "kategori": {
+      "id_kategori": "primary key",
+      "nama_kategori": "varchar(100)"
+    },
+    "produk": {
+      "id_produk": "primary key",
+      "nama_produk": "varchar(100)",
+      "harga": "decimal",
+      "stok": "integer",
+      "id_kategori": "foreign key references kategori(id_kategori)",
+      "id_supplier": "foreign key references supplier(id_supplier)"
+    },
+    "penjualan": {
+      "id_penjualan": "primary key",
+      "id_pelanggan": "foreign key references pelanggan(id_pelanggan)",
+      "id_kasir": "foreign key references kasir(id_kasir)",
+      "tanggal_penjualan": "date",
+      "total": "decimal"
+    },
+    "detail_penjualan": {
+      "id_detail": "primary key",
+      "id_penjualan": "foreign key references penjualan(id_penjualan)",
+      "id_produk": "foreign key references produk(id_produk)",
+      "jumlah": "integer",
+      "harga_satuan": "decimal",
+      "subtotal": "decimal"
+    },
+    "pembayaran": {
+      "id_pembayaran": "primary key",
+      "id_penjualan": "foreign key references penjualan(id_penjualan)",
+      "metode": "varchar(50)",
+      "jumlah_bayar": "decimal",
+      "tanggal_bayar": "date",
+      "status": "varchar(20)"
     }
   }
 }

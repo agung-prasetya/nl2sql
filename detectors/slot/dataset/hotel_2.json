@@ -1,59 +1,75 @@
 {
   "entitas": {
-    "pembayaran": {
-      "pembayaran_id": "PRIMARY KEY",
-      "reservasi_id": "FOREIGN KEY REFERENCES reservasi(reservasi_id)",
-      "tanggal_pembayaran": "DATE",
-      "jumlah": "DECIMAL(10,2)",
-      "metode_pembayaran": "VARCHAR(50)",
-      "status": "VARCHAR(50)"
+    "tamu": {
+      "id_tamu": "primary key",
+      "nama": "varchar(100)",
+      "email": "varchar(100)",
+      "telepon": "varchar(20)",
+      "alamat": "varchar(255)"
     },
-    "reservasi": {
-      "reservasi_id": "PRIMARY KEY",
-      "pelanggan_id": "FOREIGN KEY REFERENCES pelanggan(pelanggan_id)",
-      "hotel_id": "FOREIGN KEY REFERENCES hotel(hotel_id)",
-      "kamar_id": "FOREIGN KEY REFERENCES kamar(kamar_id)",
-      "tanggal_checkin": "DATE",
-      "tanggal_checkout": "DATE",
-      "status": "VARCHAR(50)"
-    },
-    "pelanggan": {
-      "pelanggan_id": "PRIMARY KEY",
-      "nama_depan": "VARCHAR(100)",
-      "nama_belakang": "VARCHAR(100)",
-      "email": "VARCHAR(255)",
-      "telepon": "VARCHAR(20)",
-      "alamat": "VARCHAR(255)",
-      "kota": "VARCHAR(100)"
+    "pegawai": {
+      "id_pegawai": "primary key",
+      "nama": "varchar(100)",
+      "jabatan": "varchar(50)",
+      "email": "varchar(100)",
+      "telepon": "varchar(20)"
     },
     "kamar": {
-      "kamar_id": "PRIMARY KEY",
-      "hotel_id": "FOREIGN KEY REFERENCES hotel(hotel_id)",
-      "tipe_kamar": "VARCHAR(100)",
-      "harga": "DECIMAL(10,2)",
-      "jumlah_kamar": "INT",
-      "deskripsi": "TEXT"
+      "id_kamar": "primary key",
+      "nomor_kamar": "varchar(10)",
+      "lantai": "integer",
+      "id_tipe_kamar": "foreign key references tipe_kamar(id_tipe_kamar)",
+      "status": "varchar(20)",
+      "harga_per_malam": "decimal(12,2)"
+    },
+    "tipe_kamar": {
+      "id_tipe_kamar": "primary key",
+      "nama_tipe": "varchar(50)",
+      "kapasitas": "integer",
+      "deskripsi": "text"
+    },
+    "reservasi": {
+      "id_reservasi": "primary key",
+      "id_tamu": "foreign key references tamu(id_tamu)",
+      "id_pegawai": "foreign key references pegawai(id_pegawai)",
+      "tanggal_reservasi": "date",
+      "tanggal_checkin": "date",
+      "tanggal_checkout": "date",
+      "status": "varchar(20)"
+    },
+    "detail_reservasi": {
+      "id_reservasi": "foreign key references reservasi(id_reservasi)",
+      "id_kamar": "foreign key references kamar(id_kamar)",
+      "primary_key": "id_reservasi, id_kamar"
+    },
+    "pembayaran": {
+      "id_pembayaran": "primary key",
+      "id_reservasi": "foreign key references reservasi(id_reservasi)",
+      "tanggal_pembayaran": "date",
+      "total": "decimal(12,2)",
+      "metode": "varchar(50)",
+      "status": "varchar(20)"
     },
     "layanan": {
-      "layanan_id": "PRIMARY KEY",
-      "nama": "VARCHAR(100)",
-      "deskripsi": "TEXT",
-      "harga": "DECIMAL(10,2)"
+      "id_layanan": "primary key",
+      "nama_layanan": "varchar(100)",
+      "biaya": "decimal(12,2)",
+      "deskripsi": "text"
     },
-    "hotel": {
-      "hotel_id": "PRIMARY KEY",
-      "nama": "VARCHAR(255)",
-      "alamat": "VARCHAR(255)",
-      "kota": "VARCHAR(100)",
-      "kategori": "INT",
-      "deskripsi": "TEXT"
+    "penggunaan_layanan": {
+      "id_penggunaan": "primary key",
+      "id_reservasi": "foreign key references reservasi(id_reservasi)",
+      "id_layanan": "foreign key references layanan(id_layanan)",
+      "tanggal": "date",
+      "jumlah": "integer"
     },
-    "staff": {
-      "staff_id": "PRIMARY KEY",
-      "nama": "VARCHAR(100)",
-      "posisi": "VARCHAR(100)",
-      "gaji": "DECIMAL(10,2)",
-      "hotel_id": "FOREIGN KEY REFERENCES hotel(hotel_id)"
+    "ulasan": {
+      "id_ulasan": "primary key",
+      "id_tamu": "foreign key references tamu(id_tamu)",
+      "id_reservasi": "foreign key references reservasi(id_reservasi)",
+      "rating": "integer",
+      "komentar": "text",
+      "tanggal_ulasan": "date"
     }
   }
 }

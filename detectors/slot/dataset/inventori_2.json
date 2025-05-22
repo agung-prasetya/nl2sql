@@ -1,75 +1,51 @@
 {
   "entitas": {
-    "toko": {
-      "id_toko": "PRIMARY KEY",
-      "kecamatan": "VARCHAR",
-      "nama": "VARCHAR",
-      "alamat": "VARCHAR",
-      "telepon": "VARCHAR",
-      "penanggung": "VARCHAR",
-      "desa": "VARCHAR"
-    },
-    "penjualan": {
-      "id_penjualan": "PRIMARY KEY",
-      "id_toko": "FOREIGN KEY REFERENCES toko(id_toko)",
-      "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
-      "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
-      "harga": "DECIMAL",
-      "invoice": "VARCHAR",
-      "nomor_do": "VARCHAR",
-      "jumlah": "INT",
-      "nama_barang": "VARCHAR",
-      "tanggal": "DATE",
-      "total": "DECIMAL"
-    },
-    "deposit": {
-      "id_deposit": "PRIMARY KEY",
-      "nomor_do": "VARCHAR",
-      "id_toko": "FOREIGN KEY REFERENCES toko(id_toko)",
-      "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
-      "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
-      "nama_barang": "VARCHAR",
-      "tanggal": "DATE",
-      "total": "DECIMAL"
-    },
     "barang": {
-      "kode_barang": "PRIMARY KEY",
-      "nama_barang": "VARCHAR",
-      "harga_barang": "DECIMAL",
-      "stok_barang": "INT",
-      "stok_min": "INT"
+      "id_barang": "primary key",
+      "nama_barang": "varchar(100)",
+      "id_kategori": "foreign key references kategori(id_kategori)",
+      "jumlah": "integer",
+      "harga_satuan": "decimal(12,2)",
+      "satuan": "varchar(20)",
+      "id_lokasi": "foreign key references lokasi(id_lokasi)"
     },
-    "barang_keluar": {
-      "id_transaksi": "PRIMARY KEY",
-      "id_toko": "FOREIGN KEY REFERENCES toko(id_toko)",
-      "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
-      "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
-      "nama_barang": "VARCHAR",
-      "tnomor_do": "VARCHAR",
-      "jumlah": "INT",
-      "tanggal": "DATE"
+    "kategori": {
+      "id_kategori": "primary key",
+      "nama_kategori": "varchar(50)"
     },
-    "barang_masuk": {
-      "id_pembelian": "PRIMARY KEY",
-      "id_supplier": "FOREIGN KEY REFERENCES supplier(id_supplier)",
-      "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
-      "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
-      "sales_order": "VARCHAR",
-      "jumlah": "INT",
-      "tanggal_po": "DATE",
-      "status": "VARCHAR",
-      "tanggal_masuk": "DATE"
+    "pemasok": {
+      "id_pemasok": "primary key",
+      "nama_pemasok": "varchar(100)",
+      "alamat": "varchar(255)",
+      "telepon": "varchar(20)"
     },
-    "supplier": {
-      "id_supplier": "PRIMARY KEY",
-      "nama_supplier": "VARCHAR",
-      "telepon": "VARCHAR",
-      "alamat": "VARCHAR"
+    "pembelian": {
+      "id_pembelian": "primary key",
+      "tanggal": "date",
+      "id_pemasok": "foreign key references pemasok(id_pemasok)"
     },
-    "kendaraan": {
-      "nopol": "PRIMARY KEY",
-      "nama_kendaraan": "VARCHAR",
-      "pengemudi": "VARCHAR"
+    "detail_pembelian": {
+      "id_pembelian": "foreign key references pembelian(id_pembelian)",
+      "id_barang": "foreign key references barang(id_barang)",
+      "jumlah": "integer",
+      "harga_beli": "decimal(12,2)",
+      "primary_key": "id_pembelian, id_barang"
+    },
+    "pengeluaran": {
+      "id_pengeluaran": "primary key",
+      "tanggal": "date",
+      "tujuan": "varchar(100)"
+    },
+    "detail_pengeluaran": {
+      "id_pengeluaran": "foreign key references pengeluaran(id_pengeluaran)",
+      "id_barang": "foreign key references barang(id_barang)",
+      "jumlah": "integer",
+      "primary_key": "id_pengeluaran, id_barang"
+    },
+    "lokasi": {
+      "id_lokasi": "primary key",
+      "nama_lokasi": "varchar(100)",
+      "keterangan": "varchar(255)"
     }
   }
 }

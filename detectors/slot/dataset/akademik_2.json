@@ -1,72 +1,34 @@
 {
   "entitas": {
     "siswa": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "classroom_id": "VARCHAR",
-        "nama": "VARCHAR",
-        "nisn": "VARCHAR",
-        "jenis_kelamin": "VARCHAR",
-        "phone": "VARCHAR",
-        "email": "VARCHAR",
-        "alamat": "TEXT"
-      }
-    },
-    "kelas": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "wali_kelas": "VARCHAR",
-        "kelas": "VARCHAR",
-        "jumlah": "INTEGER"
-      }
+      "id_siswa": "primary key",
+      "nama": "varchar(100)",
+      "tanggal_lahir": "date",
+      "kelas": "varchar(10)"
     },
     "guru": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "nip": "VARCHAR",
-        "nama": "VARCHAR",
-        "jenis_kelamin": "VARCHAR",
-        "email": "VARCHAR",
-        "alamat": "TEXT",
-        "phone": "VARCHAR"
-      }
-    },
-    "admin": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "nama": "VARCHAR",
-        "jenis_kelamin": "VARCHAR",
-        "email": "VARCHAR",
-        "alamat": "TEXT",
-        "phone": "VARCHAR"
-      }
+      "id_guru": "primary key",
+      "nama": "varchar(100)",
+      "jabatan": "varchar(50)",
+      "status": "varchar(20)"
     },
     "mata_pelajaran": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "nama_mata_pelajaran": "VARCHAR"
-      }
+      "id_mapel": "primary key",
+      "nama_mapel": "varchar(100)",
+      "kode_mapel": "varchar(20)"
     },
-    "jadwal": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "id_kelas": "FOREIGN KEY",
-        "id_guru": "FOREIGN KEY",
-        "mapel": "VARCHAR"
-      }
+    "admin": {
+      "id_admin": "primary key",
+      "nama": "varchar(100)",
+      "username": "varchar(50)",
+      "password": "varchar(50)"
     },
-    "nilai": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "id_kelas": "FOREIGN KEY",
-        "semester": "VARCHAR",
-        "ujian_1": "INTEGER",
-        "ujian_2": "INTEGER",
-        "ujian_3": "INTEGER",
-        "pts": "INTEGER",
-        "pas": "INTEGER",
-        "deskripsi": "TEXT"
-      }
+    "rencana_studi": {
+      "id_rencana": "primary key",
+      "id_siswa": "foreign key references siswa(id_siswa)",
+      "id_mapel": "foreign key references mata_pelajaran(id_mapel)",
+      "id_guru": "foreign key references guru(id_guru)",
+      "id_admin": "foreign key references admin(id_admin)"
     }
   }
 }

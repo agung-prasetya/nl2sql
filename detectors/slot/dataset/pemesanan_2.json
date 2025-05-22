@@ -1,53 +1,31 @@
 {
   "entitas": {
-    "adminman": {
-      "id": "PRIMARY KEY",
-      "username": "VARCHAR",
-      "password": "VARCHAR",
-      "gender": "VARCHAR",
-      "namleng": "VARCHAR",
-      "email": "VARCHAR",
-      "firstlogin": "DATETIME",
-      "otppass": "VARCHAR",
-      "tgl_pembuatan": "DATE",
-      "level": "VARCHAR",
-      "status": "VARCHAR",
-      "foto": "VARCHAR",
-      "lastlogin": "DATETIME"
+    "pelanggan": {
+      "id_pelanggan": "PRIMARY KEY",
+      "nama": "VARCHAR(100)",
+      "email": "VARCHAR(100)",
+      "telepon": "VARCHAR(20)",
+      "alamat": "TEXT"
     },
-    "user": {
-      "id": "PRIMARY KEY",
-      "username": "VARCHAR",
-      "password": "VARCHAR",
-      "gender": "VARCHAR",
-      "namleng": "VARCHAR",
-      "email": "VARCHAR",
-      "firstlogin": "DATETIME",
-      "otppass": "VARCHAR",
-      "tgl_pembuatan": "DATE",
-      "level": "VARCHAR",
-      "status": "VARCHAR",
-      "foto": "VARCHAR",
-      "lastlogin": "DATETIME"
+    "produk": {
+      "id_produk": "PRIMARY KEY",
+      "nama_produk": "VARCHAR(100)",
+      "harga": "DECIMAL(10,2)",
+      "stok": "INT",
+      "deskripsi": "TEXT"
     },
-    "gallerisaya": {
-      "id": "PRIMARY KEY",
-      "username": "VARCHAR",
-      "username_dateail": "VARCHAR",
-      "nama_paket": "VARCHAR",
-      "foto_paket": "VARCHAR",
-      "keterangan_paket": "TEXT",
-      "harga_paket": "DECIMAL",
-      "waktu_paket": "VARCHAR",
-      "tgl_aktivitas": "DATE",
-      "tgl_uploadfoto": "DATE"
+    "pesanan": {
+      "id_pesanan": "PRIMARY KEY",
+      "id_pelanggan": "FOREIGN KEY REFERENCES pelanggan(id_pelanggan)",
+      "tanggal_pesan": "DATE",
+      "status_pesanan": "VARCHAR(50)"
     },
-    "pemesanan": {
-      "id": "PRIMARY KEY",
-      "nama": "VARCHAR",
-      "email": "VARCHAR",
-      "tanggal": "DATE",
-      "timeslot": "VARCHAR"
+    "detail_pesanan": {
+      "id_detail": "PRIMARY KEY",
+      "id_pesanan": "FOREIGN KEY REFERENCES pesanan(id_pesanan)",
+      "id_produk": "FOREIGN KEY REFERENCES produk(id_produk)",
+      "jumlah": "INT",
+      "subtotal": "DECIMAL(10,2)"
     }
   }
 }

@@ -1,34 +1,47 @@
 {
   "entitas": {
     "pengguna": {
-      "id_pengguna": "PRIMARY KEY",
-      "username": "VARCHAR",
-      "email": "VARCHAR",
-      "kata_sandi": "VARCHAR"
+      "id_pengguna": "primary key",
+      "nama": "varchar(100)",
+      "username": "varchar(50)",
+      "password": "varchar(50)",
+      "peran": "varchar(20)"
     },
-    "hewan": {
-      "id_hewan": "PRIMARY KEY",
-      "id_penjual": "VARCHAR",
-      "nama": "VARCHAR",
-      "harga": "DECIMAL",
-      "usia": "VARCHAR",
-      "spesies": "VARCHAR"
+    "pelanggan": {
+      "id_pelanggan": "primary key",
+      "nama": "varchar(100)",
+      "email": "varchar(100)",
+      "no_hp": "varchar(20)"
     },
-    "transaksi": {
-      "id_transaksi": "PRIMARY KEY",
-      "id_pengguna": "FOREIGN KEY REFERENCES pengguna(id_pengguna)",
-      "id_hewan": "FOREIGN KEY REFERENCES hewan(id_hewan)",
-      "jumlah": "INT",
-      "total_harga": "DECIMAL",
-      "tanggal_transaksi": "DATE"
+    "produk": {
+      "id_produk": "primary key",
+      "nama_produk": "varchar(100)",
+      "harga": "decimal",
+      "stok": "integer",
+      "diskon": "decimal"
     },
-    "ulasan": {
-      "id_ulasan": "PRIMARY KEY",
-      "id_pengguna": "FOREIGN KEY REFERENCES pengguna(id_pengguna)",
-      "id_hewan": "FOREIGN KEY REFERENCES hewan(id_hewan)",
-      "id_transaksi": "FOREIGN KEY REFERENCES transaksi(id_transaksi)",
-      "penilaian": "INT",
-      "komentar": "TEXT"
+    "penjualan": {
+      "id_penjualan": "primary key",
+      "id_pengguna": "foreign key references pengguna(id_pengguna)",
+      "id_pelanggan": "foreign key references pelanggan(id_pelanggan)",
+      "tanggal_penjualan": "date",
+      "total": "decimal"
+    },
+    "detail_penjualan": {
+      "id_detail": "primary key",
+      "id_penjualan": "foreign key references penjualan(id_penjualan)",
+      "id_produk": "foreign key references produk(id_produk)",
+      "kuantitas": "integer",
+      "harga_satuan": "decimal",
+      "subtotal": "decimal",
+      "diskon_item": "decimal"
+    },
+    "retur_penjualan": {
+      "id_retur": "primary key",
+      "id_penjualan": "foreign key references penjualan(id_penjualan)",
+      "tanggal_retur": "date",
+      "alasan": "varchar(255)",
+      "total_dikembalikan": "decimal"
     }
   }
 }

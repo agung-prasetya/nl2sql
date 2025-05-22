@@ -1,66 +1,34 @@
 {
   "entitas": {
-    "peminjam": {
-      "id": "PRIMARY KEY",
-      "kode": "VARCHAR",
-      "nama": "VARCHAR",
-      "alamat": "VARCHAR",
-      "kota": "VARCHAR",
-      "telepon": "VARCHAR",
-      "tgl_masuk": "DATE"
+    "barang": {
+      "id_barang": "PRIMARY KEY",
+      "nama_barang": "VARCHAR(100)",
+      "kategori": "VARCHAR(50)",
+      "satuan": "VARCHAR(20)",
+      "stok": "INT",
+      "harga_satuan": "DECIMAL(10,2)"
     },
     "pemasok": {
-      "id": "PRIMARY KEY",
-      "kode": "VARCHAR",
-      "nama": "VARCHAR",
-      "alamat": "VARCHAR",
-      "kota": "VARCHAR",
-      "telepon": "VARCHAR",
-      "tgl_masuk": "DATE"
+      "id_pemasok": "PRIMARY KEY",
+      "nama_pemasok": "VARCHAR(100)",
+      "alamat": "TEXT",
+      "telepon": "VARCHAR(20)"
     },
-    "user": {
-      "id": "PRIMARY KEY",
-      "nama": "VARCHAR",
-      "jabatan": "VARCHAR",
-      "username": "VARCHAR",
-      "password": "VARCHAR",
-      "email": "VARCHAR",
-      "level": "VARCHAR",
-      "tgl_masuk": "DATE"
-    },
-    "barang": {
-      "id": "PRIMARY KEY",
-      "kode": "VARCHAR",
-      "nama_barang": "VARCHAR",
-      "status": "VARCHAR",
-      "merk": "VARCHAR",
-      "tahun_pembuatan": "YEAR",
-      "satuan": "VARCHAR",
-      "harga_beli": "DECIMAL",
-      "stok": "INT",
-      "tgl_masuk": "DATE",
-      "tgl_ubah": "DATE",
-      "login": "VARCHAR"
-    },
-    "nota_beli": {
-      "no_nota": "PRIMARY KEY",
-      "id_barang": "FOREIGN KEY REFERENCES barang(id)",
-      "id_pemasok": "FOREIGN KEY REFERENCES pemasok(id)",
-      "tgl": "DATE",
+    "barang_masuk": {
+      "id_masuk": "PRIMARY KEY",
+      "id_barang": "FOREIGN KEY REFERENCES barang(id_barang)",
+      "id_pemasok": "FOREIGN KEY REFERENCES pemasok(id_pemasok)",
+      "tanggal_masuk": "DATE",
       "jumlah": "INT",
-      "potongan": "DECIMAL",
       "keterangan": "TEXT"
     },
     "barang_keluar": {
-      "no_nota": "PRIMARY KEY",
-      "id_barang": "FOREIGN KEY REFERENCES barang(id)",
-      "id_peminjam": "FOREIGN KEY REFERENCES peminjam(id)",
-      "tgl": "DATE",
+      "id_keluar": "PRIMARY KEY",
+      "id_barang": "FOREIGN KEY REFERENCES barang(id_barang)",
+      "tanggal_keluar": "DATE",
       "jumlah": "INT",
-      "potongan": "DECIMAL",
-      "keterangan": "TEXT",
-      "level": "VARCHAR",
-      "tgl_masuk": "DATE"
+      "tujuan": "VARCHAR(100)",
+      "keterangan": "TEXT"
     }
   }
 }
