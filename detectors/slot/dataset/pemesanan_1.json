@@ -1,31 +1,25 @@
 {
   "entitas": {
     "pengguna": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "nama": "VARCHAR(100)",
-        "nama_pengguna": "VARCHAR(50)",
-        "kata_sandi": "VARCHAR(50)",
-        "divisi": "VARCHAR(50)",
-        "tingkatan": "VARCHAR(20)"
-      }
+      "id": "PRIMARY KEY",
+      "nama": "VARCHAR(100)",
+      "nama_pengguna": "VARCHAR(50)",
+      "kata_sandi": "VARCHAR(50)",
+      "divisi": "VARCHAR(50)",
+      "tingkatan": "VARCHAR(20)"
     },
     "pemesanan": {
-      "atribut": {
-        "id_pemesanan": "PRIMARY KEY",
-        "id_pengguna": "FOREIGN KEY MENGACU KE pengguna(id)",
-        "id_ruang": "FOREIGN KEY MENGACU KE ruang_rapat(id_ruang)",
-        "waktu_mulai": "DATETIME",
-        "waktu_selesai": "DATETIME",
-        "tujuan": "TEXT"
-      }
+      "id_pemesanan": "PRIMARY KEY",
+      "id_pengguna": "FOREIGN KEY REFERENCES pengguna(id)",
+      "id_ruang": "FOREIGN KEY REFERENCES ruang_rapat(id_ruang)",
+      "waktu_mulai": "DATETIME",
+      "waktu_selesai": "DATETIME",
+      "tujuan": "TEXT"
     },
     "ruang_rapat": {
-      "atribut": {
-        "id_ruang": "PRIMARY KEY",
-        "nama": "VARCHAR(100)",
-        "deskripsi": "TEXT"
-      }
+      "id_ruang": "PRIMARY KEY",
+      "nama": "VARCHAR(100)",
+      "deskripsi": "TEXT"
     }
   }
 }

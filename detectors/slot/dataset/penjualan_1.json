@@ -1,34 +1,34 @@
 {
   "entitas": {
     "pengguna": {
-      "id_pengguna": {},
-      "username": {},
-      "email": {},
-      "kata_sandi": {}
+      "id_pengguna": "PRIMARY KEY",
+      "username": "VARCHAR",
+      "email": "VARCHAR",
+      "kata_sandi": "VARCHAR"
     },
     "hewan": {
-      "id_hewan": {},
-      "id_penjual": {},
-      "nama": {},
-      "harga": {},
-      "usia": {},
-      "spesies": {}
+      "id_hewan": "PRIMARY KEY",
+      "id_penjual": "VARCHAR",
+      "nama": "VARCHAR",
+      "harga": "DECIMAL",
+      "usia": "VARCHAR",
+      "spesies": "VARCHAR"
     },
     "transaksi": {
-      "id_transaksi": {},
-      "id_pengguna": {},
-      "id_hewan": {},
-      "jumlah": {},
-      "total_harga": {},
-      "tanggal_transaksi": {}
+      "id_transaksi": "PRIMARY KEY",
+      "id_pengguna": "FOREIGN KEY REFERENCES pengguna(id_pengguna)",
+      "id_hewan": "FOREIGN KEY REFERENCES hewan(id_hewan)",
+      "jumlah": "INT",
+      "total_harga": "DECIMAL",
+      "tanggal_transaksi": "DATE"
     },
     "ulasan": {
-      "id_ulasan": {},
-      "id_pengguna": {},
-      "id_hewan": {},
-      "id_transaksi": {},
-      "penilaian": {},
-      "komentar": {}
+      "id_ulasan": "PRIMARY KEY",
+      "id_pengguna": "FOREIGN KEY REFERENCES pengguna(id_pengguna)",
+      "id_hewan": "FOREIGN KEY REFERENCES hewan(id_hewan)",
+      "id_transaksi": "FOREIGN KEY REFERENCES transaksi(id_transaksi)",
+      "penilaian": "INT",
+      "komentar": "TEXT"
     }
   }
 }

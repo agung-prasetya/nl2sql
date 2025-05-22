@@ -1,6 +1,6 @@
 {
   "entitas": {
-    "Siswa": {
+    "siswa": {
       "atribut": {
         "id": "PRIMARY KEY",
         "classroom_id": "VARCHAR",
@@ -12,7 +12,7 @@
         "alamat": "TEXT"
       }
     },
-    "Kelas": {
+    "kelas": {
       "atribut": {
         "id": "PRIMARY KEY",
         "wali_kelas": "VARCHAR",
@@ -20,7 +20,7 @@
         "jumlah": "INTEGER"
       }
     },
-    "Guru": {
+    "guru": {
       "atribut": {
         "id": "PRIMARY KEY",
         "nip": "VARCHAR",
@@ -31,7 +31,7 @@
         "phone": "VARCHAR"
       }
     },
-    "Admin": {
+    "admin": {
       "atribut": {
         "id": "PRIMARY KEY",
         "nama": "VARCHAR",
@@ -41,13 +41,13 @@
         "phone": "VARCHAR"
       }
     },
-    "Mata_pelajaran": {
+    "mata_pelajaran": {
       "atribut": {
         "id": "PRIMARY KEY",
         "nama_mata_pelajaran": "VARCHAR"
       }
     },
-    "Jadwal": {
+    "jadwal": {
       "atribut": {
         "id": "PRIMARY KEY",
         "id_kelas": "FOREIGN KEY",
@@ -55,7 +55,7 @@
         "mapel": "VARCHAR"
       }
     },
-    "Nilai": {
+    "nilai": {
       "atribut": {
         "id": "PRIMARY KEY",
         "id_kelas": "FOREIGN KEY",
@@ -69,3 +69,4 @@
       }
     }
   }
+}

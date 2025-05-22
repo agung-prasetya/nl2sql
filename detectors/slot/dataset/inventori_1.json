@@ -1,78 +1,66 @@
 {
   "entitas": {
     "peminjam": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "kode": "VARCHAR",
-        "nama": "VARCHAR",
-        "alamat": "VARCHAR",
-        "kota": "VARCHAR",
-        "telepon": "VARCHAR",
-        "tgl_masuk": "DATE"
-      }
+      "id": "PRIMARY KEY",
+      "kode": "VARCHAR",
+      "nama": "VARCHAR",
+      "alamat": "VARCHAR",
+      "kota": "VARCHAR",
+      "telepon": "VARCHAR",
+      "tgl_masuk": "DATE"
     },
     "pemasok": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "kode": "VARCHAR",
-        "nama": "VARCHAR",
-        "alamat": "VARCHAR",
-        "kota": "VARCHAR",
-        "telepon": "VARCHAR",
-        "tgl_masuk": "DATE"
-      }
+      "id": "PRIMARY KEY",
+      "kode": "VARCHAR",
+      "nama": "VARCHAR",
+      "alamat": "VARCHAR",
+      "kota": "VARCHAR",
+      "telepon": "VARCHAR",
+      "tgl_masuk": "DATE"
     },
     "user": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "nama": "VARCHAR",
-        "jabatan": "VARCHAR",
-        "username": "VARCHAR",
-        "password": "VARCHAR",
-        "email": "VARCHAR",
-        "level": "VARCHAR",
-        "tgl_masuk": "DATE"
-      }
+      "id": "PRIMARY KEY",
+      "nama": "VARCHAR",
+      "jabatan": "VARCHAR",
+      "username": "VARCHAR",
+      "password": "VARCHAR",
+      "email": "VARCHAR",
+      "level": "VARCHAR",
+      "tgl_masuk": "DATE"
     },
     "barang": {
-      "atribut": {
-        "id": "PRIMARY KEY",
-        "kode": "VARCHAR",
-        "nama_barang": "VARCHAR",
-        "status": "VARCHAR",
-        "merk": "VARCHAR",
-        "tahun_pembuatan": "YEAR",
-        "satuan": "VARCHAR",
-        "harga_beli": "DECIMAL",
-        "stok": "INT",
-        "tgl_masuk": "DATE",
-        "tgl_ubah": "DATE",
-        "login": "VARCHAR"
-      }
+      "id": "PRIMARY KEY",
+      "kode": "VARCHAR",
+      "nama_barang": "VARCHAR",
+      "status": "VARCHAR",
+      "merk": "VARCHAR",
+      "tahun_pembuatan": "YEAR",
+      "satuan": "VARCHAR",
+      "harga_beli": "DECIMAL",
+      "stok": "INT",
+      "tgl_masuk": "DATE",
+      "tgl_ubah": "DATE",
+      "login": "VARCHAR"
     },
     "nota_beli": {
-      "atribut": {
-        "no_nota": "PRIMARY KEY",
-        "id_barang": "FOREIGN KEY REFERENCES barang(id)",
-        "id_pemasok": "FOREIGN KEY REFERENCES pemasok(id)",
-        "tgl": "DATE",
-        "jumlah": "INT",
-        "potongan": "DECIMAL",
-        "keterangan": "TEXT"
-      }
+      "no_nota": "PRIMARY KEY",
+      "id_barang": "FOREIGN KEY REFERENCES barang(id)",
+      "id_pemasok": "FOREIGN KEY REFERENCES pemasok(id)",
+      "tgl": "DATE",
+      "jumlah": "INT",
+      "potongan": "DECIMAL",
+      "keterangan": "TEXT"
     },
     "barang_keluar": {
-      "atribut": {
-        "no_nota": "PRIMARY KEY",
-        "id_barang": "FOREIGN KEY REFERENCES barang(id)",
-        "id_peminjam": "FOREIGN KEY REFERENCES peminjam(id)",
-        "tgl": "DATE",
-        "jumlah": "INT",
-        "potongan": "DECIMAL",
-        "keterangan": "TEXT",
-        "level": "VARCHAR",
-        "tgl_masuk": "DATE"
-      }
+      "no_nota": "PRIMARY KEY",
+      "id_barang": "FOREIGN KEY REFERENCES barang(id)",
+      "id_peminjam": "FOREIGN KEY REFERENCES peminjam(id)",
+      "tgl": "DATE",
+      "jumlah": "INT",
+      "potongan": "DECIMAL",
+      "keterangan": "TEXT",
+      "level": "VARCHAR",
+      "tgl_masuk": "DATE"
     }
   }
 }

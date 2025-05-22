@@ -1,44 +1,36 @@
 {
   "entitas": {
     "petugas": {
-      "atribut": {
-        "id_petugas": "PRIMARY KEY",
-        "nama_petugas": "VARCHAR(25)",
-        "tingkat": "ENUM('admin','resepsionis')",
-        "nama_pengguna": "VARCHAR(25)",
-        "kata_sandi": "VARCHAR(50)"
-      }
+      "id_petugas": "PRIMARY KEY",
+      "nama_petugas": "VARCHAR(25)",
+      "tingkat": "ENUM('admin','resepsionis')",
+      "nama_pengguna": "VARCHAR(25)",
+      "kata_sandi": "VARCHAR(50)"
     },
     "kamar": {
-      "atribut": {
-        "id_kamar": "PRIMARY KEY",
-        "nama_kamar": "VARCHAR(20)",
-        "fasilitas_kamar": "TEXT",
-        "jumlah_kasur": "INT(3)",
-        "harga": "VARCHAR(15)",
-        "gambar_kamar": "VARCHAR(55)"
-      }
+      "id_kamar": "PRIMARY KEY",
+      "nama_kamar": "VARCHAR(20)",
+      "fasilitas_kamar": "TEXT",
+      "jumlah_kasur": "INT",
+      "harga": "VARCHAR(15)",
+      "gambar_kamar": "VARCHAR(55)"
     },
     "pemesanan": {
-      "atribut": {
-        "id_pemesanan": "PRIMARY KEY",
-        "nama_pemesan": "VARCHAR(10)",
-        "nomor_hp": "INT(30)",
-        "surel": "VARCHAR(30)",
-        "nama_tamu": "VARCHAR(30)",
-        "tanggal_masuk": "VARCHAR(15)",
-        "tanggal_keluar": "VARCHAR(15)",
-        "jumlah_kamar": "INT(5)",
-        "tipe_kamar": "VARCHAR(15)"
-      }
+      "id_pemesanan": "PRIMARY KEY",
+      "nama_pemesan": "VARCHAR(10)",
+      "nomor_hp": "VARCHAR(30)",
+      "surel": "VARCHAR(30)",
+      "nama_tamu": "VARCHAR(30)",
+      "tanggal_masuk": "VARCHAR(15)",
+      "tanggal_keluar": "VARCHAR(15)",
+      "jumlah_kamar": "INT",
+      "tipe_kamar": "VARCHAR(15)"
     },
     "fasilitas": {
-      "atribut": {
-        "id_fasilitas": "PRIMARY KEY",
-        "nama_fasilitas": "VARCHAR(25)",
-        "keterangan_fasilitas": "TEXT",
-        "gambar_fasilitas": "VARCHAR(50)"
-      }
+      "id_fasilitas": "PRIMARY KEY",
+      "nama_fasilitas": "VARCHAR(25)",
+      "keterangan_fasilitas": "TEXT",
+      "gambar_fasilitas": "VARCHAR(50)"
     }
   }
 }
