@@ -1,0 +1,71 @@
+{
+  "entitas": {
+    "Siswa": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "classroom_id": "VARCHAR",
+        "nama": "VARCHAR",
+        "nisn": "VARCHAR",
+        "jenis_kelamin": "VARCHAR",
+        "phone": "VARCHAR",
+        "email": "VARCHAR",
+        "alamat": "TEXT"
+      }
+    },
+    "Kelas": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "wali_kelas": "VARCHAR",
+        "kelas": "VARCHAR",
+        "jumlah": "INTEGER"
+      }
+    },
+    "Guru": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "nip": "VARCHAR",
+        "nama": "VARCHAR",
+        "jenis_kelamin": "VARCHAR",
+        "email": "VARCHAR",
+        "alamat": "TEXT",
+        "phone": "VARCHAR"
+      }
+    },
+    "Admin": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "nama": "VARCHAR",
+        "jenis_kelamin": "VARCHAR",
+        "email": "VARCHAR",
+        "alamat": "TEXT",
+        "phone": "VARCHAR"
+      }
+    },
+    "Mata_pelajaran": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "nama_mata_pelajaran": "VARCHAR"
+      }
+    },
+    "Jadwal": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "id_kelas": "FOREIGN KEY",
+        "id_guru": "FOREIGN KEY",
+        "mapel": "VARCHAR"
+      }
+    },
+    "Nilai": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "id_kelas": "FOREIGN KEY",
+        "semester": "VARCHAR",
+        "ujian_1": "INTEGER",
+        "ujian_2": "INTEGER",
+        "ujian_3": "INTEGER",
+        "pts": "INTEGER",
+        "pas": "INTEGER",
+        "deskripsi": "TEXT"
+      }
+    }
+  }

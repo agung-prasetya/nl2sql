@@ -1,0 +1,73 @@
+{
+  "entitas": {
+    "pembayaran": {
+      "atribut": {
+        "pembayaran_id": "PRIMARY KEY",
+        "reservasi_id": "FOREIGN KEY REFERENCES reservasi(reservasi_id)",
+        "tanggal_pembayaran": "DATE",
+        "jumlah": "DECIMAL(10,2)",
+        "metode_pembayaran": "VARCHAR(50)",
+        "status": "VARCHAR(50)"
+      }
+    },
+    "reservasi": {
+      "atribut": {
+        "reservasi_id": "PRIMARY KEY",
+        "pelanggan_id": "FOREIGN KEY REFERENCES pelanggan(pelanggan_id)",
+        "hotel_id": "FOREIGN KEY REFERENCES hotel(hotel_id)",
+        "kamar_id": "FOREIGN KEY REFERENCES kamar(kamar_id)",
+        "tanggal_checkin": "DATE",
+        "tanggal_checkout": "DATE",
+        "status": "VARCHAR(50)"
+      }
+    },
+    "pelanggan": {
+      "atribut": {
+        "pelanggan_id": "PRIMARY KEY",
+        "nama_depan": "VARCHAR(100)",
+        "nama_belakang": "VARCHAR(100)",
+        "email": "VARCHAR(255)",
+        "telepon": "VARCHAR(20)",
+        "alamat": "VARCHAR(255)",
+        "kota": "VARCHAR(100)"
+      }
+    },
+    "kamar": {
+      "atribut": {
+        "kamar_id": "PRIMARY KEY",
+        "hotel_id": "FOREIGN KEY REFERENCES hotel(hotel_id)",
+        "tipe_kamar": "VARCHAR(100)",
+        "harga": "DECIMAL(10,2)",
+        "jumlah_kamar": "INT(11)",
+        "deskripsi": "TEXT"
+      }
+    },
+    "layanan": {
+      "atribut": {
+        "layanan_id": "PRIMARY KEY",
+        "nama": "VARCHAR(100)",
+        "deskripsi": "TEXT",
+        "harga": "DECIMAL(10,2)"
+      }
+    },
+    "hotel": {
+      "atribut": {
+        "hotel_id": "PRIMARY KEY",
+        "nama": "VARCHAR(255)",
+        "alamat": "VARCHAR(255)",
+        "kota": "VARCHAR(100)",
+        "kategori": "INT(11)",
+        "deskripsi": "TEXT"
+      }
+    },
+    "staff": {
+      "atribut": {
+        "staff_id": "PRIMARY KEY",
+        "nama": "VARCHAR(100)",
+        "posisi": "VARCHAR(100)",
+        "gaji": "DECIMAL(10,2)",
+        "hotel_id": "FOREIGN KEY REFERENCES hotel(hotel_id)"
+      }
+    }
+  }
+}

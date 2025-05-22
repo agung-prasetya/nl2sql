@@ -1,0 +1,59 @@
+{
+  "entitas": {
+    "pegawai": {
+      "atribut": {
+        "id": "PRIMARY KEY"
+      }
+    },
+    "jabatan": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "jabatan_id": "FOREIGN KEY REFERENCES divisi(divisi_id)"
+      }
+    },
+    "divisi": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "divisi_id": "VARCHAR"
+      }
+    },
+    "profil_pegawai": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "pegawai_id": "FOREIGN KEY REFERENCES pegawai(id)"
+      }
+    },
+    "penggajian": {
+      "atribut": {
+        "no_penggajian": "PRIMARY KEY",
+        "created_by": "FOREIGN KEY REFERENCES pegawai(id)",
+        "pegawai_id": "FOREIGN KEY REFERENCES pegawai(id)"
+      }
+    },
+    "gaji_pegawai": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "gaji_id": "FOREIGN KEY REFERENCES penggajian(no_penggajian)"
+      }
+    },
+    "pengajuan_cuti": {
+      "atribut": {
+        "no_pengajuan_cuti": "PRIMARY KEY",
+        "created_by": "FOREIGN KEY REFERENCES pegawai(id)",
+        "approve_by": "FOREIGN KEY REFERENCES pegawai(id)"
+      }
+    },
+    "kategori": {
+      "atribut": {
+        "id": "PRIMARY KEY"
+      }
+    },
+    "artikel": {
+      "atribut": {
+        "id": "PRIMARY KEY",
+        "category_id": "FOREIGN KEY REFERENCES kategori(id)",
+        "pegawai_id": "FOREIGN KEY REFERENCES pegawai(id)"
+      }
+    }
+  }
+}
