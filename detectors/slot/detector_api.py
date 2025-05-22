@@ -12,13 +12,27 @@ CORS(app)
 
 @app.route('/slot/detect', methods=['POST'])
 def predict_slot():
-    pass
+    kalimat = request.form.get('kalimat')
+    file = request.files.get('file')
 
-@app.route('/slot/evaluate', methods=['POST'])
-def evaluate():
-    pass
+    if not kalimat or not file:
+        return jsonify({'error': 'Missing "kalimat" or "file database json" in request'}), 400
 
-    
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.json') as tmp:
+        file.save(tmp.name)
+        tmp_path = tmp.name
+
+    try:
+        detector = SlotDetector()
+        detected_label = detector.detect(kalimat=kalimat, filepath_database_json=tmp_path)
+    finally:
+        os.remove(tmp_path)
+
+    return jsonify({
+        'kalimat': kalimat,
+        'detected_label': detected_label
+    })
+
 
 if __name__ == '__main__':
     app.run(debug=True)

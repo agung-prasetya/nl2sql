@@ -1,0 +1,91 @@
+{
+  "entitas": {
+    "toko": {
+      "atribut": {
+        "id_toko": "PRIMARY KEY",
+        "kecamatan": "VARCHAR",
+        "nama": "VARCHAR",
+        "alamat": "VARCHAR",
+        "telepon": "VARCHAR",
+        "penanggung": "VARCHAR",
+        "desa": "VARCHAR"
+      }
+    },
+    "penjualan": {
+      "atribut": {
+        "id_penjualan": "PRIMARY KEY",
+        "id_toko": "FOREIGN KEY REFERENCES toko(id_toko)",
+        "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
+        "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
+        "harga": "DECIMAL",
+        "invoice": "VARCHAR",
+        "nomor_do": "VARCHAR",
+        "jumlah": "INT",
+        "nama_barang": "VARCHAR",
+        "tanggal": "DATE",
+        "total": "DECIMAL"
+      }
+    },
+    "deposit": {
+      "atribut": {
+        "id_deposit": "PRIMARY KEY",
+        "nomor_do": "VARCHAR",
+        "id_toko": "FOREIGN KEY REFERENCES toko(id_toko)",
+        "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
+        "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
+        "nama_barang": "VARCHAR",
+        "tanggal": "DATE",
+        "total": "DECIMAL"
+      }
+    },
+    "barang": {
+      "atribut": {
+        "kode_barang": "PRIMARY KEY",
+        "nama_barang": "VARCHAR",
+        "harga_barang": "DECIMAL",
+        "stok_barang": "INT",
+        "stok_min": "INT"
+      }
+    },
+    "barang_keluar": {
+      "atribut": {
+        "id_transaksi": "PRIMARY KEY",
+        "id_toko": "FOREIGN KEY REFERENCES toko(id_toko)",
+        "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
+        "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
+        "nama_barang": "VARCHAR",
+        "tnomor_do": "VARCHAR",
+        "jumlah": "INT",
+        "tanggal": "DATE"
+      }
+    },
+    "barang_masuk": {
+      "atribut": {
+        "id_pembelian": "PRIMARY KEY",
+        "id_supplier": "FOREIGN KEY REFERENCES supplier(id_supplier)",
+        "nopol": "FOREIGN KEY REFERENCES kendaraan(nopol)",
+        "kode_barang": "FOREIGN KEY REFERENCES barang(kode_barang)",
+        "sales_order": "VARCHAR",
+        "jumlah": "INT",
+        "tanggal_po": "DATE",
+        "status": "VARCHAR",
+        "tanggal_masuk": "DATE"
+      }
+    },
+    "supplier": {
+      "atribut": {
+        "id_supplier": "PRIMARY KEY",
+        "nama_supplier": "VARCHAR",
+        "telepon": "VARCHAR",
+        "alamat": "VARCHAR"
+      }
+    },
+    "kendaraan": {
+      "atribut": {
+        "nopol": "PRIMARY KEY",
+        "nama_kendaraan": "VARCHAR",
+        "pengemudi": "VARCHAR"
+      }
+    }
+  }
+}

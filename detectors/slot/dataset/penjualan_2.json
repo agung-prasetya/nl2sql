@@ -1,0 +1,70 @@
+{
+  "entitas": {
+    "konsumen": {
+      "atribut": {
+        "id_konsumen": "PRIMARY KEY",
+        "nama": "varchar(50)",
+        "alamat": "varchar(100)",
+        "no_telepon": "varchar(20)",
+        "email": "varchar(50)",
+        "password": "varchar(50)"
+      }
+    },
+    "pemesanan": {
+      "atribut": {
+        "id_pemesanan": "PRIMARY KEY",
+        "id_konsumen": "FOREIGN KEY",
+        "tgl_pesan": "varchar(15)",
+        "tgl_bayar": "varchar(15)",
+        "no_rekening": "varchar(20)",
+        "status": "varchar(20)"
+      }
+    },
+    "detail_pesanan": {
+      "atribut": {
+        "id_konsumen": "FOREIGN KEY",
+        "id_barang": "FOREIGN KEY",
+        "id_pemesanan": "FOREIGN KEY",
+        "total": "varchar(50)"
+      }
+    },
+    "barang": {
+      "atribut": {
+        "id_barang": "PRIMARY KEY",
+        "nama_barang": "varchar(25)",
+        "harga_jual": "varchar(20)",
+        "kategori": "varchar(20)",
+        "stok": "varchar(100)"
+      }
+    },
+    "admin": {
+      "atribut": {
+        "id_admin": "PRIMARY KEY",
+        "email": "varchar(50)",
+        "password": "varchar(50)"
+      }
+    },
+    "laporan_bulanan": {
+      "atribut": {
+        "id_laporanbulanan": "PRIMARY KEY",
+        "hasil_penjualan": "varchar(100)",
+        "laba_rugi": "varchar(100)"
+      }
+    },
+    "supplier": {
+      "atribut": {
+        "id_supplier": "PRIMARY KEY",
+        "nama_supplier": "varchar(20)",
+        "no_telepon": "varchar(20)",
+        "produk": "varchar(100)",
+        "alamat": "varchar(100)"
+      }
+    },
+    "owner": {
+      "atribut": {
+        "id_owner": "PRIMARY KEY",
+        "id_laporanbulanan": "FOREIGN KEY"
+      }
+    }
+  }
+}

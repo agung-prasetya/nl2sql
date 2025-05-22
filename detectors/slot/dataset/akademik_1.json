@@ -1,0 +1,33 @@
+{
+  "entitas": {
+    "siswa": {
+        "nis": "PRIMARY KEY",
+        "nama": "VARCHAR(100)",
+        "tgl_lahir": "DATE",
+        "kelas": "VARCHAR(10)"
+    },
+    "guru": {
+        "nip": "PRIMARY KEY",
+        "nama": "VARCHAR(100)",
+        "jabatan": "VARCHAR(50)",
+        "status": "VARCHAR(20)"
+    },
+    "mata_pelajaran": {
+        "id_mata_pelajaran": "PRIMARY KEY",
+        "mata_pelajaran": "VARCHAR(100)",
+        "absen": "VARCHAR(10)"
+    },
+    "admin": {
+        "id_admin": "PRIMARY KEY",
+        "nama": "VARCHAR(100)",
+        "username": "VARCHAR(50)",
+        "password": "VARCHAR(50)"
+    },
+    "rencana_studi": {
+        "nis": "FOREIGN KEY REFERENCES siswa(nis)",
+        "nip": "FOREIGN KEY REFERENCES guru(nip)",
+        "id_mata_pelajaran": "FOREIGN KEY REFERENCES mata_pelajaran(id_mata_pelajaran)",
+        "id_admin": "FOREIGN KEY REFERENCES admin(id_admin)"
+    }
+  }
+}

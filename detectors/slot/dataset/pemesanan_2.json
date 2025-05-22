@@ -1,0 +1,53 @@
+{
+  "entitas": {
+    "adminman": {
+      "id": "",
+      "username": "",
+      "password": "",
+      "gender": "",
+      "namleng": "",
+      "email": "",
+      "firstlogin": "",
+      "otppass": "",
+      "tgl_pembuatan": "",
+      "level": "",
+      "status": "",
+      "foto": "",
+      "lastlogin": ""
+    },
+    "user": {
+      "id": "",
+      "username": "",
+      "password": "",
+      "gender": "",
+      "namleng": "",
+      "email": "",
+      "firstlogin": "",
+      "otppass": "",
+      "tgl_pembuatan": "",
+      "level": "",
+      "status": "",
+      "foto": "",
+      "lastlogin": ""
+    },
+    "gallerisaya": {
+      "id": "",
+      "username": "",
+      "username_dateail": "",
+      "nama_paket": "",
+      "foto_paket": "",
+      "keterangan_paket": "",
+      "harga_paket": "",
+      "waktu_paket": "",
+      "tgl_aktivitas": "",
+      "tgl_uploadfoto": ""
+    },
+    "pemesanan": {
+      "id": "",
+      "nama": "",
+      "email": "",
+      "tanggal": "",
+      "timeslot": ""
+    }
+  }
+}
