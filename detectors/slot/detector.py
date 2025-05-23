@@ -68,10 +68,12 @@ class SlotDetector(KnowledgeEngine):
     
     #Identifikasi frase yang merujuk pada nama tabel
     @Rule(
-        Fact(tabel=MATCH.tabel),
-        AS.fact_frase << Fact(frase=MATCH.frase),
-        TEST(lambda fact_frase: 'adalah_nama_tabel' not in fact_frase),
-        TEST(lambda frase, tabel: frase in tabel),
+        AND(
+            Fact(tabel=MATCH.tabel),
+            AS.fact_frase << Fact(frase=MATCH.frase),
+            TEST(lambda fact_frase: 'adalah_nama_tabel' not in fact_frase),
+            TEST(lambda frase, tabel: frase in tabel)
+        ),
         salience=460
     )
     def rule_identifikasi_nama_tabel(self,fact_frase):
