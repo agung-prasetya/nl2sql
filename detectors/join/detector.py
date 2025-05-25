@@ -44,7 +44,7 @@ class JoinDetector(KnowledgeEngine):
                     frase.append(daftar_kata[posisi_kata + bagian])
                 
                 fact_frase = Fact(
-                    frase=frase, posisi_awal=posisi_kata, posisi_akhir=posisi_kata+kelompok_frase-1, 
+                    frase=' '.join(frase), posisi_awal=posisi_kata, posisi_akhir=posisi_kata+kelompok_frase-1, 
                     terperiksa=False, adalah_nama_tabel=False
                 )
                 
@@ -64,7 +64,7 @@ class JoinDetector(KnowledgeEngine):
     )
     def rule_penambahan_fact_tabel(self, fact_database, database):
         for tabel in database['entitas']:
-            self.declare(Fact(tabel=tabel.split()))
+            self.declare(Fact(tabel=tabel.replace('_',' ')))
             
         self.retract(fact_database)
         
@@ -86,129 +86,79 @@ class JoinDetector(KnowledgeEngine):
         
     
     
-    #Urutan terakhir - tidak perlu ada salience/bobot karena secara default berbobot 0
-    #leftjoin - pola: semua tabel1 termasuk tabel2
+    #Urutan terakhir - 
     @Rule(
         AND(
-            Fact(frase=['semua'], posisi_akhir=MATCH.posisi1),
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi2, adalah_nama_tabel=True),
-            Fact(frase=['termasuk'], posisi_akhir=MATCH.posisi3),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi4, adalah_nama_tabel=True),
-            TEST(lambda posisi1, posisi2,posisi3,posisi4: posisi1<posisi2<posisi3<posisi4)
-        )
+            AS.fact_frase1 << Fact(frase=MATCH.frase1),
+            TEST(lambda frase1: frase1 in ['semua pasangan','semua kombinasi','semua kemungkinan','kemunginan kombinasi',
+                                         'semua potensi pasangan','semua pasangan']),
+            AS.fact_tabel1 << Fact(frase=MATCH.frase_tabel1, adalah_nama_tabel=True),
+            AS.fact_frase2 << Fact(frase=MATCH.frase2),
+            TEST(lambda frase2: frase2 in ['dan','dengan']),
+            AS.fact_tabel2 << Fact(frase=MATCH.frase_tabel2, adalah_nama_tabel=True),
+            TEST(lambda fact_frase1,fact_tabel1,fact_frase2,fact_tabel2: 
+                            fact_frase1['posisi_akhir'] < fact_tabel1['posisi_awal'] and 
+                            fact_tabel1['posisi_akhir'] < fact_frase2['posisi_awal'] and
+                            fact_frase2['posisi_akhir'] < fact_tabel2['posisi_awal']
+            ),
+        ),
+        salience=100
     )
-    def rule_identifikasi_leftjoin_pola_1(self):
-        self.declare(Fact(jenis_join='LEFTJOIN'))
-        self.halt()
-        
-        
-        
-    #leftjoin - pola: daftar tabel1 beserta tabel2
-    @Rule(
-        AND(
-            Fact(frase=['daftar'], posisi_akhir=MATCH.posisi1),
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi2, adalah_nama_tabel=True),
-            Fact(frase=['beserta'], posisi_akhir=MATCH.posisi3),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi4, adalah_nama_tabel=True),
-            TEST(lambda posisi1, posisi2,posisi3,posisi4: posisi1<posisi2<posisi3<posisi4)
-        )
-    )
-    def rule_identifikasi_leftjoin_pola_2(self):
-        self.declare(Fact(jenis_join='LEFTJOIN'))
+    def rule_identifikasi_cross_join(self):
+        self.declare(Fact(jenis_join='CROSSJOIN'))
         self.halt()
         
     
-    #leftjoin - pola: seluruh tabel1 walaupun tabel2
+    
+    
     @Rule(
         AND(
-            Fact(frase=['seluruh'], posisi_akhir=MATCH.posisi1),
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi2, adalah_nama_tabel=True),
-            Fact(frase=['walaupun'], posisi_akhir=MATCH.posisi3),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi4, adalah_nama_tabel=True),
-            TEST(lambda posisi1, posisi2,posisi3,posisi4: posisi1<posisi2<posisi3<posisi4)
-        )
+            AS.fact_frase1 << Fact(frase=MATCH.frase1),
+            TEST(lambda frase1: frase1 in ['semua','seluruh']),
+            AS.fact_tabel1 << Fact(frase=MATCH.frase_tabel1, adalah_nama_tabel=True),
+            AS.fact_frase2 << Fact(frase=MATCH.frase2),
+            TEST(lambda frase2: frase2 in ['beserta','berikut','dan']),
+            AS.fact_tabel2 << Fact(frase=MATCH.frase_tabel2, adalah_nama_tabel=True),
+            AS.fact_frase3 << Fact(frase=MATCH.frase3),
+            TEST(lambda frase3: frase3 in ['ada','tersedia','memiliki']),
+            TEST(lambda fact_frase1,fact_tabel1,fact_frase2,fact_tabel2, fact_frase3: 
+                            fact_frase1['posisi_akhir'] < fact_tabel1['posisi_awal'] and 
+                            fact_tabel1['posisi_akhir'] < fact_frase2['posisi_awal'] and
+                            fact_frase2['posisi_akhir'] < fact_tabel2['posisi_awal'] and
+                            fact_tabel2['posisi_akhir'] < fact_frase3['posisi_awal']
+            ),
+        ),
+        salience=100
     )
-    def rule_identifikasi_leftjoin_pola_3(self):
+    def rule_identifikasi_left_join(self):
         self.declare(Fact(jenis_join='LEFTJOIN'))
         self.halt()
         
-        
-    #leftjoin - pola: semua tabel1 dan tabel2
-    @Rule(
-        AND(
-            Fact(frase=['semua'], posisi_akhir=MATCH.posisi1),
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi2, adalah_nama_tabel=True),
-            Fact(frase=['dan'], posisi_akhir=MATCH.posisi3),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi4, adalah_nama_tabel=True),
-            TEST(lambda posisi1, posisi2,posisi3,posisi4:posisi1<posisi2<posisi3<posisi4)
-        )
-    )
-    def rule_identifikasi_leftjoin_pola_4(self):
-        self.declare(Fact(jenis_join='LEFTJOIN'))
-        self.halt()
-        
-        
-    #leftjoin - pola: semua tabel1 tapi tabel2
-    @Rule(
-        AND(
-            Fact(frase=['semua'], posisi_akhir=MATCH.posisi1),
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi2, adalah_nama_tabel=True),
-            Fact(frase=['tapi'], posisi_akhir=MATCH.posisi3),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi4, adalah_nama_tabel=True),
-            TEST(lambda posisi1, posisi2,posisi3,posisi4:posisi1<posisi2<posisi3<posisi4)
-        )
-    )
-    def rule_identifikasi_leftjoin_pola_5(self):
-        self.declare(Fact(jenis_join='LEFTJOIN'))
-        self.halt()
-        
-    
-    #leftjoin - pola: daftar tabel1 meskipun tabel2
-    @Rule(
-        AND(
-            Fact(frase=['daftar'], posisi_akhir=MATCH.posisi1),
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi2, adalah_nama_tabel=True),
-            Fact(frase=['meskipun'], posisi_akhir=MATCH.posisi3),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi4, adalah_nama_tabel=True),
-            TEST(lambda posisi1, posisi2,posisi3,posisi4:posisi1<posisi2<posisi3<posisi4)
-        )
-    )
-    def rule_identifikasi_leftjoin_pola_6(self):
-        self.declare(Fact(jenis_join='LEFTJOIN'))
-        self.halt()
-    
-    
-    
-    #Indentifikasi inner join
-    #innerjoin - pola: tabel1 yang tabel2
-    @Rule(
-        AND(
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi1, adalah_nama_tabel=True),
-            Fact(frase=['yang'], posisi_akhir=MATCH.posisi2),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi3, adalah_nama_tabel=True),
-            TEST(lambda posisi1, posisi2,posisi3: posisi1<posisi2<posisi3)
-        )
-    )
-    def rule_identifikasi_innerjoin_pola_1(self):
-        self.declare(Fact(jenis_join='INNERJOIN'))
-        self.halt()
 
-        
     
-    #innerjoin - pola: tabel1 lengkap dengan detail tabel2
     @Rule(
         AND(
-            Fact(frase=MATCH.tabel1, posisi_awal=MATCH.posisi1, adalah_nama_tabel=True),
-            Fact(frase=['lengkap'], posisi_akhir=MATCH.posisi2),
-            Fact(frase=['dengan'], posisi_akhir=MATCH.posisi3),
-            Fact(frase=['detil'], posisi_akhir=MATCH.posisi4),
-            Fact(frase=MATCH.tabel2, posisi_awal=MATCH.posisi5, adalah_nama_tabel=True),
-            TEST(lambda posisi1,posisi2,posisi3,posisi4, posisi5: posisi1<posisi2<posisi3<posisi4<posisi5)
-        )
+            AS.fact_tabel1 << Fact(frase=MATCH.frase_tabel1, adalah_nama_tabel=True),
+            AS.fact_frase2 << Fact(frase=MATCH.frase2),
+            TEST(lambda frase2: any([
+                frase for frase in ['lengkap dengan','yang sudah','yang sedang',
+                                    'yang memiliki','yang telah', 'yang diambil',
+                                    'yang terlibat dalam', 'yang punya','yang pernah']
+                if frase in frase2
+                ])
+            ),
+            AS.fact_tabel2 << Fact(frase=MATCH.frase_tabel2, adalah_nama_tabel=True),
+            TEST(lambda fact_tabel1,fact_frase2,fact_tabel2: 
+                            fact_tabel1['posisi_akhir'] < fact_frase2['posisi_awal'] and
+                            fact_frase2['posisi_akhir'] < fact_tabel2['posisi_awal']
+            )
+        ),
+        salience=50
     )
-    def rule_identifikasi_innerjoin_pola_1(self):
+    def rule_identifikasi_inner_join(self):
         self.declare(Fact(jenis_join='INNERJOIN'))
         self.halt()
+        
         
         
 
