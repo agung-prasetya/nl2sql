@@ -231,7 +231,7 @@ class QtyDetector(KnowledgeEngine):
                 "byte", "kilobyte", "megabyte", "gigabyte", "rupiah", "dolar", 
                 "euro", "yen", "pound", "won", "ringgit", "baht", "rupee", 
                 "yuan", "dirham", "derajat", "celcius", "kelvin", "fahrenheit", "persen",
-                "m","mm","cm","km","in","kg","g","l","ml","rp","$","%"]
+                "m","mm","cm","km","in","kg","g","l","ml","rp","$","%", "akun","transaksi","pengiriman"]
             )
         ),
         salience=285)
@@ -259,8 +259,8 @@ class QtyDetector(KnowledgeEngine):
 
 
 
-    #Urutan 4 - bulan
-    #Rule ini mendeteksi kata yang termasuk bulan dalam bahasa Indonesia
+    #Urutan 4 - hari
+    #Rule ini mendeteksi kata yang termasuk hari dalam bahasa Indonesia
     @Rule(
         AND(
             AS.fact_kata << Fact(kata=MATCH.kata, kelas_kata='unknown'),
@@ -538,6 +538,45 @@ class QtyDetector(KnowledgeEngine):
     )
     def rule_identifikasi_kuantitas_dari_frase_tanpa_satuan(self, fact_frase):
         self.modify(fact_frase, kuantitas=True)
+        
+    
+    #Urutan - terakhir
+    #Rule ini mengidentifikasi frase hari yang merupakan kuantitas
+    @Rule(
+        AND(
+            AS.fact_kata << Fact(kelas_kata='satuan', posisi=MATCH.posisi1),
+            AS.fact_hari << Fact(kelas_kata='hari', kuantitas=False, posisi=MATCH.posisi2),
+            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+        )
+    )
+    def rule_identifikasi_kuantitas_dari_frase_hari(self, fact_hari):
+        self.modify(fact_hari, kuantitas=True)
+        
+        
+    #Urutan - terakhir
+    #Rule ini mengidentifikasi frase bulan yang merupakan kuantitas
+    @Rule(
+        AND(
+            AS.fact_kata << Fact(kelas_kata='satuan', posisi=MATCH.posisi1),
+            AS.fact_bulan << Fact(kelas_kata='bulan', kuantitas=False, posisi=MATCH.posisi2),
+            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+        )
+    )
+    def rule_identifikasi_kuantitas_dari_frase_bulan(self, fact_bulan):
+        self.modify(fact_bulan, kuantitas=True)
+        
+        
+    #Urutan - terakhir
+    #Rule ini mengidentifikasi frase bulan yang merupakan kuantitas
+    @Rule(
+        AND(
+            AS.fact_kata << Fact(kelas_kata='satuan', posisi=MATCH.posisi1),
+            AS.fact_tahun << Fact(kelas_kata='bilangan_bulat', kuantitas=False, posisi=MATCH.posisi2),
+            TEST(lambda posisi1,posisi2:posisi1==posisi2-1)
+        )
+    )
+    def rule_identifikasi_kuantitas_dari_frase_tahun(self, fact_tahun):
+        self.modify(fact_tahun, kuantitas=True)
         
     
     def detect(self, kalimat, filepath_database_json):
