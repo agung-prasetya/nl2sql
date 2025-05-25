@@ -1,0 +1,39 @@
+{
+    "entitas": {
+        "kurir": {
+            "id_kurir": null,
+            "nama": null,
+            "kendaraan": null
+        },
+        "pengiriman": {
+            "id_pengiriman": null,
+            "tanggal": null,
+            "asal": null,
+            "tujuan": null,
+            "id_kurir": null
+        },
+        "detail_pengiriman": {
+            "id_detail": null,
+            "id_pengiriman": null,
+            "id_barang": null,
+            "jumlah": null
+        },
+        "supir": {
+            "id_supir": null,
+            "nama": null,
+            "kontak": null
+        },
+        "kendaraan": {
+            "id_kendaraan": null,
+            "tipe": null,
+            "kapasitas": null
+        },
+        "rute": {
+            "id_rute": null,
+            "id_kendaraan": null,
+            "asal": null,
+            "tujuan": null,
+            "jarak": null
+        }
+    }
+}

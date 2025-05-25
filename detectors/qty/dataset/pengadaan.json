@@ -3,7 +3,15 @@
     "vendor": {
       "id_vendor": null,
       "nama": null,
-      "kontak": null
+      "email": null,
+      "telepon": null
+    },
+    "penilaian": {
+      "id_penilaian": null,
+      "id_vendor": null,
+      "tanggal": null,
+      "skor": null,
+      "komentar": null
     },
     "barang": {
       "id_barang": null,
