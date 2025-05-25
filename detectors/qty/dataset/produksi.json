@@ -1,0 +1,26 @@
+{
+  "entitas": {
+    "produk": {
+      "id_produk": null,
+      "nama": null,
+      "satuan": null
+    },
+    "mesin": {
+      "id_mesin": null,
+      "tipe": null,
+      "kapasitas": null
+    },
+    "produksi": {
+      "id_produksi": null,
+      "tanggal": null,
+      "id_produk": null,
+      "id_mesin": null,
+      "jumlah": null
+    },
+    "detail_produksi": {
+      "id_detail": null,
+      "id_produksi": null,
+      "jumlah": null
+    }
+  }
+}

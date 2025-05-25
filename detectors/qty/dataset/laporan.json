@@ -1,0 +1,17 @@
+{
+  "entitas": {
+    "laporan": {
+      "id_laporan": null,
+      "bulan": null,
+      "tahun": null,
+      "total_pendapatan": null,
+      "total_biaya": null
+    },
+    "detail_laporan": {
+      "id_detail": null,
+      "id_laporan": null,
+      "id_akun": null,
+      "nilai": null
+    }
+  }
+}

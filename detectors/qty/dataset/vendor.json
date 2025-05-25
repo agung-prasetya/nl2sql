@@ -1,0 +1,17 @@
+{
+  "entitas": {
+    "vendor": {
+      "id_vendor": null,
+      "nama": null,
+      "email": null,
+      "telepon": null
+    },
+    "penilaian": {
+      "id_penilaian": null,
+      "id_vendor": null,
+      "tanggal": null,
+      "skor": null,
+      "komentar": null
+    }
+  }
+}

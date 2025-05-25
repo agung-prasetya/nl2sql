@@ -1,0 +1,17 @@
+{
+  "entitas": {
+    "akun": {
+      "id_akun": null,
+      "nama": null,
+      "tipe": null
+    },
+    "transaksi": {
+      "id_transaksi": null,
+      "tanggal": null,
+      "id_akun_debet": null,
+      "id_akun_kredit": null,
+      "jumlah": null,
+      "deskripsi": null
+    }
+  }
+}
