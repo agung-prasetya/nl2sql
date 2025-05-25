@@ -1,0 +1,21 @@
+{
+  "entitas": {
+    "supir": {
+      "id_supir": null,
+      "nama": null,
+      "kontak": null
+    },
+    "kendaraan": {
+      "id_kendaraan": null,
+      "tipe": null,
+      "kapasitas": null
+    },
+    "rute": {
+      "id_rute": null,
+      "id_kendaraan": null,
+      "asal": null,
+      "tujuan": null,
+      "jarak": null
+    }
+  }
+}

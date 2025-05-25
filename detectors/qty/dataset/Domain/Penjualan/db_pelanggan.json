@@ -1,0 +1,16 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": null,
+      "nama": null,
+      "email": null,
+      "telepon": null
+    },
+    "feedback": {
+      "id_feedback": null,
+      "id_pelanggan": null,
+      "tanggal": null,
+      "komentar": null
+    }
+  }
+}

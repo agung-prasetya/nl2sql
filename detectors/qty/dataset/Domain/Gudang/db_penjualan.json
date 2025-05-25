@@ -1,0 +1,28 @@
+{
+  "entitas": {
+    "pelanggan": {
+      "id_pelanggan": null,
+      "nama": null,
+      "kontak": null
+    },
+    "produk": {
+      "id_produk": null,
+      "nama": null,
+      "harga": null,
+      "kategori": null
+    },
+    "transaksi": {
+      "id_transaksi": null,
+      "tanggal": null,
+      "id_pelanggan": null,
+      "total_harga": null
+    },
+    "detail_transaksi": {
+      "id_detail": null,
+      "id_transaksi": null,
+      "id_produk": null,
+      "jumlah": null,
+      "diskon": null
+    }
+  }
+}
