@@ -103,7 +103,8 @@ class WherelogicDetector(KnowledgeEngine):
         AND(
             AS.fact_operator << Fact(frase=MATCH.frase),
             TEST(lambda fact_operator: 'adalah_operator' not in fact_operator),
-            TEST(lambda frase: frase in ['lebih dari', 'kurang dari',' di atas','di bawah','kandung','yang','dengan']
+            TEST(lambda frase: frase in ['lebih dari', 'kurang dari',' di atas','di bawah','kandung',
+                                         'yang','dengan','termasuk dalam','yang']
             ),
         ),
         salience=460
@@ -160,6 +161,50 @@ class WherelogicDetector(KnowledgeEngine):
     )
     def rule_identifikasi_and_pola2(self):
         self.declare(Fact(jenis_operator_logika='AND'))
+        
+    
+    #Identifikasi AND
+    #Pola 3: [table] [operator] AND...[kolom]...
+    @Rule(
+        AND(
+            AS.fact_table << Fact(frase=MATCH.tabel, adalah_nama_tabel=True),
+            AS.fact_operator1 << Fact(frase=MATCH.operator1, adalah_operator=True),
+            AS.fact_dan << Fact(frase='dan'),
+            AS.fact_kolom1 << Fact(frase=MATCH.kolom1, adalah_nama_kolom=True),
+            TEST(lambda fact_table, fact_dan, fact_kolom1, fact_operator1:
+                            fact_table['posisi_akhir'] < fact_operator1['posisi_awal'] and 
+                            fact_operator1['posisi_akhir'] < fact_dan['posisi_awal'] and 
+                            fact_dan['posisi_akhir'] < fact_kolom1['posisi_awal']
+            )
+        ),
+        salience=290
+    )
+    def rule_identifikasi_and_pola3(self):
+        self.declare(Fact(jenis_operator_logika='AND'))
+        
+    
+    #Identifikasi AND
+    #Pola 4: [table] [operator][kolom] AND...[operator][kolom]...
+    @Rule(
+        AND(
+            AS.fact_table << Fact(frase=MATCH.tabel, adalah_nama_tabel=True),
+            AS.fact_operator1 << Fact(frase=MATCH.operator1, adalah_operator=True),
+            AS.fact_kolom1 << Fact(frase=MATCH.kolom1, adalah_nama_kolom=True),
+            AS.fact_dan << Fact(frase='dan'),
+            AS.fact_operator2 << Fact(frase=MATCH.operator2, adalah_operator=True),
+            AS.fact_kolom2 << Fact(frase=MATCH.kolom2, adalah_nama_kolom=True),
+            TEST(lambda fact_table, fact_operator1, fact_kolom1, fact_dan, fact_operator2, fact_kolom2:
+                            fact_table['posisi_akhir'] < fact_operator1['posisi_awal'] and 
+                            fact_operator1['posisi_akhir'] < fact_kolom1['posisi_awal'] and 
+                            fact_kolom1['posisi_akhir'] < fact_dan['posisi_awal'] and 
+                            fact_dan['posisi_akhir'] < fact_operator2['posisi_awal'] and 
+                            fact_operator2['posisi_akhir'] < fact_kolom2['posisi_awal']
+            )
+        ),
+        salience=285
+    )
+    def rule_identifikasi_and_pola4(self):
+        self.declare(Fact(jenis_operator_logika='AND'))
     
     
     #++++++++++++++++++++++++++++++++++++++++++++OR+++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -206,6 +251,51 @@ class WherelogicDetector(KnowledgeEngine):
     )
     def rule_identifikasi_or_pola2(self):
         self.declare(Fact(jenis_operator_logika='OR'))
+        
+        
+    #Identifikasi OR
+    #Pola 3: [table] [operator] OR...[kolom]...
+    @Rule(
+        AND(
+            AS.fact_table << Fact(frase=MATCH.tabel, adalah_nama_tabel=True),
+            AS.fact_operator1 << Fact(frase=MATCH.operator1, adalah_operator=True),
+            AS.fact_atau << Fact(frase='atau'),
+            AS.fact_kolom1 << Fact(frase=MATCH.kolom1, adalah_nama_kolom=True),
+            TEST(lambda fact_table, fact_atau, fact_kolom1, fact_operator1:
+                            fact_table['posisi_akhir'] < fact_operator1['posisi_awal'] and 
+                            fact_operator1['posisi_akhir'] < fact_atau['posisi_awal'] and 
+                            fact_atau['posisi_akhir'] < fact_kolom1['posisi_awal']
+            )
+        ),
+        salience=290
+    )
+    def rule_identifikasi_or_pola3(self):
+        self.declare(Fact(jenis_operator_logika='OR'))
+        
+    
+    #Identifikasi OR
+    #Pola 4: [table] [operator][kolom] OR...[operator][kolom]...
+    @Rule(
+        AND(
+            AS.fact_table << Fact(frase=MATCH.tabel, adalah_nama_tabel=True),
+            AS.fact_operator1 << Fact(frase=MATCH.operator1, adalah_operator=True),
+            AS.fact_kolom1 << Fact(frase=MATCH.kolom1, adalah_nama_kolom=True),
+            AS.fact_atau << Fact(frase='atau'),
+            AS.fact_operator2 << Fact(frase=MATCH.operator2, adalah_operator=True),
+            AS.fact_kolom2 << Fact(frase=MATCH.kolom2, adalah_nama_kolom=True),
+            TEST(lambda fact_table, fact_operator1, fact_kolom1, fact_atau, fact_operator2, fact_kolom2:
+                            fact_table['posisi_akhir'] < fact_operator1['posisi_awal'] and 
+                            fact_operator1['posisi_akhir'] < fact_kolom1['posisi_awal'] and 
+                            fact_kolom1['posisi_akhir'] < fact_atau['posisi_awal'] and 
+                            fact_atau['posisi_akhir'] < fact_operator2['posisi_awal'] and 
+                            fact_operator2['posisi_akhir'] < fact_kolom2['posisi_awal']
+            )
+        ),
+        salience=285
+    )
+    def rule_identifikasi_atau_pola4(self):
+        self.declare(Fact(jenis_operator_logika='OR'))
+        
         
 
     #++++++++++++++++++++++++++++++++++++++++++++NOT+++++++++++++++++++++++++++++++++++++++++++++++++++
