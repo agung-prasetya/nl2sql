@@ -62,7 +62,6 @@ class SketchDetector(KnowledgeEngine):
     )
     def rule_identifikasi_kata_yang_merujuk_nama_tabel(self, fact_kata):
         self.modify(fact_kata, apakah_nama_tabel=True)
-        self.declare(Fact(kata_nama_tabel=fact_kata['kata'])) # Sketsa SELECT $COLUMN FROM $TABLE
 
 
     # Sketsa SELECT $COLUMN FROM $TABLE
@@ -81,6 +80,7 @@ class SketchDetector(KnowledgeEngine):
         self.modify(fact_kata, apakah_nama_kolom=True)
 
 
+
     #Deteksi frase
     
     #Urutan 5
@@ -88,7 +88,7 @@ class SketchDetector(KnowledgeEngine):
         AND(
             AS.fact_kata << Fact(kata=MATCH.kata),
             TEST(lambda fact_kata: 'apakah_select' not in fact_kata),
-            TEST(lambda kata: kata in ['tampil','lihat','tunjuk','ambil','cari', 'dapat', 'hitung'])
+            TEST(lambda kata: kata in ['tampil','lihat','tunjuk','ambil','cari','dapat'])
         ),
         salience=480
     )
@@ -117,34 +117,38 @@ class SketchDetector(KnowledgeEngine):
         ),
         salience=480
     )
-    def rule_identifikasi_kata_yang_merujuk_condition(self, fact_kata):
+    def rule_identifikasi_kata_condition(self, fact_kata):
         self.modify(fact_kata, apakah_condition=True)
 
-    # Sketsa SELECT $AGG $COLUMN FROM $TABLE
+    # Sketsa SELECT $COLUMN FROM $TABLE
     @Rule(
     AND(
         AS.fact_kata << Fact(kata=MATCH.kata),
-        TEST(lambda fact_kata: 'apakah_agg' not in fact_kata),
-        TEST(lambda kata: kata in ['jumlah', 'rata', 'maksimum', 'minimum', 'total', 'tinggi', 'rendah'])
+        TEST(lambda fact_kata: 'apakah_nama_tabel' not in fact_kata),
+        Fact(database=MATCH.database),
+        TEST(lambda kata, database: kata in database['entitas'])
     ),
-    salience=480
+    salience=485
     )
-    def rule_identifikasi_kata_agregasi(self, fact_kata):
-        self.modify(fact_kata, apakah_agg=True)
+    def rule_identifikasi_kata_yang_merujuk_nama_tabel(self, fact_kata):
+        self.modify(fact_kata, apakah_nama_tabel=True)
+        self.declare(Fact(kata_nama_tabel=fact_kata['kata']))
 
-    # Sketsa SELECT $AGG $COLUMN FROM $TABLE GROUP BY $COLUMN HAVING $CONDITION
+    
+    
+    # Sketsa SELECT * FROM $TABLE WHERE $CONDITION
     @Rule(
-    AND(
-        AS.fact_kata << Fact(kata=MATCH.kata),
-        TEST(lambda fact_kata: 'apakah_group_by' not in fact_kata),
-        TEST(lambda kata: kata in ['group', 'dasar', 'tiap', 'setiap', 'masing', 'per'])
-    ),
-    salience=480
+        AND(
+            Fact(kata=MATCH.kata1, posisi=MATCH.posisi1, apakah_select=True),
+            Fact(kata=MATCH.kata2, posisi=MATCH.posisi2, apakah_semua_kolom=True),
+            Fact(kata=MATCH.kata3, posisi=MATCH.posisi3, apakah_nama_tabel=True),
+            Fact(kata=MATCH.kata4, posisi=MATCH.posisi4, apakah_condition=True),
+            TEST(lambda posisi1, posisi2, posisi3, posisi4: posisi1 < posisi2 < posisi3 < posisi4)
+        ),
+        salience=476
     )
-    def rule_identifikasi_group_by(self, fact_kata):
-        self.modify(fact_kata, apakah_group_by=True)
-
-        
+    def rule_identifikasi_sketsa_2(self):
+        self.declare(Fact(jenis_sketsa="SELECT * FROM $TABLE WHERE $CONDITION"))
 
 
     #Urutan 5
@@ -155,25 +159,10 @@ class SketchDetector(KnowledgeEngine):
             Fact(kata=MATCH.kata3, posisi=MATCH.posisi3, apakah_nama_tabel=True),
             TEST(lambda posisi1,posisi2,posisi3: posisi1<posisi2<posisi3)
         ),
-        salience=474
+        salience=475
     )
     def rule_identifikasi_sketsa_1(self):
         self.declare(Fact(jenis_sketsa="SELECT * FROM $TABLE"))
-
-
-    # Sketsa SELECT * FROM $TABLE WHERE $CONDITION
-    @Rule(
-        AND(
-            Fact(kata=MATCH.kata1, posisi=MATCH.posisi1, apakah_select=True),
-            Fact(kata=MATCH.kata2, posisi=MATCH.posisi2, apakah_semua_kolom=True),
-            Fact(kata=MATCH.kata3, posisi=MATCH.posisi3, apakah_nama_tabel=True),
-            Fact(kata=MATCH.kata4, posisi=MATCH.posisi4, apakah_condition=True),
-            TEST(lambda posisi1, posisi2, posisi3, posisi4: posisi1 < posisi2 < posisi3 < posisi4)
-        ),
-        salience=475
-    )
-    def rule_identifikasi_sketsa_2(self):
-        self.declare(Fact(jenis_sketsa="SELECT * FROM $TABLE WHERE $CONDITION"))
 
     
     # Sketsa SELECT $COLUMN FROM $TABLE
@@ -184,57 +173,10 @@ class SketchDetector(KnowledgeEngine):
             Fact(kata=MATCH.kata3, posisi=MATCH.posisi3, apakah_nama_tabel=True),
             TEST(lambda posisi1, posisi2, posisi3: posisi1 < posisi2 < posisi3)
         ),
-        salience=476
+        salience=477
     )
-    def rule_identifikasi_sketsa_3(self):
+    def rule_sketsa_select_kolom(self):
         self.declare(Fact(jenis_sketsa="SELECT $COLUMN FROM $TABLE"))
-
-    
-
-    # Sketsa SELECT $COLUMN FROM $TABLE WHERE $CONDITION
-    @Rule(
-    AND(
-        Fact(kata=MATCH.kata1, posisi=MATCH.posisi1, apakah_select=True),
-        Fact(kata=MATCH.kata2, posisi=MATCH.posisi2, apakah_nama_kolom=True),
-        Fact(kata=MATCH.kata3, posisi=MATCH.posisi3, apakah_nama_tabel=True),
-        Fact(kata=MATCH.kata4, posisi=MATCH.posisi4, apakah_condition=True),
-        TEST(lambda posisi1, posisi2, posisi3, posisi4: posisi1 < posisi2 < posisi3 < posisi4)
-    ),
-    salience=477
-    )
-    def rule_identifikasi_sketsa_4(self):
-        self.declare(Fact(jenis_sketsa="SELECT $COLUMN FROM $TABLE WHERE $CONDITION"))
-
-
-    # Sketsa SELECT $AGG $COLUMN FROM $TABLE
-    @Rule(
-    AND(
-        Fact(kata=MATCH.kata1, posisi=MATCH.posisi1, apakah_agg=True),
-        Fact(kata=MATCH.kata2, posisi=MATCH.posisi2, apakah_nama_kolom=True),
-        Fact(kata=MATCH.kata3, posisi=MATCH.posisi3, apakah_nama_tabel=True),
-        TEST(lambda posisi1, posisi2, posisi3: posisi1 < posisi2 < posisi3)
-    ),
-    salience=478
-    )
-    def rule_identifikasi_sketsa_5(self):
-        self.declare(Fact(jenis_sketsa="SELECT $AGG $COLUMN FROM $TABLE"))
-
-
-    # Sketsa SELECT $AGG $COLUMN FROM $TABLE GROUP BY $COLUMN HAVING $CONDITION
-    @Rule(
-    AND(
-        Fact(kata=MATCH.kata1, posisi=MATCH.posisi1, apakah_agg=True),
-        Fact(kata=MATCH.kata2, posisi=MATCH.posisi2, apakah_nama_kolom=True),
-        Fact(kata=MATCH.kata3, posisi=MATCH.posisi3, apakah_nama_tabel=True),
-        Fact(kata=MATCH.kata4, posisi=MATCH.posisi4, apakah_condition=True),
-        TEST(lambda posisi1, posisi2, posisi3, posisi4: posisi1 < posisi2 < posisi3 < posisi4)
-    ),
-    salience=479
-    )
-    def rule_identifikasi_sketsa_6(self):
-        self.declare(Fact(jenis_sketsa="SELECT $AGG $COLUMN FROM $TABLE GROUP BY $COLUMN HAVING $CONDITION"))
-
-
         
         
         
