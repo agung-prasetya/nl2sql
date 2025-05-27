@@ -72,7 +72,7 @@ class SlotDetector(KnowledgeEngine):
             Fact(tabel=MATCH.tabel),
             AS.fact_frase << Fact(frase=MATCH.frase),
             TEST(lambda fact_frase: 'adalah_nama_tabel' not in fact_frase),
-            TEST(lambda frase, tabel: frase in tabel)
+            TEST(lambda frase, tabel: frase == tabel)
         ),
         salience=460
     )
@@ -90,7 +90,7 @@ class SlotDetector(KnowledgeEngine):
         
             AS.fact_kolom << Fact(frase=MATCH.frase_kolom),
             TEST(lambda fact_kolom: 'adalah_nama_kolom' not in fact_kolom),
-            TEST(lambda frase_kolom, kolom: frase_kolom in kolom)
+            TEST(lambda frase_kolom, kolom: frase_kolom == kolom)
         ),
         salience=460
     )
@@ -104,7 +104,7 @@ class SlotDetector(KnowledgeEngine):
         AND(
             AS.fact_agregasi << Fact(frase=MATCH.frase_agregasi),
             TEST(lambda fact_agregasi: 'adalah_fungsi_agregasi' not in fact_agregasi),
-            TEST(lambda frase_agregasi: frase_agregasi in ['jumlah','total','rata-rata','maksimum','minimum','banyaknya'])
+            TEST(lambda frase_agregasi: frase_agregasi in ['jumlah','total','rata-rata','maksimum','minimum','banyak','maksimal','minimal'])
         ),
         salience=460
     )
@@ -140,7 +140,8 @@ class SlotDetector(KnowledgeEngine):
         self.declare(Fact(jenis_slot='$AGG, $TABLE'))
         
     
-    #Identifikasi slot $TABLE, $COLUMN
+    #Identifikasi slot $TABLE, $COLUMN    
+    #sampai ini
     @Rule(
         AND(
             Fact(adalah_nama_tabel=True),
